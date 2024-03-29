@@ -11,7 +11,7 @@ import SearchBar from '../containers/search/searchBar';
 import SearchPane from '../containers/search/searchPane';
 import SignUpPanel from '../containers/authentication/signUpPanel';
 import SignInPanel from '../containers/authentication/signInPanel';
-import SignOutPanel from '../containers/authentication/signOutPanel';
+import Test from '../containers/authentication/signOutPanel';
 
 const Welcome = () => (
   <div>
@@ -31,7 +31,7 @@ const App = () => (
         <Route exact path="/" component={Welcome} />
         <Route exact path="/signin" component={SignInPanel} />
         <Route exact path="/signup" component={SignUpPanel} />
-        <Route exact path="/signout" component={SignOutPanel} />
+        <Route exact path="/test" component={Test} />
         <Route path="/admin" component={requireAuth(AdminPanel, SignInPanel)} />
         <Route component={FallBack} />
       </Switch>
