@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "DALI Lab CRUD template",
   "main": "src/index.js",
-  "repository": "https://github.com/dali-lab/crud-template-frontend",
+  "repository": "https://github.com/dali-lab/crud-temyarnplate-frontend",
   "author": "Adam McQuilkin <Adam.J.Mcquilkin.22@Dartmouth.edu>",
   "contributors": [
     "Alex Lopez <Alejandro.A.Lopez.Cochachi.23@Dartmouth.edu>",
@@ -12,7 +12,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "dev": "webpack serve",
+    "dev": "set NODE_OPTIONS=--openssl-legacy-provider && webpack serve",
     "test": "eslint src",
     "build": "NODE_ENV=production webpack",
     "clean": "rimraf dist"
@@ -36,7 +36,6 @@
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.1",
     "mini-css-extract-plugin": "^1.4.1",
-    "node-sass": "^6.0.1",
     "postcss": "^8.4.31",
     "postcss-loader": "^5.2.0",
     "sass-loader": "^11.0.1",
@@ -55,6 +54,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "sass": "^1.72.0"
   }
 }
