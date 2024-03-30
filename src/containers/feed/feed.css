@@ -39,14 +39,14 @@
     border-radius: 10px;
     background: #D9D9D9;        
  }
- #filter-btn{
+ #filter-btn-off{
     position: fixed;
     left: 0;
     top: 20%;
  
  }
 
- #filter-btn img {
+ #filter-btn-off img, #filter-btn-on img{
     width: 44px; /* Set the width of the image */
     height: 145px;
 }
@@ -56,8 +56,13 @@
     position: fixed;
     bottom: 0;
     width: 271px;
-    height: 900px;
+    height: 850px;
     max-height: 100%;
     border-right: 2px solid #000;
     background: #93C398;    
 }
+#filter-btn-on{
+    position: fixed;
+    left: 21%;
+    top:20%;
+ }

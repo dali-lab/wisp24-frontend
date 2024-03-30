@@ -7,28 +7,30 @@ const Filter = () =>{
 
     return(
         <div>
+            
 
             {filterStatus ? 
-             <div className='filter-containter'>
-            <button id='filter-btn' onClick={()=> setStatus(!filterStatus)}>
-                <img src='./assets/filter-btn.png' alt='Filter'/>
-            </button>
-             <div className='major-container'>
-                 <input></input>
-             </div>
-             <div className='minor-container'>
+           
+            <div className='filter-containter'>
+                    <div className='major-container'>
+                        <input></input>
+                    </div>
+                    <div className='minor-container'>
 
-             </div>
-             <div className='year-container'>
+                    </div>
+                    <div className='year-container'>
 
+                    </div>
+                    <div className='class-container'>
+                </div>
+                <button id='filter-btn-on' onClick={()=> setStatus(!filterStatus)}>
+                        <img src='./assets/filter-btn.png' alt='Filter'/>
+                </button>
              </div>
-             <div className='class-container'>
 
-             </div>
-
-         </div>
+       
             :
-            <button id='filter-btn' onClick={()=> setStatus(!filterStatus)}>
+            <button id='filter-btn-off' onClick={()=> setStatus(!filterStatus)}>
             <img src='./assets/filter-btn.png' alt='Filter'/>
             </button>
         }

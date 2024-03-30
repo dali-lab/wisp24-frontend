@@ -34,8 +34,6 @@ const Feed =(props)=>{
             {/* buttons */}
 
             <Filter/> 
-                
-           
 
             <div className='sort-container'>
                 <img src='' alt=''/>
