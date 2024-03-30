@@ -18,6 +18,7 @@ const Welcome = () => (
   <div>
     <NavLink to="/signin">Sign In</NavLink>
     <NavLink to="/signup">Sign Up</NavLink>
+    <NavLink to ="/feed">Feed</NavLink>
     <SearchBar />
     <SearchPane />
   </div>
