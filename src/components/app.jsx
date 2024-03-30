@@ -12,7 +12,7 @@ import SearchPane from '../containers/search/searchPane';
 import SignUpPanel from '../containers/authentication/signUpPanel';
 import SignInPanel from '../containers/authentication/signInPanel';
 import Test from '../containers/authentication/signOutPanel';
-import Home from '../containers/Home';
+import Homepage from '../containers/homepage/Homepage';
 
 const Welcome = () => (
   <div>
@@ -33,7 +33,7 @@ const App = () => (
         <Route exact path="/signin" component={SignInPanel} />
         <Route exact path="/signup" component={SignUpPanel} />
         <Route exact path="/test" component={Test} />
-        <Route exact path="/home" component={<Home />} />
+        <Route exact path="/home" component={Homepage} />
         <Route path="/admin" component={requireAuth(AdminPanel, SignInPanel)} />
         <Route component={FallBack} />
       </Switch>
