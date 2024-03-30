@@ -37,7 +37,7 @@ const Feed =(props)=>{
 
             <div className='sort-container'>
                 <img src='' alt=''/>
-                <h3>Sort by:</h3>
+                <span >Sort by:</span>
                 <button id='sort-btn'>sort button</button>
             </div>
         

@@ -5,8 +5,9 @@
     align-items: center;
     padding-left: 20px;
     padding-right: 20px;
-    height: 35px;
+    height: 45px;
     border-bottom: 2px solid black;
+    background: #93C398;
 }
 
 .navbar-right {
