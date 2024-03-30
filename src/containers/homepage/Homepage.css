@@ -1,0 +1,16 @@
+.tab-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.term-draft {
+    border: 2px solid black;
+}
+
+.add-terms {
+    border: 4px solid green;
+}
+
+.potential-class {
+    border: 4px solid green;
+}
