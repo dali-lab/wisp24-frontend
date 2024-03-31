@@ -1,16 +1,18 @@
 import React from 'react';
 import './Navbar.css';
+import { NavLink } from 'react-router-dom';
 
-const navbar = () => {
+const Navbar = () => {
   return (
     <div className="navbar">
       <div>username</div>
       <div className="navbar-right">
-        <p id="navbar-feed">feed</p>
+        <NavLink to="/home">Home</NavLink>
+        <NavLink to="/feed">Feed</NavLink>
         <p id="navbar-friends">friends</p>
       </div>
     </div>
   );
 };
 
-export default navbar;
+export default Navbar;
