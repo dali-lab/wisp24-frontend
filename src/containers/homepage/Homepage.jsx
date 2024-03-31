@@ -72,10 +72,16 @@ const Homepage = () => {
   return (
     <div>
       <Navbar />
-      <MainDraftTab />
-      <Plan />
-      <PotentialClass />
-      <AddTerms />
+      <div className="homepage-main-container">
+        <div className="">
+          <MainDraftTab />
+          <Plan />
+        </div>
+        <div>
+          <PotentialClass />
+          <AddTerms />
+        </div>
+      </div>
     </div>
   );
 };

@@ -14,3 +14,7 @@
 .potential-class {
     border: 4px solid green;
 }
+
+.homepage-main-container {
+    display: flex;
+}
