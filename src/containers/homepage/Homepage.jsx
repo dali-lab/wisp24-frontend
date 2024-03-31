@@ -71,7 +71,7 @@ const Homepage = () => {
 
   return (
     <div>
-      <Navbar />
+
       <MainDraftTab />
       <Plan />
       <PotentialClass />
