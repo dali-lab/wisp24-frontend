@@ -1,10 +1,9 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import termComponent from '../termComponent';
 
 // course component
-const courseComponent = (props) => {
+const CourseComponent = (props) => {
   const [name, setName] = useState([]);
   const [distrib, setDistrib] = useState([]);
   const [del, setDel] = useState(false);
@@ -29,4 +28,4 @@ const courseComponent = (props) => {
     </div>
   );
 };
-export default courseComponent;
+export default CourseComponent;

@@ -2,9 +2,9 @@
 /* eslint-disable import/no-named-as-default */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import courseComponent from '../courseComponent';
+import CourseComponent from '../courseComponent';
 
-const termComponent = () => {
+const TermComponent = () => {
   const [termName, setTermName] = useState('');
   const [courses, setCourses] = useState([]);
   const [courseID, setCourseID] = useState(0);
@@ -31,7 +31,7 @@ const termComponent = () => {
   if (courses.length === 0) {
     allCourses = Object.entries(courses).map(([id, course]) => {
       return (
-        <courseComponent
+        <CourseComponent
           newCourseName={course.name}
           newCourseDistrib={course.distrib}
           id={courseID}
@@ -52,4 +52,4 @@ const termComponent = () => {
     </div>
   );
 };
-export default termComponent;
+export default TermComponent;
