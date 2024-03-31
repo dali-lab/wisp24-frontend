@@ -7,8 +7,9 @@ const Test = () => {
   return (
     <div>
       <p>hiiiiii, testing</p>
-      <CourseComponent />
       <TermComponent />
+      <p> ------------------- </p>
+      <CourseComponent />
     </div>
   );
 };

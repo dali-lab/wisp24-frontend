@@ -44,8 +44,8 @@ const TermComponent = () => {
 
   return (
     <div className="text">
+      <p className="title">New Term:</p>
       <input type="text" value={termName} onChange={newTerm} />
-      <p className="title"> termName </p>
       <p>enter course name:</p>
       <input type="text" value={newCourseName} onChange={newCourseNameFunction} />
 
