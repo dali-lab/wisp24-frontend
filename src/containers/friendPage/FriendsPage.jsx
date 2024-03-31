@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Friend from './Friend';
 import './FriendsPage.css';
+import FriendsNav from './FriendsNav';
 
 const FriendsPage = ({ friendsList }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -11,8 +13,8 @@ const FriendsPage = ({ friendsList }) => {
 
   return (
     <div className="friends-page">
+      <FriendsNav/>
       <h1>Friends</h1>
-      {/* Search input */}
       <input 
         type="text" 
         placeholder="Search friends..." 
@@ -23,7 +25,9 @@ const FriendsPage = ({ friendsList }) => {
       <div className="friends-container">
         {filteredFriends.length > 0 ? (
           filteredFriends.map(friendData => (
-            <Friend key={friendData.id} friendData={friendData} />
+            <Link key={friendData.name} to={`/profile/${friendData.name}`}>
+              <Friend friendData={friendData} />
+            </Link>
           ))
         ) : (
           <p>No friends match your search.</p>

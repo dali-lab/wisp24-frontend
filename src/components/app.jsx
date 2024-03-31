@@ -15,6 +15,8 @@ import Test from '../containers/authentication/signOutPanel';
 import Homepage from '../containers/homepage/Homepage';
 import Feed from '../containers/feed/feed';
 import Navbar from './navbar/Navbar';
+import FriendsNav from '../containers/friendPage/FriendsNav';
+
 
 const Welcome = () => (
   <div>

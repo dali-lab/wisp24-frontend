@@ -12,6 +12,7 @@ const RequestsPage = ({ requestsList }) => {
   return (
     <div className="requests-page">
       <h1>Requests</h1>
+      <FriendsNav/>
       {/* Search input */}
       <input 
         type="text" 

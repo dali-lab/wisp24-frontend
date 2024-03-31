@@ -12,6 +12,7 @@ const FollowingPage = ({ followingList }) => {
   return (
     <div className="following-page">
       <h1>Following</h1>
+      <FriendsNav/>
       {/* Search input */}
       <input 
         type="text" 
