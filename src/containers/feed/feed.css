@@ -61,28 +61,32 @@
     height: 145px;
 }
 #filter-btn-on{
-    position: fixed;
-    left: 21.5%;
-    top:20%;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    left: 60%;
+    bottom: 70%;
+    z-index: 2;
  }
 
 .filter-containter{
     z-index: 1;
     position: fixed;
-    bottom: 0;
-    width: 280px;
-    height: 867px;
+    top:0;
+    width: 20%;
+    padding-top: 5%;
+    height: 100%;
     max-height: 100%;
     border-right: 2px solid #000;
-    background: #93C398;   
+    background: #93C398;  
 }
 
 .filter-wrapper{
-    position:relative;
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-between;
-    top: 10%;
 
 }
 
@@ -90,9 +94,8 @@
     border-radius: 20px;
     border: 1px solid #000;
     background: #FCFFFB;
-    width: 220px;
+    width: 80%;
     height: 145px;
-    flex-shrink: 0;
     margin: 20px 20px;
    
 }
@@ -102,9 +105,8 @@
     border-radius: 20px;
     border: 2px solid #000;
     background: #FFF;
-    width: 188px;
+    width: 80%;
     height: 31.5px;
-    flex-shrink: 0; 
     top: 10%;
     display: flex;
     justify-content: center;
