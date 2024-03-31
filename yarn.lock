@@ -5505,6 +5505,28 @@ react-router@^5.2.0, react-router@5.2.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
+reactjs-popup@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/reactjs-popup/-/reactjs-popup-2.0.6.tgz#ff0e340e31d03785ae62f6b6cf62de1ef48c9605"
+  integrity sha512-A+tt+x9wdgZiZjv0e2WzYLD3IfFwJALaRaqwrCSXGjo0iQdsry/EtBEbQXRSmQs7cHmOi5eytCiSlOm8k4C+dg==
+
+read-pkg-up@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/read-pkg-up/-/read-pkg-up-2.0.0.tgz#6b72a8048984e0c41e79510fd5e9fa99b3b549be"
+  integrity sha1-a3KoBImE4MQeeVEP1en6mbO1Sb4=
+  dependencies:
+    find-up "^2.0.0"
+    read-pkg "^2.0.0"
+
+read-pkg@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/read-pkg/-/read-pkg-2.0.0.tgz#8ef1c0623c6a6db0dc6713c4bfac46332b2368f8"
+  integrity sha1-jvHAYjxqbbDcZxPEv6xGMysjaPg=
+  dependencies:
+    load-json-file "^2.0.0"
+    normalize-package-data "^2.3.2"
+    path-type "^2.0.0"
+
 read@1.0.5:
   version "1.0.5"
   resolved "https://registry.npmjs.org/read/-/read-1.0.5.tgz"

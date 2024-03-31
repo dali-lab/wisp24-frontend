@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "DALI Lab CRUD template",
   "main": "src/index.js",
-  "repository": "https://github.com/dali-lab/crud-template-frontend",
+  "repository": "https://github.com/dali-lab/crud-temyarnplate-frontend",
   "author": "Adam McQuilkin <Adam.J.Mcquilkin.22@Dartmouth.edu>",
   "contributors": [
     "Alex Lopez <Alejandro.A.Lopez.Cochachi.23@Dartmouth.edu>",
@@ -53,6 +53,7 @@
     "react-redux": "^7.2.3",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
+    "reactjs-popup": "^2.0.6",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "sass": "^1.72.0"
