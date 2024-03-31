@@ -29,7 +29,7 @@ const Feed = () => {
     setUsers((oldUser) => oldUser.map((user) => (user.id === id ? { ...user, follow: !user.follow } : user)));
   };
   return (
-    <div>
+    <div className="feed-root">
       {/* buttons */}
 
       <div className="sort-container">

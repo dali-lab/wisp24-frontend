@@ -70,9 +70,8 @@ const Homepage = () => {
   };
 
   return (
-    <div>
-      <Navbar />
-      <div className="homepage-main-container">
+    <div className="homepage-main-container">
+      <div>
         <div className="">
           <MainDraftTab />
           <Plan />
