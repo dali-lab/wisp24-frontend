@@ -1,9 +1,13 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+//import { NavLink } from 'react-router-dom';
+import termComponent from '../../../components/termComponent';
+import courseComponent from '../../../components/courseComponent';
 
-const Test = ({ signOutUser }) => (
+const Test = () => (
   <div>
-    <NavLink to="/" onClick={() => signOutUser()}>Sign Out</NavLink>
+    <p>hiiiiii, testing</p>
+    <courseComponent/>
+    <termComponent/>
   </div>
 );
 
