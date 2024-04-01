@@ -1,33 +1,33 @@
 import React, { useState } from 'react';
-import Friend from './Friend';
+import { Link } from 'react-router-dom';
+import Friend from '../../components/friend/Friend.jsx';
 import './FollowingPage.css';
 import FriendsNav from './FriendsNav';
-import Navbar from '../../components/navbar/navbar.jsx';
+import Navbar from '../../components/navbar/Navbar.jsx';
 
 const FollowingPage = ({ followingList }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredFollowing = followingList.filter(friend => 
-    friend.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredFollowing = followingList.filter((user) => user.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
-    <div className="following-page">
-      <Navbar/>
+    <div className="friends-page">
+      <Navbar />
+      <FriendsNav />
       <h1>Following</h1>
-      <FriendsNav/>
-      {/* Search input */}
-      <input 
-        type="text" 
-        placeholder="Search following..." 
+      <input
+        type="text"
+        placeholder="Search following..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="search-bar"
       />
-      <div className="followings-container">
+      <div className="following-container">
         {filteredFollowing.length > 0 ? (
-            filteredFollowing.map(friendData => (
-            <Friend key={friendData.id} friendData={friendData} />
+          filteredFollowing.map((friendData) => (
+            <Link key={friendData.name} to={`/profile/${friendData.name}`}>
+              <Friend friendData={friendData} />
+            </Link>
           ))
         ) : (
           <p>No following match your search.</p>

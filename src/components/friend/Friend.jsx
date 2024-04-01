@@ -1,9 +1,11 @@
 import React from 'react';
-import Plan from '../../components/plan/Plan';
+import Plan from '../plan/Plan';
 import './Friend.css';
 
 const Friend = ({ friendData }) => {
-  const { name, major, minor, others, biography, followStatus, planData } = friendData;
+  const {
+    name, major, minor, others, biography, followStatus, planData
+  } = friendData;
 
   const renderFollowStatus = () => {
     switch (followStatus) {
@@ -20,7 +22,7 @@ const Friend = ({ friendData }) => {
 
   const renderOtherTags = () => {
     return others.map((other, index) => (
-      <span key={index} className="tag other">{other}</span>
+      <span key={other.name} className="tag other">{other}</span>
     ));
   };
 

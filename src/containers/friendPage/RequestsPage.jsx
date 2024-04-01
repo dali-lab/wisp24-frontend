@@ -1,33 +1,33 @@
 import React, { useState } from 'react';
-import Friend from './Friend';
+import { Link } from 'react-router-dom';
+import Friend from '../../components/friend/Friend.jsx';
 import './RequestsPage.css';
 import FriendsNav from './FriendsNav';
-import Navbar from '../../components/navbar/navbar.jsx';
+import Navbar from '../../components/navbar/Navbar.jsx';
 
 const RequestsPage = ({ requestsList }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredRequests = requestsList.filter(friend => 
-    friend.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredRequests = requestsList.filter((user) => user.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
-    <div className="requests-page">
-      <Navbar/>
-      <h1>Requests</h1>
-      <FriendsNav/>
-      {/* Search input */}
-      <input 
-        type="text" 
-        placeholder="Search requests..." 
+    <div className="friends-page">
+      <Navbar />
+      <FriendsNav />
+      <h1>Following</h1>
+      <input
+        type="text"
+        placeholder="Search following..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="search-bar"
       />
-      <div className="requests-container">
+      <div className="following-container">
         {filteredRequests.length > 0 ? (
-            filteredRequests.map(friendData => (
-            <Friend key={friendData.id} friendData={friendData} />
+          filteredRequests.map((friendData) => (
+            <Link key={friendData.name} to={`/profile/${friendData.name}`}>
+              <Friend friendData={friendData} />
+            </Link>
           ))
         ) : (
           <p>No requests match your search.</p>
