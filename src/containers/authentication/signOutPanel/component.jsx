@@ -6,7 +6,6 @@ import CourseComponent from '../../../components/courseComponent';
 const Test = () => {
   return (
     <div>
-      <p>hiiiiii, testing</p>
       <TermComponent />
       <p> ------------------- </p>
       <CourseComponent />

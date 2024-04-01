@@ -1,6 +1,7 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
+// import TermComponent from '../TermComponent';
 
 // course component
 const CourseComponent = (props) => {
@@ -23,6 +24,7 @@ const CourseComponent = (props) => {
 
   return (
     <div>
+      <p>hello this is course component</p>
       <input type="text" value={name} onChange={newCourseNameFunction} />
       <button type="submit" onClick={delCourse}> delete </button>
     </div>

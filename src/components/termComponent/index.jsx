@@ -6,10 +6,12 @@ import CourseComponent from '../courseComponent';
 
 const TermComponent = () => {
   const [termName, setTermName] = useState('');
+  const [termID, setTermID] = useState(0);
   const [courses, setCourses] = useState([]);
-  const [courseID, setCourseID] = useState(0);
+  // const [courseID, setCourseID] = useState(0);
   const [newCourseName, setNewCourseName] = useState('');
   const [newCourseDistrib, setNewCourseDistrib] = useState('');
+  const [del, setDel] = useState(false);
 
   const newTerm = (event) => {
     setTermName(event.target.value);
@@ -28,7 +30,7 @@ const TermComponent = () => {
   };
 
   let allCourses = '';
-  if (courses.length === 0) {
+  if (courses.length !== 0) {
     allCourses = Object.entries(courses).map(([id, course]) => {
       return (
         <CourseComponent
@@ -42,14 +44,32 @@ const TermComponent = () => {
     });
   }
 
-  return (
-    <div className="text">
-      <p className="title">New Term:</p>
-      <input type="text" value={termName} onChange={newTerm} />
-      <p>enter course name:</p>
-      <input type="text" value={newCourseName} onChange={newCourseNameFunction} />
+  if (createdTerm === '') {
+    return (
+      <div className="text">
+        <p className="title">Create a Term:</p>
+        <input type="text" value={termName} onChange={newTerm} />
+        <button type="submit" onClick={newTerm}>Create Term </button>
+      </div>
+    );
+  }
 
-    </div>
-  );
+  // THIS IS IF THE TERM HAS BEEN CREATED
+  else {
+    return (
+      <div className="text">
+        <p className="title">New Term:</p>
+        <input type="text" value={termName} onChange={newTerm} />
+        <button type="submit" onClick={newTerm}>Create Term </button>
+
+        <div className="term">
+          <p> {termName} </p>
+          <input type="text" value={newCourseName} onChange={newCourseNameFunction} />
+          <button type="submit" onClick={newCourseNameFunction}> Add Course </button>
+        </div>
+      </div>
+
+    );
+  }
 };
 export default TermComponent;
