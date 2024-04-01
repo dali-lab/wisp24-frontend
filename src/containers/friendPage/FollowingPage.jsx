@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Friend from './Friend';
 import './FollowingPage.css';
+import FriendsNav from './FriendsNav';
+import Navbar from '../../components/navbar/navbar.jsx';
 
 const FollowingPage = ({ followingList }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -11,6 +13,7 @@ const FollowingPage = ({ followingList }) => {
 
   return (
     <div className="following-page">
+      <Navbar/>
       <h1>Following</h1>
       <FriendsNav/>
       {/* Search input */}

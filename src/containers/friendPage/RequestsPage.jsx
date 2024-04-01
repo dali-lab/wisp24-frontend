@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Friend from './Friend';
 import './RequestsPage.css';
+import FriendsNav from './FriendsNav';
+import Navbar from '../../components/navbar/navbar.jsx';
 
 const RequestsPage = ({ requestsList }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -11,6 +13,7 @@ const RequestsPage = ({ requestsList }) => {
 
   return (
     <div className="requests-page">
+      <Navbar/>
       <h1>Requests</h1>
       <FriendsNav/>
       {/* Search input */}

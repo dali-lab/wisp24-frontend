@@ -42,6 +42,13 @@ const App = () => (
         <Route exact path="/test" component={Test} />
         <Route exact path="/home" component={Homepage} />
         <Route path="/admin" component={requireAuth(AdminPanel, SignInPanel)} />
+
+        <Route exact path="/friends" component={FriendsPage} />
+        <Route exact path="/following" component={FollowingPage} />
+        <Route exact path="/adduser" component={AddUser} />
+        <Route exact path="/requests" component={RequestsPage} />
+        <Route exact path="/profile/:friendName" component={ViewProfile} />
+
         <Route component={FallBack} />
       </Switch>
     </div>

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Friend from './Friend';
+import Friend from '../../components/friend/Friend.jsx';
 import './FriendsPage.css';
 import FriendsNav from './FriendsNav';
+import Navbar from '../../components/navbar/navbar.jsx';
 
 const FriendsPage = ({ friendsList }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -13,6 +14,7 @@ const FriendsPage = ({ friendsList }) => {
 
   return (
     <div className="friends-page">
+      <Navbar/>
       <FriendsNav/>
       <h1>Friends</h1>
       <input 

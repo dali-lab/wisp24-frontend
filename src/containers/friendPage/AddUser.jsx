@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Friend from './Friend';
 import './AddUserPage.css';
+import Navbar from '../../components/navbar/navbar.jsx';
 
 const AddUserPage = ({ usersList }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -11,18 +12,19 @@ const AddUserPage = ({ usersList }) => {
 
   return (
     <div className="users-page">
+      <Navbar/>
       <h1>All Users</h1>
       {/* Search input */}
       <input 
         type="text" 
-        placeholder="Search requests..." 
+        placeholder="Search users..." 
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="search-bar"
       />
       <div className="users-container">
         {filteredUsers.length > 0 ? (
-            filteredRequests.map(friendData => (
+            filteredUsers.map(friendData => (
             <Friend key={friendData.id} friendData={friendData} />
           ))
         ) : (

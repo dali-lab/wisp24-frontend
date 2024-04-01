@@ -1,0 +1,61 @@
+.friend-container {
+    width: 357px;
+    height: 170px;
+    background-color: #FFFFFF;  
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  
+    border-radius: 8px;  
+    padding: 16px;  
+    box-sizing: border-box;  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .friend-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .friend-header h1 {
+    color: #000000;  
+    background-color: #93C398;  
+    margin: 0 0 8px 0;  
+    font-size: 1.5em;  
+  }
+  
+  .friend-tags {
+    display: flex;
+    gap: 8px;  
+  }
+  
+  .tag {
+    padding: 4px 8px;  
+    border-radius: 4px;  
+    font-size: 0.8em;  
+    color: #FFFFFF;  
+    font-weight: bold;  
+  }
+  
+  .tag.major {
+    background-color: #C0CEFF;  
+  }
+  
+  .tag.minor {
+    background-color: #C0CEFF;  
+  }
+  
+  .tag.other {
+    background-color: #B5EFBB;  
+  }
+  
+  .friend-bio {
+    color: #666666; 
+    font-size: 0.9em;  
+  }
+  
+  .friend-status .follow-status {
+    color: #93C398;  
+    font-weight: bold; 
+  }
+  
