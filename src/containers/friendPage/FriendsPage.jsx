@@ -8,7 +8,10 @@ import Navbar from '../../components/navbar/Navbar.jsx';
 const FriendsPage = ({ friendsList }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredFriends = friendsList.filter((user) => user.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  let filteredFriends = [];
+  if (friendsList != null) {
+    filteredFriends = friendsList.filter((user) => user.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  }
 
   return (
     <div className="friends-page">
