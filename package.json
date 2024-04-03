@@ -43,7 +43,7 @@
     "surge": "^0.23.0",
     "webpack": "^5.33.2",
     "webpack-cli": "^4.6.0",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^5.0.4"
   },
   "dependencies": {
     "axios": "^0.28.0",
