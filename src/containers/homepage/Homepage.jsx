@@ -70,12 +70,17 @@ const Homepage = () => {
   };
 
   return (
-    <div>
-
-      <MainDraftTab />
-      <Plan />
-      <PotentialClass />
-      <AddTerms />
+    <div className="homepage-main-container">
+      <div>
+        <div className="">
+          <MainDraftTab />
+          <Plan />
+        </div>
+        <div>
+          <PotentialClass />
+          <AddTerms />
+        </div>
+      </div>
     </div>
   );
 };
