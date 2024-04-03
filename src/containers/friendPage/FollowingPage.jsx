@@ -3,16 +3,17 @@ import { Link } from 'react-router-dom';
 import Friend from '../../components/friend/Friend.jsx';
 import './FollowingPage.css';
 import FriendsNav from './FriendsNav';
-import Navbar from '../../components/navbar/Navbar.jsx';
 
 const FollowingPage = ({ followingList }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredFollowing = followingList.filter((user) => user.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  let filteredFollowing = [];
+  if (followingList != null) {
+    filteredFollowing = followingList.filter((user) => user.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  }
 
   return (
     <div className="friends-page">
-      <Navbar />
       <FriendsNav />
       <h1>Following</h1>
       <input

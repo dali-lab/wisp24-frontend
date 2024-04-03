@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import Friend from '../../components/friend/Friend';
 import './AddUserPage.css';
-import Navbar from '../../components/navbar/Navbar.jsx';
+import FriendsNav from './FriendsNav';
 
 const AddUserPage = ({ usersList }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredUsers = usersList.filter((friend) => friend.name.toLowerCase().includes(searchTerm.toLowerCase()));
-
+  let filteredUsers = [];
+  if (usersList != null) {
+    filteredUsers = usersList.filter((user) => user.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  }
   return (
     <div className="users-page">
-      <Navbar />
+      <FriendsNav />
       <h1>All Users</h1>
       {/* Search input */}
       <input
