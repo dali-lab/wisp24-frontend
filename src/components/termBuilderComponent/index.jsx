@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TermComponent from '../termComponent';
 import './index.css';
 
 const TermBuilderComponent = () => {
+  const [termName, setTermName] = useState('');
+  const [listOfTermNames, setListOfTermNames] = useState([]);
+
+  // save new term button, adds to term name list
+  const saveNewTerm = () => {
+    setListOfTermNames([...listOfTermNames, termName]);
+  };
+
+  const termNameFunction = (event) => {
+    setTermName(event.target.value);
+  };
+
   // const [termID, setTermID] = useState(0);
   // const [listOfTermIDs, setListOfTermIDs] = useState([]);
   // const [termName, setTermName] = useState('');
@@ -36,27 +48,34 @@ const TermBuilderComponent = () => {
   //   setListOfTermIDs(listOfTermIDs.filter((i) => i.termID !== id));
   // };
 
-  // let allTerms = '';
-  // if (listOfTermIDs.length !== 0) {
-  //   allTerms = Object.entries(listOfTerms).map(([id,term]) => {
-  //     return (
-  //       <TermComponent
-  //           termName = {term.termName}
-  //           courses = {courses} //not sure what to do for these, how to get the ones associated w eachother
-  //           termID = (id)
-  //           key = {id}
-  //           del = {term.del}
-  //       />
-  //     );
-  //   });
-  // }
+  let allTerms = '';
+  if (listOfTermNames.length !== 0) {
+    allTerms = Object.entries(listOfTermNames).map(([id, term]) => {
+      return (
+        <TermComponent
+          termName={term}
+          courses={[]}
+          termID={id}
+          key={id}
+          del={false} // pass a callback function
+          edit={false} // pass a callback function eventually
+        />
+      );
+    });
+  }
 
   return (
+    <div>
+      <input type="text" value={termName} placeholder="Term Title" onChange={termNameFunction} />
+      <button type="submit" onClick={saveNewTerm}>Save New Term</button>
 
-    <div className="text">
-      <p className="title">Term Builder</p>
-      <TermComponent />
+      <div className="termbuilder">
+        <p className="title">Term Builder</p>
+        {/* <TermComponent /> */}
+        {allTerms}
+      </div>
     </div>
+
   );
 };
 export default TermBuilderComponent;

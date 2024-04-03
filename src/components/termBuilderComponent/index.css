@@ -1,11 +1,36 @@
 .term {
     border: 2px solid rgb(0,0,20);
     margin: 15px;
-    background-color: lightgrey;
+    background-color: rgb(246, 200, 200);
+    font-family: gill sans;
+    font-weight: 600;
+    justify-content: center;
+    text-align: center;
+}
+
+.termbuilder {
+    border: 2px solid rgb(0,0,20);
+    margin: 15px;
+    background-color: rgb(167, 209, 225);
+    font-family: gill sans;
+    font-weight: 600;
+    justify-content: center;
+    text-align: center;
+}
+
+.text {
+    font-family: gill sans;
+    font-weight: 600;
+    justify-content: center;
+    text-align: center;
 }
 
 .course {
     border: 2px solid rgb(0,0,20);
     margin: 15px;
     background-color: lightcoral;
+    font-family: gill sans;
+    font-weight: 600;
+    justify-content: center;
+    text-align: center;
 }

@@ -2,10 +2,18 @@
     border: 2px solid rgb(0,0,20);
     margin: 15px;
     background-color: lightgrey;
+    font-family: gill sans;
+    font-weight: 600;
+    justify-content: center;
+    text-align: center;
 }
 
 .course {
     border: 2px solid rgb(0,0,20);
     margin: 15px;
     background-color: lightcoral;
+    font-family: gill sans;
+    font-weight: 600;
+    justify-content: center;
+    text-align: center;
 }

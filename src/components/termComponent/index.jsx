@@ -7,13 +7,26 @@ import './index.css';
 
 const TermComponent = (props) => {
   const [termName, setTermName] = useState(props.termName); // take from termbuilder class
-  const [newTermName, setNewTermName] = useState('');
+  // const [newTermName, setNewTermName] = useState('');
   const [termID, setTermID] = useState(props.termID);
   // const [newCourseDistrib, setNewCourseDistrib] = useState('');
   // const [del, setDel] = useState(false);
-  const [courses, setCourses] = useState([]);
+  const [courses, setCourses] = useState(props.courses);
   const [courseName, setCourseName] = useState('');
-  const [newCourseName, setNewCourseName] = useState('');
+  const [del, setDel] = useState(props.del);
+  const [edit, setEdit] = useState(props.edit);
+
+  const courseNameFunction = (event) => {
+    setCourseName(event.target.value);
+  };
+
+  // add course button
+  const addCourse = () => {
+    setCourses([...courses, courseName]);
+  };
+
+  // const [courseName, setCourseName] = useState('');
+  // const [newCourseName, setNewCourseName] = useState('');
   // const [editTerm, setEditTerm] = useState(true);
 
   // keeps newTermName updated when typing
@@ -58,30 +71,31 @@ const TermComponent = (props) => {
   // };
   // can i make it delete based on the coursename???
 
-  // let allCourses = '';
-  // if (courses.length !== 0) {
-  //   allCourses = Object.entries(courses).map(([id, course]) => { //how do i give courses an ID
-  //     return (
-  //       <CourseComponent
-  //         newCourseName={course.name}
-  //         newCourseDistrib={course.distrib}
-  //         id={courseID}
-  //         key={courseID}
-  //         del={delCourse}
-  //       />
-  //     );
-  //   });
-  // }
+  let allCourses = '';
+  if (courses.length !== 0) {
+    allCourses = Object.entries(courses).map(([id, course]) => {
+      return (
+        <CourseComponent
+          courseName={course}
+          courseDistrib={course.distrib}
+          id={id}
+          key={id}
+          del={false} // callback eventually
+        />
+      );
+    });
+  }
 
   // if editing term!
 
   return (
 
     <div className="term">
-
-      <p>24S</p>
-
-      <CourseComponent
+      <p>{termName}</p>
+      {allCourses}
+      <input type="text" value={courseName} placeholder="Course Name" onChange={courseNameFunction} />
+      <button type="submit" onClick={addCourse}>Add Course</button>
+      {/* <CourseComponent
         newCourseName="CS10"
         id={0}
       />
@@ -92,7 +106,7 @@ const TermComponent = (props) => {
       <CourseComponent
         newCourseName="ANTH3"
         id={2}
-      />
+      /> */}
     </div>
   );
 };

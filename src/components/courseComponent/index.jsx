@@ -6,10 +6,10 @@ import './index.css';
 
 // course component
 const CourseComponent = (props) => {
-  const [name, setName] = useState([]);
-  const [distrib, setDistrib] = useState([]);
-  const [del, setDel] = useState(false);
-  const [listOfCourses, setListOfCourses] = useState(['CS1', 'CS10']);
+  const [name, setName] = useState(props.courseName);
+  const [distrib, setDistrib] = useState('CI');
+  const [del, setDel] = useState(props.del);
+  const [id, setID] = useState(props.id);
 
   // const newCourseNameFunction = (event) => {
   //   if (event.target.value in listOfCourses) {
@@ -25,8 +25,7 @@ const CourseComponent = (props) => {
 
   return (
     <div className="course">
-      <p>{props.newCourseName}</p>
-      <p>{props.id}</p>
+      <p>{id}: {name} ({distrib})</p>
     </div>
   );
 };
