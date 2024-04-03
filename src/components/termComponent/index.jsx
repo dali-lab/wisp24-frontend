@@ -13,6 +13,16 @@ const TermComponent = () => {
   const [newCourseDistrib, setNewCourseDistrib] = useState('');
   const [del, setDel] = useState(false);
 
+  // when typing course name this keeps course name updated
+  const courseNameFunction = (event) => {
+    setCourseName(event.target.value);
+  };
+
+  // when you click the button to add the course this adds to the list of courses
+  const addNewCourse = () => {
+    courses.append(courseName);
+  };
+
   const newTerm = (event) => {
     setTermName(event.target.value);
   };
