@@ -1,0 +1,11 @@
+.term {
+    border: 2px solid rgb(0,0,20);
+    margin: 15px;
+    background-color: lightgrey;
+}
+
+.course {
+    border: 2px solid rgb(0,0,20);
+    margin: 15px;
+    background-color: lightcoral;
+}
