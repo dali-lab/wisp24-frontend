@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import Navbar from '../../components/navbar/navbar.jsx';
+import Navbar from '../../components/navbar/Navbar.jsx';
 import Plan from '../../components/plan/Plan.jsx';
 import PotentialClass from './PotentialClass.jsx';
 import AddTerms from './AddTerms.jsx';
