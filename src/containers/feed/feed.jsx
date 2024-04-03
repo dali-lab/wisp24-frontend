@@ -3,6 +3,7 @@ import 'reactjs-popup/dist/index.css';
 import './feed.css';
 import Post from './post';
 import Filter from './feedFilter';
+import Sort from './sort';
 
 const Feed = () => {
   const [users, setUsers] = useState([
@@ -46,6 +47,7 @@ const Feed = () => {
         />
       </div>
       <Filter />
+      <Sort />
     </div>
   );
 };

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const Sort = () => {
   const [sort, setSort] = useState(false);
   return (
-    <div>{sort ? <div> <button type="button" id="sort-btn" onClick={() => setSort(!sort)}>sort button</button> </div>
+    <div>{sort ? <div> <button type="button" id="sort-btn" onClick={() => setSort(!sort)}> sort button</button> </div>
       : (
         <div> <button type="button" id="sort-btn" onClick={() => setSort(!sort)}> sort button</button>
           <button type="button" id="sort-options"> most recent</button>
