@@ -9,7 +9,7 @@ const FriendsPage = ({ friendsList }) => {
     name: 'name name',
     major: 'Computer Science',
     minor: 'Digital Arts',
-    other: ['2027'],
+    others: ['2027'],
     biography: 'blah',
     followStatus: 'friends',
   };
@@ -32,6 +32,7 @@ const FriendsPage = ({ friendsList }) => {
         className="search-bar"
       />
       <div className="friends-container">
+      <Friend friendData={sampleFriendData}/>
 
         {filteredFriends.length > 0 ? (
           filteredFriends.map((friendData) => (

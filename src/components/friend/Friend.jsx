@@ -21,7 +21,7 @@ const Friend = ({ friendData }) => {
   };
 
   const renderOtherTags = () => {
-    return others.map((other, index) => (
+    return others.map(other => (
       <span key={other.name} className="tag other">{other}</span>
     ));
   };
@@ -30,10 +30,13 @@ const Friend = ({ friendData }) => {
     <div className="friend-container">
       <div className="friend-header">
         <h1>{name}</h1>
+        {/* <img src="place-holder.png"/> */}
         <div className="friend-tags">
           <span className="tag major">{major}</span>
           <span className="tag minor">{minor}</span>
           {renderOtherTags()}
+          {/* { others.map(other => console.log(other))} */}
+          {others ? console.log(others) : null}
         </div>
         <p className="friend-bio">{biography}</p>
         <div className="friend-status">
@@ -42,6 +45,16 @@ const Friend = ({ friendData }) => {
       </div>
       <Plan planData={planData} />
     </div>
+    // <>
+    // <p>{name}</p>
+    // <p>{major}</p>
+    // <p>{minor}</p>
+    // <p>{others}</p>
+    // <p>{biography}</p>
+    // <p>{followStatus}</p>
+    // <Plan planData={planData} />
+
+    // </>
   );
 };
 
