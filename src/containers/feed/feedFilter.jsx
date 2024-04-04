@@ -4,19 +4,25 @@ import './feed.css';
 const Filter = () => {
   const [filterStatus, setStatus] = useState(false);
   return (
-    <div>
+    <div className="feed-root">
       { filterStatus ? (
         <div className="filter-containter">
           <div className="filter-wrapper">
             <div className="search-container" id="major">
               <div id="search-bar">
                 <input placeholder="Major" />
+                <button type="button">
+                  <img src="/assets/search.png" alt="search" />
+                </button>
               </div>
             </div>
 
             <div className="search-container" id="minor">
               <div id="search-bar">
                 <input placeholder="Minor" />
+                <button type="button">
+                  <img src="/assets/search.png" alt="search" />
+                </button>
               </div>
 
             </div>
@@ -24,6 +30,9 @@ const Filter = () => {
             <div className="search-container" id="year">
               <div id="search-bar">
                 <input placeholder="Year" />
+                <button type="button">
+                  <img src="/assets/search.png" alt="search" />
+                </button>
               </div>
 
             </div>
@@ -31,6 +40,9 @@ const Filter = () => {
             <div className="search-container" id="classes">
               <div id="search-bar">
                 <input placeholder="Classes" />
+                <button type="button">
+                  <img src="/assets/search.png" alt="search" />
+                </button>
               </div>
 
             </div>

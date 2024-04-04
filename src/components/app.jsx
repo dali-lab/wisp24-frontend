@@ -14,7 +14,7 @@ import SignInPanel from '../containers/authentication/signInPanel';
 import Test from '../containers/authentication/signOutPanel';
 import Homepage from '../containers/homepage/Homepage';
 import Feed from '../containers/feed/feed';
-import Navbar from './navbar/navbar';
+import Navbar from './navbar/Navbar';
 
 const Welcome = () => (
   <div>
