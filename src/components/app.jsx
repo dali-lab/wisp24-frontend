@@ -60,7 +60,7 @@ const App = () => (
         <Route exact path="/following" component={FollowingPage} />
         <Route exact path="/adduser" component={AddUser} />
         <Route exact path="/requests" component={RequestsPage} />
-        <Route exact path="/profile/:friendName" component={ViewProfile} />
+        <Route exact path="/profile/1" component={ViewProfile} />
 
         <Route component={FallBack} />
       </Switch>

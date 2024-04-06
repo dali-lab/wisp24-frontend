@@ -1,11 +1,30 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import Friend from '../../components/friend/Friend';
 import Plan from '../../components/plan/Plan';
 import Navbar from '../../components/navbar/Navbar.jsx';
 import './ViewProfile.css';
 
-const ViewProfile = ({ friendData }) => {
+const ViewProfile = () => {
+  const location = useLocation();
+  const { friendData } = location.state;
+
+  // const { friendId } = useParams(); // This should match the URL param you've set in your Route
+  // const [friendData, setFriendData] = useState(null);
+
+  // useEffect(() => {
+  //   const fetchFriendData = async () => {
+  //     const data = await getFriendDataById(friendId);
+  //     setFriendData(data);
+  //   };
+
+  //   fetchFriendData();
+  // }, [friendId]);
+
+  // if (!friendData) {
+  //   return <div>Loading...</div>;
+  // }
+
   const navigate = useNavigate();
 
   const handleBack = () => {

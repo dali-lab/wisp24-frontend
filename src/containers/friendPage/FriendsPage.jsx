@@ -20,6 +20,7 @@ const FriendsPage = ({ friendsList }) => {
   if (friendsList != null) {
     filteredFriends = friendsList.filter((user) => user.name.toLowerCase().includes(searchTerm.toLowerCase()));
   }
+
   return (
     <div className="friends-page">
       <FriendsNav />
@@ -33,19 +34,24 @@ const FriendsPage = ({ friendsList }) => {
       <div className="friends-container">
         {/* {filteredFriends.length > 0 ? (
           filteredFriends.map((friendData) => (
-            <Link key={friendData.name} to={`/profile/${friendData.name}`}>
+            <Link key={friendData.id} to={`/profile/${friendData.name}`}>
               <Friend friendData={friendData} />
             </Link>
           ))
         ) : (
           <p>No friends match your search.</p>
         )} */}
-        <Friend friendData={sampleFriendData} />
-        <Friend friendData={sampleFriendData} />
-        <Friend friendData={sampleFriendData} />
-        <Friend friendData={sampleFriendData} />
-        <Friend friendData={sampleFriendData} />
-        <Friend friendData={sampleFriendData} />
+        {[1, 2, 3, 4].map((id) => (
+          <Link
+            key={id}
+            to={{
+              pathname: `/profile/${id}`,
+              state: { friendData: sampleFriendData }
+            }}
+          >
+            <Friend friendData={sampleFriendData} />
+          </Link>
+        ))}
       </div>
     </div>
   );
