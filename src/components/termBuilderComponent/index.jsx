@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TermComponent from '../termComponent';
 import './index.css';
 
@@ -13,6 +13,12 @@ const TermBuilderComponent = () => {
 
   const termNameFunction = (event) => {
     setTermName(event.target.value);
+  };
+
+  const delTerm = (name) => {
+    const newList = listOfTermNames.filter((n) => n !== name);
+    setListOfTermNames(newList);
+    // setListOfTermNames(listOfTermNames.filter((i) => i.termName !== name));
   };
 
   // const [termID, setTermID] = useState(0);
@@ -57,20 +63,24 @@ const TermBuilderComponent = () => {
           courses={[]}
           termID={id}
           key={id}
-          del={false} // pass a callback function
+          del={delTerm} // pass a callback function
           edit={false} // pass a callback function eventually
         />
       );
     });
   }
 
+  // useEffect(() => {
+  //   setListOfTermNames(allTerms);
+  // });
+
   return (
     <div>
-      <input type="text" value={termName} placeholder="Term Title" onChange={termNameFunction} />
-      <button type="submit" onClick={saveNewTerm}>Save New Term</button>
-
       <div className="termbuilder">
         <p className="title">Term Builder</p>
+        <input type="text" value={termName} placeholder="Term Title" onChange={termNameFunction} />
+        <button type="submit" onClick={saveNewTerm}>Save New Term</button>
+        <p/>
         {/* <TermComponent /> */}
         {allTerms}
       </div>

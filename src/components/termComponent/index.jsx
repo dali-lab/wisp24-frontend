@@ -25,6 +25,10 @@ const TermComponent = (props) => {
     setCourses([...courses, courseName]);
   };
 
+  const delTerm = () => {
+    props.delTerm(termName);
+  };
+
   // const [courseName, setCourseName] = useState('');
   // const [newCourseName, setNewCourseName] = useState('');
   // const [editTerm, setEditTerm] = useState(true);
@@ -91,22 +95,13 @@ const TermComponent = (props) => {
   return (
 
     <div className="term">
-      <p>{termName}</p>
+      <p className="termTitle">{termName}</p>
       {allCourses}
       <input type="text" value={courseName} placeholder="Course Name" onChange={courseNameFunction} />
       <button type="submit" onClick={addCourse}>Add Course</button>
-      {/* <CourseComponent
-        newCourseName="CS10"
-        id={0}
-      />
-      <CourseComponent
-        newCourseName="PSYC1"
-        id={1}
-      />
-      <CourseComponent
-        newCourseName="ANTH3"
-        id={2}
-      /> */}
+      <p />
+      <button type="submit" onClick={delTerm}>Delete Term</button>
+      <p />
     </div>
   );
 };

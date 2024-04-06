@@ -1,26 +1,38 @@
 .term {
     border: 2px solid rgb(0,0,20);
     margin: 15px;
-    background-color: rgb(246, 200, 200);
+    background-color: rgb(141, 191, 147);
     font-family: gill sans;
     font-weight: 600;
     justify-content: center;
     text-align: center;
+    border-radius: 10px;
+}
+.termTitle {
+    font-weight: 640;
+    font-size:larger;
+}
+.termbuilder {
+    border: 3px solid rgb(14, 51, 31);
+    margin: 15px;
+    background-color: rgb(230, 243, 233);
+    font-family: gill sans;
+    justify-content: center;
+    text-align: center;
+    border-radius: 15px;
+    padding: 10px;
+
 }
 
-.termbuilder {
-    border: 2px solid rgb(0,0,20);
-    margin: 15px;
-    background-color: rgb(167, 209, 225);
-    font-family: gill sans;
-    font-weight: 600;
-    justify-content: center;
-    text-align: center;
+.title {
+    font-weight: 630;
+    font-size:x-large;
 }
 
 .text {
     font-family: gill sans;
     font-weight: 600;
+    font-size: medium;
     justify-content: center;
     text-align: center;
 }
@@ -28,9 +40,10 @@
 .course {
     border: 2px solid rgb(0,0,20);
     margin: 15px;
-    background-color: lightcoral;
+    background-color: rgb(223, 148, 148);
     font-family: gill sans;
     font-weight: 600;
     justify-content: center;
     text-align: center;
+    border-radius: 30px;
 }
