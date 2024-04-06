@@ -23,7 +23,6 @@ const FriendsPage = ({ friendsList }) => {
   return (
     <div className="friends-page">
       <FriendsNav />
-      <h1>Friends</h1>
       <input
         type="text"
         placeholder="Search friends..."
@@ -32,9 +31,7 @@ const FriendsPage = ({ friendsList }) => {
         className="search-bar"
       />
       <div className="friends-container">
-      <Friend friendData={sampleFriendData}/>
-
-        {filteredFriends.length > 0 ? (
+        {/* {filteredFriends.length > 0 ? (
           filteredFriends.map((friendData) => (
             <Link key={friendData.name} to={`/profile/${friendData.name}`}>
               <Friend friendData={friendData} />
@@ -42,7 +39,13 @@ const FriendsPage = ({ friendsList }) => {
           ))
         ) : (
           <p>No friends match your search.</p>
-        )}
+        )} */}
+        <Friend friendData={sampleFriendData} />
+        <Friend friendData={sampleFriendData} />
+        <Friend friendData={sampleFriendData} />
+        <Friend friendData={sampleFriendData} />
+        <Friend friendData={sampleFriendData} />
+        <Friend friendData={sampleFriendData} />
       </div>
     </div>
   );

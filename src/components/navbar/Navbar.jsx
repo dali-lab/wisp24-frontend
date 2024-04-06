@@ -5,7 +5,8 @@ import { NavLink } from 'react-router-dom';
 const Navbar = () => {
   return (
     <div className="navbar">
-      <div>username</div>
+      {/* <button onClick={toggleSidebar}>Toggle Profile</button> */}
+      <p>Profile</p>
       <div className="navbar-right">
         <NavLink to="/home">Home</NavLink>
         <NavLink to="/feed">Feed</NavLink>

@@ -7,21 +7,28 @@ const Friend = ({ friendData }) => {
     name, major, minor, others, biography, followStatus, planData
   } = friendData;
 
+  const renderPlan = () => {
+    if (planData && Object.keys(planData).length > 0) {
+      return <Plan planData={planData} />;
+    }
+    return null;
+  };
+
   const renderFollowStatus = () => {
     switch (followStatus) {
       case 'friends':
-        return 'You are friends';
+        return 'Friend';
       case 'requested':
-        return 'Friend request sent';
+        return 'Requested';
       case 'following':
-        return 'You are following';
+        return 'Following';
       default:
         return 'Follow';
     }
   };
 
   const renderOtherTags = () => {
-    return others.map(other => (
+    return others.map((other) => (
       <span key={other.name} className="tag other">{other}</span>
     ));
   };
@@ -43,18 +50,8 @@ const Friend = ({ friendData }) => {
           <span className="follow-status">{renderFollowStatus()}</span>
         </div>
       </div>
-      <Plan planData={planData} />
+      {/* <Plan planData={planData} /> */}
     </div>
-    // <>
-    // <p>{name}</p>
-    // <p>{major}</p>
-    // <p>{minor}</p>
-    // <p>{others}</p>
-    // <p>{biography}</p>
-    // <p>{followStatus}</p>
-    // <Plan planData={planData} />
-
-    // </>
   );
 };
 
