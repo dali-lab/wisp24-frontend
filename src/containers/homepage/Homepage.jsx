@@ -3,7 +3,7 @@ import Navbar from '../../components/navbar/Navbar.jsx';
 import Plan from '../../components/plan/Plan.jsx';
 import PotentialClass from './PotentialClass.jsx';
 import AddTerms from './AddTerms.jsx';
-import './Homepage.css'
+import './Homepage.css';
 
 const Homepage = () => {
   const [mainDrafts, setMainDrafts] = useState([
@@ -13,7 +13,7 @@ const Homepage = () => {
     }
   ]);
   const inputRef = useRef();
-  const [editingIndex, setEditingIndex] = useState("");
+  const [editingIndex, setEditingIndex] = useState('');
 
   const addDraft = (event) => {
     event.preventDefault();
@@ -23,34 +23,34 @@ const Homepage = () => {
   const deleteDraft = (index) => {
     if (mainDrafts.length > 1) {
       if (editingIndex === index) {
-        setEditingIndex("")
+        setEditingIndex('');
       }
       const updatedDrafts = mainDrafts.filter((draft, i) => i !== index);
-      setMainDrafts(updatedDrafts)
+      setMainDrafts(updatedDrafts);
     }
-  }
+  };
 
   const editDraft = (index) => {
     setEditingIndex(index);
-  }
+  };
 
   const startEdit = (index) => {
-    setEditingIndex(index)
-  }
+    setEditingIndex(index);
+  };
 
   const titleChangeSubmit = (index) => {
-    if (inputRef.current.value.length === 0) {return}
+    if (inputRef.current.value.length === 0) { return; }
     const updatedDrafts = mainDrafts.map((mainDraft, i) => {
       if (index == i) {
-        return {draftTitle: inputRef.current.value}
+        return { draftTitle: inputRef.current.value };
       } else {
-        return mainDraft
+        return mainDraft;
       }
-    })
+    });
     setMainDrafts(updatedDrafts);
-    console.log(updatedDrafts)
-    setEditingIndex("")
-  }
+    console.log(updatedDrafts);
+    setEditingIndex('');
+  };
 
   const MainDraftTab = () => {
     return (
@@ -58,7 +58,7 @@ const Homepage = () => {
         {mainDrafts.map((mainDraft, index) => {
           return (
             <div key={index}>
-              <div>{editingIndex === index ? <input type="text" ref={inputRef}></input> : mainDraft.draftTitle}</div>
+              <div>{editingIndex === index ? <input type="text" ref={inputRef} /> : mainDraft.draftTitle}</div>
               {editingIndex === index ? <button onClick={() => titleChangeSubmit(index)}>Submit</button> : <button onClick={() => startEdit(index)}>Edit</button>}
               <button onClick={() => deleteDraft(index)}>Delete</button>
             </div>
@@ -70,12 +70,17 @@ const Homepage = () => {
   };
 
   return (
-    <div>
-
-      <MainDraftTab />
-      <Plan />
-      <PotentialClass />
-      <AddTerms />
+    <div className="homepage-main-container">
+      <div>
+        <div className="">
+          <MainDraftTab />
+          <Plan />
+        </div>
+        <div>
+          <PotentialClass />
+          <AddTerms />
+        </div>
+      </div>
     </div>
   );
 };

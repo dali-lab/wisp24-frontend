@@ -5,13 +5,14 @@ import { NavLink } from 'react-router-dom';
 const Navbar = () => {
   return (
     <div className="navbar">
-      {/* <button onClick={toggleSidebar}>Toggle Profile</button> */}
-      <p>Profile</p>
+      <div>
+        <p className="navbar-left">username</p>
+        {/* <button onClick={toggleSidebar}>Toggle Profile</button> */}
+      </div>
       <div className="navbar-right">
-        <NavLink to="/home">Home</NavLink>
-        <NavLink to="/feed">Feed</NavLink>
-        <NavLink to="/friends">Friends</NavLink>
-        <p id="navbar-friends">friends</p>
+        <NavLink to="/home" className="navbar-right-links">Home</NavLink>
+        <NavLink to="/feed" className="navbar-right-links">Feed</NavLink>
+        <p className="navbar-right-links">friends</p>
       </div>
     </div>
   );
