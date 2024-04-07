@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-*{
-    margin: auto;
-    padding: 0;
-}
-.post-container{
-    display: flex;
-    flex-direction: column;
- }
-=======
 .feed-root {
     margin: auto;
     padding: 0;
@@ -20,7 +10,6 @@
     margin: auto;
 }
 
->>>>>>> master
 .individual-container{
     position: relative;
     top:100px;
@@ -33,10 +22,7 @@
     height: 700px;      
     margin-bottom: 20px; 
     padding: 10px;
-<<<<<<< HEAD
-=======
     margin: auto;
->>>>>>> master
 }
 
 .sort-container{
@@ -48,12 +34,8 @@
     color: #000;
     display: flex;
     flex-direction: row;
-<<<<<<< HEAD
- }
-=======
 }
 
->>>>>>> master
  .sort-container span{
     flex-shrink: 0; 
     color: #000;

@@ -36,7 +36,7 @@ const Profile = ({ profileData }) => {
   const renderOtherTags = () => {
     return profile.others.map((other, index) => (
       <span key={index} className="tag other">
-        {other} <button onClick={() => handleDeleteTag(index)}>Delete</button>
+        {other} <button type="submit" onClick={() => handleDeleteTag(index)}>Delete</button>
       </span>
     ));
   };
@@ -44,29 +44,29 @@ const Profile = ({ profileData }) => {
   return (
     <div className="friend-container">
       <div className="friend-header">
-        <input 
+        <input
           type="text"
           value={profile.name}
           onChange={(e) => handleNameChange(e.target.value)}
           placeholder="Name"
         />
         <div className="friend-tags">
-          <input 
+          <input
             type="text"
             value={profile.major}
             onChange={(e) => handleMajorChange(e.target.value)}
             placeholder="Major"
           />
-          <input 
+          <input
             type="text"
             value={profile.minor}
             onChange={(e) => handleMinorChange(e.target.value)}
             placeholder="Minor"
           />
           {renderOtherTags()}
-          <button onClick={() => handleAddTag('New Tag')}>Add New Tag</button>
+          <button type="submit" onClick={() => handleAddTag('New Tag')}>Add New Tag</button>
         </div>
-        <textarea 
+        <textarea
           value={profile.biography}
           onChange={(e) => handleBioChange(e.target.value)}
           placeholder="Biography"
