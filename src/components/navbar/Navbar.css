@@ -1,0 +1,33 @@
+* {
+    margin:0;
+    padding: 0;
+    overflow: wrap;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    width: 100%;
+    border-bottom: 2px solid black;
+    background: #93C398;
+    z-index: 2;
+}
+
+.navbar-right {
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-left {
+    padding-left: 30px;
+}
+
+.navbar-right-links {
+    padding-right: 30px;
+}
+
