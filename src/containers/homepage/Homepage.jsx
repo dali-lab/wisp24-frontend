@@ -52,8 +52,8 @@ const Homepage = () => {
       }
     })
     setMainDrafts(updatedDrafts);
-    console.log(updatedDrafts)
-    setEditingIndex("")
+    console.log(updatedDrafts);
+    setEditingIndex("");
   }
 
   const MainDraftTab = () => {

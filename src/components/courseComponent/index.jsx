@@ -11,6 +11,14 @@ const CourseComponent = (props) => {
   const [del, setDel] = useState(props.del);
   const [id, setID] = useState(props.id);
 
+  useEffect(() => {
+    setID(props.id);
+  }, [props.id]);
+
+  const delCourse = (index) => {
+    props.delCourse(index);
+  };
+
   // const newCourseNameFunction = (event) => {
   //   if (event.target.value in listOfCourses) {
   //     setName(event.target.value);
@@ -24,8 +32,9 @@ const CourseComponent = (props) => {
   // };
 
   return (
-    <div className="course">
-      <p>{id}: {name} ({distrib})</p>
+    <div className="course-content-div">
+      <div><p>{id}: {name} ({distrib})</p></div>
+      <div className="course-individual-delete"><button type="button" onClick={() => delCourse(id)}>X</button></div>
     </div>
   );
 };

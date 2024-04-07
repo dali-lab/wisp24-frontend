@@ -80,7 +80,6 @@ const TermBuilderComponent = () => {
         <p className="title">Term Builder</p>
         <input type="text" value={termName} placeholder="Term Title" onChange={termNameFunction} />
         <button type="submit" onClick={saveNewTerm}>Save New Term</button>
-        <p/>
         {/* <TermComponent /> */}
         {allTerms}
       </div>

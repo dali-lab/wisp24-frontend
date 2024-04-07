@@ -6,27 +6,32 @@ import CourseComponent from '../courseComponent';
 import './index.css';
 
 const TermComponent = (props) => {
-  const [termName, setTermName] = useState(props.termName); // take from termbuilder class
+  const [termName, setTermName] = useState(''); // take from termbuilder class
   // const [newTermName, setNewTermName] = useState('');
-  const [termID, setTermID] = useState(props.termID);
+  const [termID, setTermID] = useState('');
   // const [newCourseDistrib, setNewCourseDistrib] = useState('');
   // const [del, setDel] = useState(false);
-  const [courses, setCourses] = useState(props.courses);
+  const [courses, setCourses] = useState([]);
   const [courseName, setCourseName] = useState('');
-  const [del, setDel] = useState(props.del);
-  const [edit, setEdit] = useState(props.edit);
+
+  useEffect(() => {
+    setCourses(props.courses);
+    setTermID(props.termID);
+    setTermName(props.termName);
+  }, [props.courses, props.termID, props.termName]);
 
   const courseNameFunction = (event) => {
     setCourseName(event.target.value);
   };
 
-  // add course button
-  const addCourse = () => {
-    setCourses([...courses, courseName]);
+  const delCourse = (courseIndex) => {
+    props.delCourse(termID, courseIndex);
   };
 
-  const delTerm = () => {
-    props.delTerm(termName);
+  // add course button
+  const addCourse = (index) => {
+    props.addCourse(props.termID, courseName);
+    setCourseName('');
   };
 
   // const [courseName, setCourseName] = useState('');
@@ -76,7 +81,7 @@ const TermComponent = (props) => {
   // can i make it delete based on the coursename???
 
   let allCourses = '';
-  if (courses.length !== 0) {
+  if (courses.length !== null) {
     allCourses = Object.entries(courses).map(([id, course]) => {
       return (
         <CourseComponent
@@ -84,6 +89,7 @@ const TermComponent = (props) => {
           courseDistrib={course.distrib}
           id={id}
           key={id}
+          delCourse={delCourse}
           del={false} // callback eventually
         />
       );
@@ -95,13 +101,11 @@ const TermComponent = (props) => {
   return (
 
     <div className="term">
-      <p className="termTitle">{termName}</p>
-      {allCourses}
-      <input type="text" value={courseName} placeholder="Course Name" onChange={courseNameFunction} />
-      <button type="submit" onClick={addCourse}>Add Course</button>
-      <p />
-      <button type="submit" onClick={delTerm}>Delete Term</button>
-      <p />
+      <div className="course-container">{allCourses}</div>
+      <div className="term-component-input">
+        <input type="text" value={courseName} placeholder="Course Name" onChange={courseNameFunction} />
+        <button type="submit" onClick={() => addCourse(termID)}>Add</button>
+      </div>
     </div>
   );
 };

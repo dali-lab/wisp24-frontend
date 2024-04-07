@@ -14,7 +14,7 @@ import SignInPanel from '../containers/authentication/signInPanel';
 import Test from '../containers/authentication/signOutPanel';
 import Homepage from '../containers/homepage/Homepage';
 import Feed from '../containers/feed/feed';
-import Navbar from './navbar/navbar';
+import Navbar from './navbar/Navbar';
 
 const Welcome = () => (
   <div>
@@ -30,12 +30,12 @@ const FallBack = () => <div>Uh oh... URL Not Found! Please contact the system ad
 
 const App = () => (
   <Router>
-    <div>
+    <Route exact path="/signup" component={SignUpPanel} />
+    <div className="root-div">
       <Navbar />
       <Switch>
         <Route exact path="/" component={Welcome} />
         <Route exact path="/signin" component={SignInPanel} />
-        <Route exact path="/signup" component={SignUpPanel} />
         <Route exact path="/feed" component={Feed} />
         <Route exact path="/test" component={Test} />
         <Route exact path="/home" component={Homepage} />
