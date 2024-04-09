@@ -21,6 +21,7 @@ import FollowingPage from '../containers/friendPage/FollowingPage';
 import AddUser from '../containers/friendPage/AddUserPage';
 import ViewProfile from '../containers/friendPage/ViewProfile';
 import Profile from './profile/Profile';
+import Sidebar from './profile';
 
 const Welcome = () => (
   <div>
@@ -35,17 +36,15 @@ const Welcome = () => (
 const FallBack = () => <div>Uh oh... URL Not Found! Please contact the system administrator.</div>;
 
 const App = () => (
-  // const [isSidebarOpen, setSidebarOpen] = useState(false);
-
-  // const toggleSidebar = () => {
-  //   setSidebarOpen(!isSidebarOpen);
-  // };
+  /const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
   <Router>
     <div>
-      <Navbar />
-      {/* <Navbar toggleSidebar={toggleSidebar} />
-      {isSidebarOpen && <Profile profileData={/* profile data */}
+      <Navbar toggleSidebar={toggleSidebar}/>
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      {/* <Navbar /> */}
+
       <Switch>
         <Route exact path="/" component={Welcome} />
         <Route exact path="/signin" component={SignInPanel} />

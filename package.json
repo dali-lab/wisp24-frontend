@@ -46,6 +46,9 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.15",
     "axios": "^0.28.0",
     "lodash.omit": "^4.5.0",
     "react": "^17.0.2",
