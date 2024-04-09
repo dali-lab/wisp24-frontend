@@ -26,23 +26,23 @@ const PotentialClass = () => {
 
   return (
     <div className="potential-class">
-      <p>Potential Classes</p>
-      <div>{classes.map((classItem, index) => (
-        <div key={classItem}>
+      <div className="potential-class-title">Potential Classes</div>
+      <div className="potential-class-container">{classes.map((classItem, index) => (
+        <div className="potential-class-item" key={classItem}>
           <p>{classItem}</p>
           <button type="submit" onClick={() => handleClickDelete(index)}>Delete Class</button>
         </div>
       ))}
       </div>
-      <div>
+      <div className="potential-class-add-container">
         {editing
           ? (
-            <div>
+            <div className="potential-class-add">
               <input type="text" onChange={handleChange} />
-              <button type="submit" onClick={handleClickEditing}>Submit Class</button>
+              <button className="potential-class-submit" type="submit" onClick={handleClickEditing}>Submit</button>
             </div>
           )
-          : <button type="submit" onClick={handleClickEditing}>Add Class</button>}
+          : <div role="button" tabIndex={0} className="potential-class-add" type="submit" onClick={handleClickEditing}>Add Class</div>}
       </div>
     </div>
   );

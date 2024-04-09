@@ -1,45 +1,46 @@
 import React from 'react';
+import './Plan.css';
 
 const Plan = () => {
   return (
     <table>
       <thead>
         <tr>
-          <th>quarter</th>
-          <th>fall</th>
-          <th>winter</th>
-          <th>spring</th>
-          <th>summer</th>
+          <th> </th>
+          <th><div className="season">fall</div></th>
+          <th><div className="season">winter</div></th>
+          <th><div className="season">spring</div></th>
+          <th><div className="season">summer</div></th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1st</td>
-          <td>f1</td>
-          <td>w1</td>
-          <td>s1</td>
-          <td>x1</td>
+        <tr className="term-rows">
+          <td><div className="term-holder year-column">1st</div></td>
+          <td><div className="term-holder">f1</div></td>
+          <td><div className="term-holder">w1</div></td>
+          <td><div className="term-holder">s1</div></td>
+          <td><div className="term-holder">x1</div></td>
         </tr>
-        <tr>
-          <td>2nd</td>
-          <td>f2</td>
-          <td>w2</td>
-          <td>s2</td>
-          <td>x2</td>
+        <tr className="term-rows">
+          <td><div className="term-holder year-column">2nd</div></td>
+          <td><div className="term-holder">f2</div></td>
+          <td><div className="term-holder">w2</div></td>
+          <td><div className="term-holder">s2</div></td>
+          <td><div className="term-holder">x2</div></td>
         </tr>
-        <tr>
-          <td>3rd</td>
-          <td>f3</td>
-          <td>w3</td>
-          <td>s3</td>
-          <td>x3</td>
+        <tr className="term-rows">
+          <td><div className="term-holder year-column">3rd</div></td>
+          <td><div className="term-holder">f3</div></td>
+          <td><div className="term-holder">w3</div></td>
+          <td><div className="term-holder">s3</div></td>
+          <td><div className="term-holder">x3</div></td>
         </tr>
-        <tr>
-          <td>4th</td>
-          <td>f4</td>
-          <td>w4</td>
-          <td>s4</td>
-          <td>x4</td>
+        <tr className="term-rows">
+          <td><div className="term-holder year-column">4th</div></td>
+          <td><div className="term-holder">f4</div></td>
+          <td><div className="term-holder">w4</div></td>
+          <td><div className="term-holder">s4</div></td>
+          <td><div className="term-holder">x4</div></td>
         </tr>
       </tbody>
     </table>

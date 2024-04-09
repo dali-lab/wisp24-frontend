@@ -1,19 +1,22 @@
-*{
-    margin: none;
+* {
+    margin:0;
     padding: 0;
+    overflow: wrap;
 }
+
 .navbar {
-    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-left: 20px;
-    padding-right: 20px;
-    height: 45px;
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    width: 100%;
     border-bottom: 2px solid black;
-    background: #93C398;
+    background: var(--green);
     z-index: 2;
+    text-decoration: none;
 }
 
 .navbar-right {
@@ -21,7 +24,19 @@
     flex-direction: row;
     text-align: right;
 }
-#navbar-friends {
-    padding-left: 50px;
+
+.navbar-left {
+    padding-left: 30px;
+}
+
+.navbar-right-links {
+    padding-right: 30px;
+    color: black;
+    text-decoration: none;
+}
+
+p:visited {
+    color: none;
+    text-decoration: none;
 }
 
