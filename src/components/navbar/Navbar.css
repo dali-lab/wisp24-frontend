@@ -12,10 +12,11 @@
     margin: 0;
     padding: 0;
     height: 30px;
-    width: 100%;
+    width: 100vw;
     border-bottom: 2px solid black;
-    background: #93C398;
+    background: var(--green);
     z-index: 2;
+    text-decoration: none;
 }
 
 .navbar-right {
@@ -29,5 +30,11 @@
 
 .navbar-right-links {
     padding-right: 30px;
+    color: black;
+    text-decoration: none;
 }
 
+p:visited {
+    color: none;
+    text-decoration: none;
+}

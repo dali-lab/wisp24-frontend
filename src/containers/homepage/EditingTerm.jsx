@@ -97,7 +97,7 @@ const EditingDraft = (props) => {
   }
 
   return (
-    <div>
+    <div className="editing-term">
       <div>{content}</div>
       <div>{input.classList && input.classList.map((classItem, index) => {
         return (

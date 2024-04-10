@@ -52,29 +52,38 @@ const AddTerms = () => {
   const AllDrafts = () => {
     const alldrafts = drafts.map((draft, index) => {
       return (
-        <div className="term-draft" tabIndex={0} role="button" key={draft.draftName} onClick={() => handleSelectedDraft(index)}>
-          <p>{draft.draftName}</p>
-          <div>
-            {draft.classList && draft.classList.map((draftItem) => {
-              return (
-                <p key={draftItem}>{draftItem}</p>
-              );
-            })}
+        <div className="term-draft" tabIndex={0} role="button" key={draft.draftName}>
+          <div className="term-draft-content-container">
+            <div className="term-draft-content-container-name-specific" tabIndex={0} role="button" onClick={() => handleSelectedDraft(index)}>
+              <div className="term-draft-button-container"><button type="submit">Delete</button></div>
+              <div className="term-draft-name">{draft.draftName}</div>
+            </div>
+            <div className="term-draft-class-container" tabIndex={0} role="button" onClick={() => handleSelectedDraft(index)}>
+              {draft.classList && draft.classList.map((draftItem) => {
+                return (
+                  <div key={draftItem} className="term-draft-class-wrapper"><div className="term-draft-class">{draftItem}</div></div>
+                );
+              })}
+            </div>
           </div>
         </div>
       );
     });
-    return (
-      <div>{alldrafts}</div>
-    );
+    return alldrafts;
   };
 
   return (
     <div className="add-terms">
-      <p>Add Terms</p>
-      <button type="button" onClick={handleClick}>Add Draft</button>
-      {selectedDraft !== '' ? <EditingDraft handleSelectedDraft={handleSelectedDraft} drafts={drafts} selectedDraft={selectedDraft} termSubmit={termSubmit} changeTermName={changeTermName} />
-        : <AllDrafts />}
+      <div className="term-draft-content-container-name">Add Terms</div>
+      <div className="term-draft-container">
+        {selectedDraft !== '' ? <EditingDraft handleSelectedDraft={handleSelectedDraft} drafts={drafts} selectedDraft={selectedDraft} termSubmit={termSubmit} changeTermName={changeTermName} />
+          : (
+            <>
+              <div role="button" tabIndex={0} onClick={handleClick} className="term-draft-button"><p>Add Draft</p></div>
+              <AllDrafts />
+            </>
+          )}
+      </div>
     </div>
   );
 };

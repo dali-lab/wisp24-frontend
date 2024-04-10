@@ -1,24 +1,28 @@
 import React, { useEffect, useState, useRef } from 'react';
-import Navbar from '../../components/navbar/navbar.jsx';
 import Plan from '../../components/plan/Plan.jsx';
 import PotentialClass from './PotentialClass.jsx';
 import AddTerms from './AddTerms.jsx';
 import './Homepage.css'
+import ProgressTracker from './ProgressTracker.jsx';
 
 const Homepage = () => {
   const [mainDrafts, setMainDrafts] = useState([
     {
       draftTitle: 'maindraft1',
-      isMain: true,
     }
   ]);
   const inputRef = useRef();
   const [editingIndex, setEditingIndex] = useState("");
+  const [mainDraftIndex, setMainDraftIndex] = useState(0);
 
   const addDraft = (event) => {
     event.preventDefault();
     setMainDrafts([...mainDrafts, { draftTitle: `maindraft${mainDrafts.length + 1}`, isMain: false }]);
   };
+
+  const selectMainDraft = (index) => {
+    setMainDraftIndex(index);
+  }
 
   const deleteDraft = (index) => {
     if (mainDrafts.length > 1) {
@@ -48,8 +52,8 @@ const Homepage = () => {
       }
     })
     setMainDrafts(updatedDrafts);
-    console.log(updatedDrafts)
-    setEditingIndex("")
+    console.log(updatedDrafts);
+    setEditingIndex("");
   }
 
   const MainDraftTab = () => {
@@ -57,29 +61,30 @@ const Homepage = () => {
       <div className="tab-container">
         {mainDrafts.map((mainDraft, index) => {
           return (
-            <div key={index}>
+            <div onClick={() => selectMainDraft(index)} className={`tab-list ${index === mainDraftIndex ? "selectedDraft" : "nonselectedDraft"}`} key={index}>
               <div>{editingIndex === index ? <input type="text" ref={inputRef}></input> : mainDraft.draftTitle}</div>
               {editingIndex === index ? <button onClick={() => titleChangeSubmit(index)}>Submit</button> : <button onClick={() => startEdit(index)}>Edit</button>}
               <button onClick={() => deleteDraft(index)}>Delete</button>
             </div>
           );
         })}
-        <button onClick={addDraft}>Add Draft</button>
+        <button className="add-tab-button" onClick={addDraft}>Add Draft</button>
       </div>
     );
   };
 
   return (
     <div className="homepage-main-container">
-      <div>
-        <div className="">
-          <MainDraftTab />
+      <div className="homepage-left-container">
+        <MainDraftTab />
+        <div className="plan-container">
+          <ProgressTracker />
           <Plan />
         </div>
-        <div>
-          <PotentialClass />
-          <AddTerms />
-        </div>
+      </div>
+      <div className="homepage-right-container">
+        <PotentialClass />
+        <AddTerms />
       </div>
     </div>
   );
