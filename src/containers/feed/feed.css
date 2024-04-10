@@ -1,41 +1,37 @@
-.feed-root {
+*{
     margin: auto;
     padding: 0;
 }
-
-.post-container {
+.post-container{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin: auto;
-}
-
+ }
 .individual-container{
+    margin: auto;
     position: relative;
     top:100px;
     justify-content: center;
     border: 2px solid #000;
     background: #EFF3F0;    
-    border-width: 0.1rem;
     border-radius: 10px;
-    width: 900px;
-    height: 700px;      
-    margin-bottom: 20px; 
+    width: 1200px;
+    height: 900px;      
+    margin-bottom: 30px; 
     padding: 10px;
-    margin: auto;
+    /* margin: auto; */
 }
 
-.sort-container{
+/* SORT  */
+.sort-container{    
     position: absolute;
     width: 200px;
     height: 39px;
     top: 5%;
-    right: 10%;
+    right:10%;
     color: #000;
     display: flex;
     flex-direction: row;
-}
-
+ }
  .sort-container span{
     flex-shrink: 0; 
     color: #000;
@@ -51,14 +47,49 @@
     height: 39px;
     flex-shrink: 0;
     border-radius: 10px;
-    background: #D9D9D9;        
+    background: #D9D9D9;      
  }
+.sort-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.sort-opt-container{
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 10px;
+    border: 2px solid #000;
+    background: #F0F0F0;
+    width: 216px;
+    height: 154px;
+    margin-top: 55px;
+}
+#sort-options{
+    width: 200px;
+    height: 39px;
+    color: #000;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border: none;
+    border-color: #F0F0F0;
+    margin: auto;
+    
+}
+
 
  /* FILTER CSS */
  #filter-btn-off{
     position: fixed;
     left: 0;
     top: 20%;
+    border: none;
+    background:none;
  
  }
 
@@ -69,11 +100,15 @@
 #filter-btn-on{
     position: relative;
     display: flex;
-    justify-content: flex-end;
-    left: 60%;
-    bottom: 70%;
     z-index: 2;
+    background:none;
+    border: none;
+    bottom: 70%;
+    left:100%;
+    flex-shrink: 0;
+
  }
+ 
 
 .filter-containter{
     z-index: 1;
@@ -92,7 +127,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content:space-around;
 
 }
 
@@ -106,7 +141,18 @@
    
 }
 
+.search-container img{
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+.search-container button {
+    border:none;
+    background: none;
+}
+
 #search-bar{
+    margin: auto;
     position: relative;
     border-radius: 20px;
     border: 2px solid #000;
@@ -126,4 +172,135 @@
     outline: none; 
     font-size: 16px;
     
+}
+/* filter tags */
+
+.search-result-container{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+/* Follow buttons */
+#follow-btn{
+    border-radius: 8px;
+    border: 1px solid #000;
+    background: #93C398;
+    width: 90px;
+    height: 30px;
+    flex-shrink: 0;
+    color: #000;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    }
+
+#followed-btn{
+    width: 90px;
+    height: 30px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 1px solid #000;
+    background: #D9D9D9;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: norma
+}
+
+/* upper part of the post */
+.user-information-containter{
+    display: flex;
+    flex-direction: row;
+    padding: 3% 2%;
+    height: 20%;
+    margin: auto;
+}
+#profile{
+    width: 150px;
+    height: 150px;
+    flex-shrink: 0;
+
+}
+.user-info-middle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 75%;
+    flex-shrink: 1;
+    margin-left: 20px;
+}
+
+.user-info-midtop{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 2%;
+    /* border: #000 solid; */
+    
+}
+#username{
+    color: #000;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    border: 1px solid #000;
+    background: #FFF;
+    flex-shrink: 0;
+    width: 40%;
+    padding-left: 10px;
+}
+.follow{
+    padding-left: 45%;
+
+}
+.caption-containter{
+    border-radius: 8px;
+    border: 1.5px solid #000;
+    background: #FFF;
+    width: 100%;
+    height: 70%;
+    flex-shrink: 0;
+
+}
+.likes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    
+}
+.likes button{
+    border: none;
+    background: none;
+}
+
+.likes button img{
+    width: 70%;
+    height: 70%;
+}
+.Dplan-container{
+    margin: auto;
+    width: 95%;
+    height: 65%;
+}
+
+.tag-container{
+    display: flex;
+    flex-direction: row;
+    padding: 2%;
+    /* float: left; */
+    margin-left: auto;
+    margin-top: 5px;
+    align-items: center;
+}
+.tags{
+    flex-direction: row;
+    justify-content: space-around;
+    border-radius: 10px;
+    border: 1px solid #000;
+    padding: 3px;
+    margin: 5px;
 }

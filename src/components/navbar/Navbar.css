@@ -9,23 +9,24 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 0;
-    padding: 0;
-    height: 30px;
-    width: 100vw;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 45px;
     border-bottom: 2px solid black;
     background: var(--green);
     z-index: 2;
     text-decoration: none;
+    width:100vw;
 }
 
 .navbar-right {
     display: flex;
     flex-direction: row;
+    text-align: right;
 }
 
-.navbar-left {
-    padding-left: 30px;
+#navbar-friends {
+    padding-left: 50px;
 }
 
 .navbar-right-links {

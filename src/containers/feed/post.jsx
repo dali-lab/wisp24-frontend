@@ -1,34 +1,50 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react';
 import './feed.css';
+import Plan from '../../components/Plan/Plan';
 
 const Post = (props) => {
+  const [filter, setFilter] = useState(false);
   return (
     <div>
       {props.users.map((user) => (
         // key needed to as unique identitifer
         <div className="individual-container" key={user}>
-          {/* user.profile */}
-          <h2>{user.name}</h2>
-          <p>{user.caption}</p>
-
-          <div className="likes">
-            <div>
-              <img src="" alt="" />
-              <button type="button" onClick={() => props.handleLike(user.id)}>upvote</button>
+          <div className="user-information-containter">
+            <img src={user.profile} alt="user profiel" id="profile" />
+            <div className="user-info-middle">
+              <div className="user-info-midtop">
+                <div id="username"><h2>{user.name}</h2></div>
+                <div className="follow">
+                  {user.follow ? (<button type="button" id="followed-btn" onClick={() => props.handleFollow(user.id)}>followed</button>)
+                    : (<button type="button" id="follow-btn" onClick={() => props.handleFollow(user.id)}>follow</button>)}
+                </div>`
+              </div>
+              <div className="caption-containter">
+                <p>{user.caption}</p>
+              </div>
             </div>
-            <h2>{user.likes}</h2>
-            <div>
-              <img src="" alt="" />
-              <button type="button" onClick={() => props.handleDislike(user.id)}>downvote</button>
+            <div className="likes">
+              <div>
+                <button type="button" onClick={() => props.handleLike(user.id)}><img src="assets/upvote.png" alt="upvote" /></button>
+              </div>
+              <h2>{user.likes}</h2>
+              <div>
+                <button type="button" onClick={() => props.handleDislike(user.id)}><img src="assets/downvote.png" alt="downvote" /></button>
+              </div>
             </div>
           </div>
+          <div className="Dplan-container"> <Plan /> </div>
+          <div className="tag-container">
+            <span> tags: </span>
+            {user.tags.map((tag) => (
+              <div className="tags" key={tag}>
+                {tag}
+                {/* need include a x button, which removes it from filter data */}
+              </div>
 
-          <div className="follow">
-            {user.follow ? (<button type="button" onClick={() => props.handleFollow(user.id)}>followed</button>)
-              : (<button type="button" onClick={() => props.handleFollow(user.id)}>follow</button>)}
+            ))}
           </div>
-          <div className="Dplan container"> Dplan containter</div>
-          <div className="Tag-container"> Tag containter</div>
         </div>
       ))};
     </div>
