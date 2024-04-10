@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import './feed.css';
-import Plan from '../../components/plan/Plan';
+import Plan from '../../components/Plan/Plan';
 
 const Post = (props) => {
   const [filter, setFilter] = useState(false);

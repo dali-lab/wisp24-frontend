@@ -1,15 +1,11 @@
-/* .feed-root {
+*{
     margin: auto;
     padding: 0;
-} */
-
-.post-container {
+}
+.post-container{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    margin: auto;
-}
-
+ }
 .individual-container{
     margin: auto;
     position: relative;
@@ -21,8 +17,9 @@
     border-radius: 10px;
     width: 1200px;
     height: 900px;      
-    margin-bottom: 20px; 
+    margin-bottom: 30px; 
     padding: 10px;
+    /* margin: auto; */
 }
 
 /* SORT  */
@@ -35,9 +32,7 @@
     color: #000;
     display: flex;
     flex-direction: row;
-    align-items: center;
-}
-
+ }
  .sort-container span{
     flex-shrink: 0; 
     color: #000;
@@ -296,9 +291,10 @@
 .tag-container{
     display: flex;
     flex-direction: row;
-    padding: 1%;
+    padding: 2%;
     /* float: left; */
     margin-left: auto;
+    margin-top: 5px;
     align-items: center;
 }
 .tags{

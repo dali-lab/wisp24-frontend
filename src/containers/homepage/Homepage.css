@@ -87,6 +87,10 @@
     justify-content: center;
 }
 
+.term-draft, .term-draft-button {
+    min-width: 120px;
+}
+
 
 
 .term-draft-button > p {
@@ -139,6 +143,7 @@
 }
 
 .add-terms {
+    height: 100%;
     border: 4px solid green;
 }
 
@@ -160,9 +165,12 @@
     width: 70%;
     padding: 20px;
     height: 100%;
+    overflow: wrap;
+    min-width: 870px;
 }
 
 .homepage-right-container {
+    min-width: 200px;
     display: flex;
     flex-direction: column;
     width: 30%;
