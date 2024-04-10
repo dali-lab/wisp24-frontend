@@ -1,0 +1,40 @@
+* {
+    margin:0;
+    padding: 0;
+    overflow: wrap;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    width: 100vw;
+    border-bottom: 2px solid black;
+    background: var(--green);
+    z-index: 2;
+    text-decoration: none;
+}
+
+.navbar-right {
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-left {
+    padding-left: 30px;
+}
+
+.navbar-right-links {
+    padding-right: 30px;
+    color: black;
+    text-decoration: none;
+}
+
+p:visited {
+    color: none;
+    text-decoration: none;
+}

@@ -1,10 +1,15 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
+// import TermComponent from '../../../components/termComponent';
+// import CourseComponent from '../../../components/courseComponent';
+import TermBuilderComponent from '../../../components/termBuilderComponent';
 
-const SignOutPanel = ({ signOutUser }) => (
-  <div>
-    <NavLink to="/" onClick={() => signOutUser()}>Sign Out</NavLink>
-  </div>
-);
+const Test = () => {
+  return (
+    <div>
+      <TermBuilderComponent />
+    </div>
+  );
+};
 
-export default SignOutPanel;
+export default Test;

@@ -1,0 +1,47 @@
+.term {
+    border: 2px solid rgb(0,0,20);
+    background-color: white;
+    font-family: gill sans;
+    font-weight: 600;
+    justify-content: center;
+    text-align: center;
+    border-radius: 10;
+    width: 90%;
+    height: 110px;
+    max-height: 110px;
+}
+
+.termbuilder {
+    border: 2px solid rgb(6, 40, 22);
+    margin: 15px;
+    background-color: rgb(230, 243, 233);
+    font-family: gill sans;
+    font-weight: 600;
+    justify-content: center;
+    text-align: center;
+    border-radius: 15;
+
+}
+
+.text {
+    font-family: gill sans;
+    font-weight: 600;
+    justify-content: center;
+    text-align: center;
+}
+
+.course-container {
+    max-height: 80px;
+    height: 80%;
+    overflow: scroll;
+    padding: 2px;
+}
+
+.term-component-input {
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+    width: 100%;
+    justify-content: center;
+    padding-bottom: 5px;
+}
