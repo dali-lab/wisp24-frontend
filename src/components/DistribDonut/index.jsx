@@ -4,6 +4,8 @@ import {
 import { Doughnut } from 'react-chartjs-2';
 import React, { useState } from 'react';
 
+// export NODE_OPTIONS=--openssl-legacy-provider
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const DistribDonut = () => {
