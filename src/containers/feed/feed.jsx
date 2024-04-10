@@ -3,17 +3,36 @@ import 'reactjs-popup/dist/index.css';
 import './feed.css';
 import Post from './post';
 import Filter from './feedFilter';
+import Sort from './sort';
 
 const Feed = () => {
   const [users, setUsers] = useState([
     {
-      id: 1, name: 'joyce', likes: 0, follow: false, caption: 'click follow and add me as friend!'
+      id: 1,
+      name: 'joyce',
+      likes: 0,
+      follow: false,
+      caption: 'click follow and add me as friend!',
+      profile: '/assets/profile.png',
+      tags: ['computer science', '2027', 'wispee'],
     },
     {
-      id: 2, name: 'john smith', likes: 0, follow: false, caption: 'i have a very basic name'
+      id: 2,
+      name: 'john smith',
+      likes: 0,
+      follow: false,
+      caption: 'i have a very basic name',
+      profile: '/assets/profile.png',
+      tags: ['math', '2024', 'government'],
     },
     {
-      id: 3, name: 'You', likes: 10000, follow: false, caption: 'this is your profile'
+      id: 3,
+      name: 'You',
+      likes: 10000,
+      follow: false,
+      caption: 'this is your profile',
+      profile: '/assets/profile.png',
+      tags: ['computer science', '2027', 'wispee'],
     }
   ]);
 
@@ -31,12 +50,7 @@ const Feed = () => {
   return (
     <div className="feed-root">
       {/* buttons */}
-
-      <div className="sort-container">
-        <img src="" alt="" />
-        <span>Sort by:</span>
-        <button type="button" id="sort-btn">sort button</button>
-      </div>
+      <Sort />
       <div className="post-container">
         <Post
           users={users}
@@ -45,7 +59,9 @@ const Feed = () => {
           handleFollow={handleFollow}
         />
       </div>
-      <Filter />
+      <Filter
+        users={users}
+      />
     </div>
   );
 };
