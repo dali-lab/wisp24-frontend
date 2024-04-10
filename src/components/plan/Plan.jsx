@@ -3,7 +3,7 @@ import './Plan.css';
 import TermComponent from '../termComponent';
 
 const Plan = () => {
-  const [termName, setTermName] = useState('');
+  // const [termName, setTermName] = useState('');
   const [listOfTermNames, setListOfTermNames] = useState([
     { termName: 'term1', courses: [] },
     { termName: 'term2', courses: [] },
@@ -23,20 +23,20 @@ const Plan = () => {
     { termName: 'term16', courses: [] },
   ]);
 
-  const termNameFunction = (event) => {
-    setTermName(event.target.value);
+  // const termNameFunction = (event) => {
+  setTermName(event.target.value);
   };
 
   const addCourse = (index, courseName) => {
-    const updatedCourseList = listOfTermNames.map((term, i) => {
-      if (index === i) {
-        const updatedCourses = [...term.courses, courseName];
-        return { ...term, courses: updatedCourses };
-      } else {
-        return term;
-      }
-    });
-    setListOfTermNames(updatedCourseList);
+  const updatedCourseList = listOfTermNames.map((term, i) => {
+    if (index === i) {
+      const updatedCourses = [...term.courses, courseName];
+      return { ...term, courses: updatedCourses };
+    } else {
+      return term;
+    }
+  });
+  setListOfTermNames(updatedCourseList);
   };
 
   const delCourse = (index, courseIndex) => {
@@ -241,5 +241,4 @@ const Plan = () => {
     </div>
   );
 };
-
 export default Plan;

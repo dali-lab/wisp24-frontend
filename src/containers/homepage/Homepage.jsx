@@ -4,6 +4,7 @@ import PotentialClass from './PotentialClass.jsx';
 import AddTerms from './AddTerms.jsx';
 import './Homepage.css'
 import ProgressTracker from './ProgressTracker.jsx';
+import DistribDonut from './DistribDonut.jsx';
 
 const Homepage = () => {
   const [mainDrafts, setMainDrafts] = useState([
@@ -76,6 +77,8 @@ const Homepage = () => {
   return (
     <div className="homepage-main-container">
       <div className="homepage-left-container">
+      <p> HI TESTING</p>
+        {/* <DistribDonut /> */}
         <MainDraftTab />
         <div className="plan-container">
           <ProgressTracker />
