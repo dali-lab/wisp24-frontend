@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import {
   BrowserRouter as Router,
@@ -21,7 +22,8 @@ import FollowingPage from '../containers/friendPage/FollowingPage';
 import AddUser from '../containers/friendPage/AddUserPage';
 import ViewProfile from '../containers/friendPage/ViewProfile';
 import Profile from './profile/Profile';
-import Sidebar from './profile';
+// eslint-disable-next-line no-unused-vars
+// import Sidebar from './profile';
 
 const Welcome = () => (
   <div>
@@ -36,7 +38,7 @@ const Welcome = () => (
 const FallBack = () => <div>Uh oh... URL Not Found! Please contact the system administrator.</div>;
 
 const App = () => (
-  //const [isSidebarOpen, setSidebarOpen] = useState(false);
+  // const [isSidebarOpen, setSidebarOpen] = useState(false);
   // const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
   <Router>

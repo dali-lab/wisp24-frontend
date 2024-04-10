@@ -7,6 +7,7 @@ const Friend = ({ friendData }) => {
     name, major, minor, others, biography, followStatus, planData
   } = friendData;
 
+  // eslint-disable-next-line no-unused-vars
   const renderPlan = () => {
     if (planData && Object.keys(planData).length > 0) {
       return <Plan planData={planData} />;
@@ -37,7 +38,6 @@ const Friend = ({ friendData }) => {
     <div className="friend-container">
       <div className="friend-header">
         <h1>{name}</h1>
-        {/* <img src="place-holder.png"/> */}
         <div className="friend-tags">
           <span className="tag major">{major}</span>
           <span className="tag minor">{minor}</span>

@@ -9,7 +9,7 @@ const FriendsNav = () => {
       <NavLink to="/following" activeClassName="active">Following</NavLink>
       <NavLink to="/requests" activeClassName="active">Requests</NavLink>
       <NavLink to="/adduser" activeClassName="active">Add User</NavLink>
-      {/*<NavLink to="/profile" activeClassName="active">Profile Example</NavLink>*/}
+      {/* <NavLink to="/profile" activeClassName="active">Profile Example</NavLink> */}
     </div>
   );
 };

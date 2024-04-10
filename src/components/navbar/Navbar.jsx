@@ -2,12 +2,12 @@ import React from 'react';
 import './Navbar.css';
 import { NavLink } from 'react-router-dom';
 
-const Navbar = ( toggleSidebar ) => {
+const Navbar = (toggleSidebar) => {
   return (
     <div className="navbar">
       <div>
         <p className="navbar-left">username</p>
-        <button onClick={toggleSidebar}>Toggle Profile</button>
+        <button type="submit" onClick={toggleSidebar}>Toggle Profile</button>
       </div>
       <div className="navbar-right">
         <NavLink to="/home" className="navbar-right-links">Home</NavLink>

@@ -1,6 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react';
-import PotentialClass from './PotentialClass.jsx';
-import AddTerms from './AddTerms.jsx';
 import './Homepage.css';
 import Plan from '../../components/plan/Plan.jsx';
 import PotentialClass from './PotentialClass.jsx';

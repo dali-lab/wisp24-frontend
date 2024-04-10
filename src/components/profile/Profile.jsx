@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
 import './Profile.css';
 
@@ -40,41 +41,40 @@ const Profile = ({ profileData, open, handleClose }) => {
     setProfile((prevProfile) => ({ ...prevProfile, others: [...prevProfile.others, 'New Tag'] }));
   };
 
-
   return (
     <div className="profile-container" style={{ display: open ? 'block' : 'none' }}>
       <div className="profile-container">
-      <div className="profile-header">
+        <div className="profile-header">
+          <input
+            type="text"
+            value={profile.name}
+            onChange={(e) => handleNameChange(e.target.value)}
+            placeholder="Name"
+          />
+          <div className="profile-tags">
             <input
               type="text"
-              value={profile.name}
-              onChange={(e) => handleNameChange(e.target.value)}
-              placeholder="Name"
+              value={profile.major}
+              onChange={(e) => handleMajorChange(e.target.value)}
+              placeholder="Major"
             />
-            <div className="profile-tags">
-              <input
-                type="text"
-                value={profile.major}
-                onChange={(e) => handleMajorChange(e.target.value)}
-                placeholder="Major"
-              />
-              <input
-                type="text"
-                value={profile.minor}
-                onChange={(e) => handleMinorChange(e.target.value)}
-                placeholder="Minor"
-              />
-              {renderOtherTags()}
-              <button type="button" onClick={handleAddTag}>Add New Tag</button>
-            </div>
-            <textarea
-              value={profile.biography}
-              onChange={(e) => handleBioChange(e.target.value)}
-              placeholder="Biography"
+            <input
+              type="text"
+              value={profile.minor}
+              onChange={(e) => handleMinorChange(e.target.value)}
+              placeholder="Minor"
             />
+            {renderOtherTags()}
+            <button type="button" onClick={handleAddTag}>Add New Tag</button>
           </div>
+          <textarea
+            value={profile.biography}
+            onChange={(e) => handleBioChange(e.target.value)}
+            placeholder="Biography"
+          />
         </div>
-      <button onClick={handleClose}>Close</button>
+      </div>
+      <button type="submit" onClick={handleClose}>Close</button>
     </div>
   );
 };
