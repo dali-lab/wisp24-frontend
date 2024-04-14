@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './Plan.css';
 import TermComponent from '../termComponent';
 
@@ -24,19 +24,18 @@ const Plan = () => {
   ]);
 
   // const termNameFunction = (event) => {
-  setTermName(event.target.value);
-  };
+  // setTermName(event.target.value);
 
   const addCourse = (index, courseName) => {
-  const updatedCourseList = listOfTermNames.map((term, i) => {
-    if (index === i) {
-      const updatedCourses = [...term.courses, courseName];
-      return { ...term, courses: updatedCourses };
-    } else {
-      return term;
-    }
-  });
-  setListOfTermNames(updatedCourseList);
+    const updatedCourseList = listOfTermNames.map((term, i) => {
+      if (index === i) {
+        const updatedCourses = [...term.courses, courseName];
+        return { ...term, courses: updatedCourses };
+      } else {
+        return term;
+      }
+    });
+    setListOfTermNames(updatedCourseList);
   };
 
   const delCourse = (index, courseIndex) => {
