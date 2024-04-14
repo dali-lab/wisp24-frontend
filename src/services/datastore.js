@@ -17,6 +17,22 @@ const firebaseConfig = {
   appId: '1:426977445411:web:a9d4a032947150a19f1396',
   measurementId: 'G-DGN0K66FGC'
 };
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+const db = getDatabase(app);
+
+// CRUD, create, read, update, delete
+
+// read
+export function getAllCourses(callback = () => {}) {
+  const courseRef = ref(db, 'courses/');
+  onValue(courseRef, (snapshot) => {
+    const courses = snapshot.val();
+    callback(courses);
+  });
+}
+
+export function addNewCourse (courseID, courseName, courseDistrib, courseNRO, coursePrereq)
