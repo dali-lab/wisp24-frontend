@@ -3,6 +3,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
+import {
+  getDatabase, ref, set, update, remove, onValue
+} from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 // Your web app’s Firebase configuration
@@ -35,24 +38,24 @@ export function getAllCourses(callback = () => {}) {
   });
 }
 
-export function addNewCourse (courseID, courseName, courseDistrib, courseNRO, coursePrereq, courseColor) {
-  set (ref (db, 'course/' + courseID), {
+export function addNewCourse(courseID, courseName, courseDistrib, courseNRO, coursePrereq, courseColor) {
+  set(ref(db, `course/${courseID}`), {
     name: courseName,
-    distrib: courseDistrib
+    distrib: courseDistrib,
     nro: courseNRO,
     prereq: coursePrereq,
     color: courseColor
   });
 }
 
-export function deleteCourse (courseID) {
-  removeEventListener(ref(db,'course/' + courseID))
+export function deleteCourse(courseID) {
+  remove(ref(db, `course/${courseID}`));
 }
 
-export function updateCourse (courseID, newName, newNRO, newColor) {
-  update (ref(db,'course/'+courseID),{
+export function updateCourse(courseID, newName, newNRO, newColor) {
+  update(ref(db, `course/${courseID}`), {
     name: newName,
     nro: newNRO,
     color: newColor
-  })
+  });
 }
