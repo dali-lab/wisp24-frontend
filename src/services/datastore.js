@@ -35,4 +35,24 @@ export function getAllCourses(callback = () => {}) {
   });
 }
 
-export function addNewCourse (courseID, courseName, courseDistrib, courseNRO, coursePrereq)
+export function addNewCourse (courseID, courseName, courseDistrib, courseNRO, coursePrereq, courseColor) {
+  set (ref (db, 'course/' + courseID), {
+    name: courseName,
+    distrib: courseDistrib
+    nro: courseNRO,
+    prereq: coursePrereq,
+    color: courseColor
+  });
+}
+
+export function deleteCourse (courseID) {
+  removeEventListener(ref(db,'course/' + courseID))
+}
+
+export function updateCourse (courseID, newName, newNRO, newColor) {
+  update (ref(db,'course/'+courseID),{
+    name: newName,
+    nro: newNRO,
+    color: newColor
+  })
+}
