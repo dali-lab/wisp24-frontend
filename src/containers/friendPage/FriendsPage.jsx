@@ -6,7 +6,7 @@ import FriendsNav from './FriendsNav';
 
 const FriendsPage = ({ friendsList }) => {
   const sampleFriendData = {
-    id = 1,
+    id: 1,
     name: 'name name',
     major: 'Computer Science',
     minor: 'Digital Arts',

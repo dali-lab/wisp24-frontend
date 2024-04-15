@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation, useParams } from 'react-router-dom';
+// import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import Friend from '../../components/friend/Friend';
 import Plan from '../../components/plan/Plan';
 import Navbar from '../../components/navbar/Navbar.jsx';
@@ -8,7 +8,7 @@ import './ViewProfile.css';
 const ViewProfile = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { id } = useParams();
+  // const { id } = useParams();
 
   const friendData = location.state?.friendData || { /* default friend data */ };
   const [upvotes, setUpvotes] = useState(friendData.upvotes || 0);
