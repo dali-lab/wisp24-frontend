@@ -38,16 +38,16 @@ const Welcome = () => (
 const FallBack = () => <div>Uh oh... URL Not Found! Please contact the system administrator.</div>;
 
 const App = () => (
-  // const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
 
-  // const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
+  const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
   <Router>
     <Route exact path="/signup" component={SignUpPanel} />
     <div className="root-div">
-      {/* <Navbar toggleSidebar={toggleSidebar} />
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} userData={} /> */}
-      <Navbar />
+      <Navbar toggleSidebar={toggleSidebar} />
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} userData={} />
+      {/* <Navbar /> */}
       <Switch>
         <Route exact path="/" component={Welcome} />
         <Route exact path="/signin" component={SignInPanel} />
