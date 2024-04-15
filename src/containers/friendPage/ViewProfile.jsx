@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-// import { useNavigate, useLocation, useParams } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import Friend from '../../components/friend/Friend';
 import Plan from '../../components/plan/Plan';
 import Navbar from '../../components/navbar/Navbar.jsx';
 import './ViewProfile.css';
 
 const ViewProfile = () => {
-  const navigate = useNavigate();
+  const history = useHistory();
   const location = useLocation();
   // const { id } = useParams();
 
@@ -14,7 +14,7 @@ const ViewProfile = () => {
   const [upvotes, setUpvotes] = useState(friendData.upvotes || 0);
 
   const handleBack = () => {
-    navigate(-1);
+    history.goBack();
   };
 
   const handleUpvote = () => {
@@ -33,7 +33,6 @@ const ViewProfile = () => {
 
   return (
     <div className="view-profile-container">
-      <Navbar />
       <button type="button" onClick={handleBack}>Back</button>
       <Friend friendData={friendData} />
       {/* Ensure you pass the planData or handle its absence in the Plan component */}

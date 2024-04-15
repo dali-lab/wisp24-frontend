@@ -44,17 +44,14 @@ const FriendsPage = ({ friendsList }) => {
         ) : (
           <p>No friends match your search.</p>
         )} */}
-         {[1, 2, 3, 4].map((id) => (
-          <Link
-            key={id}
-            to={{
-              pathname: `/profile/${sampleFriendData.id}`,
-              state: { friendData: sampleFriendData }
-            }}
-          >
-            <Friend friendData={sampleFriendData} />
-          </Link>
-        ))}
+         <Link
+          to={{
+            pathname: `/profile/${sampleFriendData.id}`,
+            state: { friendData: sampleFriendData }
+          }}
+        >
+          <Friend friendData={sampleFriendData} />
+        </Link>
       </div>
     </div>
   );
