@@ -39,11 +39,14 @@ const FallBack = () => <div>Uh oh... URL Not Found! Please contact the system ad
 
 const App = () => (
   // const [isSidebarOpen, setSidebarOpen] = useState(false);
+
   // const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
   <Router>
     <Route exact path="/signup" component={SignUpPanel} />
     <div className="root-div">
+      {/* <Navbar toggleSidebar={toggleSidebar} />
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} userData={} /> */}
       <Navbar />
       <Switch>
         <Route exact path="/" component={Welcome} />
@@ -58,7 +61,7 @@ const App = () => (
         <Route exact path="/following" component={FollowingPage} />
         <Route exact path="/adduser" component={AddUser} />
         <Route exact path="/requests" component={RequestsPage} />
-        <Route exact path="/profile/1" component={ViewProfile} />
+        <Route path="/profile/:id" component={ViewProfile} />
 
         <Route component={FallBack} />
       </Switch>

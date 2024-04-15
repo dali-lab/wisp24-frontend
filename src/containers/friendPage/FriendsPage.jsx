@@ -6,6 +6,7 @@ import FriendsNav from './FriendsNav';
 
 const FriendsPage = ({ friendsList }) => {
   const sampleFriendData = {
+    id = 1,
     name: 'name name',
     major: 'Computer Science',
     minor: 'Digital Arts',
@@ -13,6 +14,8 @@ const FriendsPage = ({ friendsList }) => {
     biography: 'blah',
     followStatus: 'friends',
   };
+
+  
 
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -41,11 +44,11 @@ const FriendsPage = ({ friendsList }) => {
         ) : (
           <p>No friends match your search.</p>
         )} */}
-        {[1, 2, 3, 4].map((id) => (
+         {[1, 2, 3, 4].map((id) => (
           <Link
             key={id}
             to={{
-              pathname: `/profile/${id}`,
+              pathname: `/profile/${sampleFriendData.id}`,
               state: { friendData: sampleFriendData }
             }}
           >
