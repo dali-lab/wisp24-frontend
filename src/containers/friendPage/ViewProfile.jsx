@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import Friend from '../../components/friend/Friend';
 import Plan from '../../components/plan/Plan';
-import Navbar from '../../components/navbar/Navbar.jsx';
 import './ViewProfile.css';
 
 const ViewProfile = () => {
@@ -32,12 +31,13 @@ const ViewProfile = () => {
   };
 
   return (
-    <div className="view-profile-container">
-      <button type="button" onClick={handleBack}>Back</button>
-      <Friend friendData={friendData} />
-      {/* Ensure you pass the planData or handle its absence in the Plan component */}
-      <Plan planData={friendData.planData} />
-      <div className="interaction-controls">
+    <div className="individual-container view-profile-container">
+      <button type="button" onClick={handleBack} className="back-button">Back</button>
+      <div className="user-information-container">
+        <Friend friendData={friendData} />
+        <Plan planData={friendData.planData} className="Dplan-container" />
+      </div>
+      <div className="interaction-controls likes">
         <button type="button" onClick={handleUpvote}>Upvote</button>
         <span className="upvotes-count">{upvotes}</span>
         <button type="button" onClick={handleDownvote}>Downvote</button>
