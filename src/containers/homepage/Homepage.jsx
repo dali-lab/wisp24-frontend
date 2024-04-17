@@ -77,6 +77,7 @@ const Homepage = () => {
     <div className="homepage-main-container">
       <div className="homepage-left-container">
         <MainDraftTab />
+        <p>testing -ellie</p>
         <div className="plan-container">
           <ProgressTracker />
           <Plan />
