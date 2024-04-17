@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -6,22 +8,8 @@ import './Plan23.css';
 
 const Plan23 = () => {
   const [listOfTermNames, setListOfTermNames] = useState([
-    { id: 1, termName: 'term1', courses: ['course1', 'course2'] },
-    { id: 2, termName: 'term2', courses: ['course1'] },
-    { id: 3, termName: 'term3', courses: ['course1'] },
-    { id: 4, termName: 'term4', courses: ['course1'] },
-    { id: 5, termName: 'term5', courses: ['course1'] },
-    { id: 6, termName: 'term6', courses: ['course1'] },
-    { id: 7, termName: 'term7', courses: ['course1'] },
-    { id: 8, termName: 'term8', courses: ['course1'] },
-    { id: 9, termName: 'term9', courses: ['course1'] },
-    { id: 10, termName: 'term10', courses: ['course1'] },
-    { id: 11, termName: 'term11', courses: ['course1'] },
-    { id: 12, termName: 'term12', courses: ['course1'] },
-    { id: 13, termName: 'term13', courses: ['course1'] },
-    { id: 14, termName: 'term14', courses: ['course1'] },
-    { id: 15, termName: 'term15', courses: ['course1'] },
-    { id: 16, termName: 'term16', courses: ['course1'] },
+    { id: 0, termName: 'term1', courses: ['course1', 'course2'] },
+    { id: 1, termName: 'term2', courses: ['course1'] },
   ]);
 
   const addCourse = (index, courseName) => {
@@ -49,8 +37,11 @@ const Plan23 = () => {
   };
 
   const TermCard = (props) => {
+    // console.log('term card props: ', props);
+    const i = props.termID;
     const [{ isDragging }, drag, dragPreview] = useDrag(() => ({
       type: 'TERM',
+      item: { i },
       collect: (monitor) => ({
         isDragging: monitor.isDragging(),
       }),
@@ -62,7 +53,7 @@ const Plan23 = () => {
           <TermComponent
             termName={props.termName || ''}
             courses={props.courses}
-            termID={props.index}
+            termID={props.termID} // changed from index to termID
             addCourse={props.addCourse}
             delCourse={props.delCourse}
             edit={props.edit}
@@ -73,11 +64,14 @@ const Plan23 = () => {
   };
 
   const TermContainer = (props) => {
+    // console.log('term container props: ', props);
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
       accept: 'TERM',
       drop: (item, monitor) => {
-        const draggedIndex = item.termID;
+        const draggedIndex = item.i;
         const targetIndex = props.termID;
+
+        console.log('dragged index: ', draggedIndex, ' | target index: ', targetIndex);
 
         // Swap the terms in the list
         const updatedTermNames = [...listOfTermNames];
@@ -100,7 +94,7 @@ const Plan23 = () => {
         <TermCard
           termName={props.termName || ''}
           courses={props.courses}
-          termID={props.index}
+          termID={props.termID} // changed from index to termID
           addCourse={props.addCourse}
           delCourse={props.delCourse}
           edit={props.edit}
@@ -147,155 +141,6 @@ const Plan23 = () => {
                   delCourse={delCourse}
                   edit={false}
                 />
-              </td>
-              <td> <TermContainer
-                termName={listOfTermNames[0].termName}
-                courses={listOfTermNames[0].courses}
-                termID={0}
-                key={0}
-                addCourse={addCourse}
-                delCourse={delCourse}
-                edit={false}
-              />
-              </td>
-              <td><TermContainer
-                termName={listOfTermNames[0].termName}
-                courses={listOfTermNames[0].courses}
-                termID={0}
-                key={0}
-                addCourse={addCourse}
-                delCourse={delCourse}
-                edit={false}
-              />
-              </td>
-            </tr>
-            <tr className="term-rows">
-              <td><div className="term-holder year-column">2nd</div></td>
-              <td><TermContainer
-                termName={listOfTermNames[0].termName}
-                courses={listOfTermNames[0].courses}
-                termID={0}
-                key={0}
-                addCourse={addCourse}
-                delCourse={delCourse}
-                edit={false}
-              />
-              </td>
-              <td><TermContainer
-                termName={listOfTermNames[0].termName}
-                courses={listOfTermNames[0].courses}
-                termID={0}
-                key={0}
-                addCourse={addCourse}
-                delCourse={delCourse}
-                edit={false}
-              />
-              </td>
-              <td><TermContainer
-                termName={listOfTermNames[0].termName}
-                courses={listOfTermNames[0].courses}
-                termID={0}
-                key={0}
-                addCourse={addCourse}
-                delCourse={delCourse}
-                edit={false}
-              />
-              </td>
-              <td><TermContainer
-                termName={listOfTermNames[0].termName}
-                courses={listOfTermNames[0].courses}
-                termID={0}
-                key={0}
-                addCourse={addCourse}
-                delCourse={delCourse}
-                edit={false}
-              />
-              </td>
-            </tr>
-            <tr className="term-rows">
-              <td><div className="term-holder year-column">3rd</div></td>
-              <td><TermContainer
-                termName={listOfTermNames[0].termName}
-                courses={listOfTermNames[0].courses}
-                termID={0}
-                key={0}
-                addCourse={addCourse}
-                delCourse={delCourse}
-                edit={false}
-              />
-              </td>
-              <td><TermContainer
-                termName={listOfTermNames[0].termName}
-                courses={listOfTermNames[0].courses}
-                termID={0}
-                key={0}
-                addCourse={addCourse}
-                delCourse={delCourse}
-                edit={false}
-              />
-              </td>
-              <td><TermContainer
-                termName={listOfTermNames[0].termName}
-                courses={listOfTermNames[0].courses}
-                termID={0}
-                key={0}
-                addCourse={addCourse}
-                delCourse={delCourse}
-                edit={false}
-              />
-              </td>
-              <td><TermContainer
-                termName={listOfTermNames[0].termName}
-                courses={listOfTermNames[0].courses}
-                termID={0}
-                key={0}
-                addCourse={addCourse}
-                delCourse={delCourse}
-                edit={false}
-              />
-              </td>
-            </tr>
-            <tr className="term-rows">
-              <td><div className="term-holder year-column">4th</div></td>
-              <td><TermContainer
-                termName={listOfTermNames[0].termName}
-                courses={listOfTermNames[0].courses}
-                termID={0}
-                key={0}
-                addCourse={addCourse}
-                delCourse={delCourse}
-                edit={false}
-              />
-              </td>
-              <td><TermContainer
-                termName={listOfTermNames[0].termName}
-                courses={listOfTermNames[0].courses}
-                termID={0}
-                key={0}
-                addCourse={addCourse}
-                delCourse={delCourse}
-                edit={false}
-              />
-              </td>
-              <td><TermContainer
-                termName={listOfTermNames[0].termName}
-                courses={listOfTermNames[0].courses}
-                termID={0}
-                key={0}
-                addCourse={addCourse}
-                delCourse={delCourse}
-                edit={false}
-              />
-              </td>
-              <td><TermContainer
-                termName={listOfTermNames[0].termName}
-                courses={listOfTermNames[0].courses}
-                termID={0}
-                key={0}
-                addCourse={addCourse}
-                delCourse={delCourse}
-                edit={false}
-              />
               </td>
             </tr>
           </tbody>
