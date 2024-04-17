@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import TermComponent from '../termComponent';
+import './Plan23.css';
 
-const Plan3 = () => {
+const Plan23 = () => {
   const [listOfTermNames, setListOfTermNames] = useState([
     { id: 1, termName: 'term1', courses: ['course1', 'course2'] },
     { id: 2, termName: 'term2', courses: ['course1'] },
@@ -59,6 +60,7 @@ const Plan3 = () => {
       <div ref={dragPreview} style={{ opacity: isDragging ? 0.5 : 1 }}>
         <div ref={drag}>
           <TermComponent
+            termName={props.termName || ''}
             courses={props.courses}
             termID={props.index}
             addCourse={props.addCourse}
@@ -73,6 +75,18 @@ const Plan3 = () => {
   const TermContainer = (props) => {
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
       accept: 'TERM',
+      drop: (item, monitor) => {
+        const draggedIndex = item.termID;
+        const targetIndex = props.termID;
+
+        // Swap the terms in the list
+        const updatedTermNames = [...listOfTermNames];
+        const draggedTerm = updatedTermNames[draggedIndex];
+        updatedTermNames[draggedIndex] = updatedTermNames[targetIndex];
+        updatedTermNames[targetIndex] = draggedTerm;
+
+        setListOfTermNames(updatedTermNames);
+      },
       collect: (monitor) => ({
         isOver: monitor.isOver(),
         canDrop: monitor.canDrop()
@@ -84,6 +98,7 @@ const Plan3 = () => {
         style={{ backgroundColor: isOver ? 'red' : 'white' }}
       >
         <TermCard
+          termName={props.termName || ''}
           courses={props.courses}
           termID={props.index}
           addCourse={props.addCourse}
@@ -93,6 +108,7 @@ const Plan3 = () => {
       </div>
     );
   };
+
   return (
 
     <div className="table-container">
@@ -123,10 +139,10 @@ const Plan3 = () => {
               </td>
               <td>
                 <TermContainer
-                  termName={listOfTermNames[0].termName}
-                  courses={listOfTermNames[0].courses}
-                  termID={0}
-                  key={0}
+                  termName={listOfTermNames[1].termName}
+                  courses={listOfTermNames[1].courses}
+                  termID={1}
+                  key={1}
                   addCourse={addCourse}
                   delCourse={delCourse}
                   edit={false}
@@ -290,4 +306,4 @@ const Plan3 = () => {
   );
 };
 
-export default Plan3;
+export default Plan23;
