@@ -15,6 +15,7 @@ import Test from '../containers/authentication/signOutPanel';
 import Homepage from '../containers/homepage/Homepage';
 import Feed from '../containers/feed/feed';
 import Navbar from './navbar/Navbar';
+import Plan23 from './plan2/Plan23';
 
 const Welcome = () => (
   <div>
@@ -39,6 +40,7 @@ const App = () => (
         <Route exact path="/feed" component={Feed} />
         <Route exact path="/test" component={Test} />
         <Route exact path="/home" component={Homepage} />
+        <Route exact path="/plan23" component={Plan23} />
         <Route path="/admin" component={requireAuth(AdminPanel, SignInPanel)} />
         <Route component={FallBack} />
       </Switch>
