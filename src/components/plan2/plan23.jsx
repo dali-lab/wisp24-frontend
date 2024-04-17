@@ -8,8 +8,10 @@ import './Plan23.css';
 
 const Plan23 = () => {
   const [listOfTermNames, setListOfTermNames] = useState([
-    { id: 0, termName: 'term1', courses: ['course1', 'course2'] },
-    { id: 1, termName: 'term2', courses: ['course1'] },
+    { id: 0, termName: 'term1', courses: ['course1', 'course2'] }, // edit: have this start at 0 for consistency
+    { id: 1, termName: 'term2', courses: ['course3'] },
+    { id: 2, termName: 'term3', courses: ['course4'] },
+    { id: 3, termName: 'term4', courses: ['course5', 'course6'] },
   ]);
 
   const addCourse = (index, courseName) => {
@@ -37,11 +39,10 @@ const Plan23 = () => {
   };
 
   const TermCard = (props) => {
-    // console.log('term card props: ', props);
-    const i = props.termID;
+    const id = props.termID;
     const [{ isDragging }, drag, dragPreview] = useDrag(() => ({
       type: 'TERM',
-      item: { i },
+      item: { id }, // ADD THIS!!
       collect: (monitor) => ({
         isDragging: monitor.isDragging(),
       }),
@@ -64,11 +65,10 @@ const Plan23 = () => {
   };
 
   const TermContainer = (props) => {
-    // console.log('term container props: ', props);
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
       accept: 'TERM',
       drop: (item, monitor) => {
-        const draggedIndex = item.i;
+        const draggedIndex = item.id; // THIS WAS NULL BEFORE!! Now references item: {id} in useDrag hook
         const targetIndex = props.termID;
 
         console.log('dragged index: ', draggedIndex, ' | target index: ', targetIndex);
@@ -137,6 +137,28 @@ const Plan23 = () => {
                   courses={listOfTermNames[1].courses}
                   termID={1}
                   key={1}
+                  addCourse={addCourse}
+                  delCourse={delCourse}
+                  edit={false}
+                />
+              </td>
+              <td>
+                <TermContainer
+                  termName={listOfTermNames[2].termName}
+                  courses={listOfTermNames[2].courses}
+                  termID={2}
+                  key={2}
+                  addCourse={addCourse}
+                  delCourse={delCourse}
+                  edit={false}
+                />
+              </td>
+              <td>
+                <TermContainer
+                  termName={listOfTermNames[3].termName}
+                  courses={listOfTermNames[3].courses}
+                  termID={3}
+                  key={3}
                   addCourse={addCourse}
                   delCourse={delCourse}
                   edit={false}
