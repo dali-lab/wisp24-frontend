@@ -4,6 +4,7 @@ import './Profile.css';
 
 const Profile = ({ profileData, open, handleClose }) => {
   const [profile, setProfile] = useState(profileData || {});
+  const [newTag, setNewTag] = useState('');
 
   const handleNameChange = (newName) => {
     setProfile((prevProfile) => ({ ...prevProfile, name: newName }));
@@ -37,8 +38,14 @@ const Profile = ({ profileData, open, handleClose }) => {
   };
 
   const handleAddTag = () => {
-    if (!profile.others) profile.others = [];
-    setProfile((prevProfile) => ({ ...prevProfile, others: [...prevProfile.others, 'New Tag'] }));
+    const tagToAdd = newTag.trim();
+    if (tagToAdd && !profile.others?.includes(tagToAdd)) {
+      setProfile((prevProfile) => ({
+        ...prevProfile,
+        others: [...(prevProfile.others || []), tagToAdd],
+      }));
+      setNewTag('');
+    }
   };
 
   return (
@@ -65,6 +72,12 @@ const Profile = ({ profileData, open, handleClose }) => {
               placeholder="Minor"
             />
             {renderOtherTags()}
+            <input
+              type="text"
+              value={newTag}
+              onChange={(e) => setNewTag(e.target.value)}
+              placeholder="Enter new tag"
+            />
             <button type="button" onClick={handleAddTag}>Add New Tag</button>
           </div>
           <textarea
@@ -74,7 +87,6 @@ const Profile = ({ profileData, open, handleClose }) => {
           />
         </div>
       </div>
-      <button type="submit" onClick={handleClose}>Close</button>
     </div>
   );
 };

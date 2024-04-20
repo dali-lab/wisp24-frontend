@@ -1,5 +1,91 @@
+.profile-overlay {
+  display: none;  
+  position: fixed;  
+  z-index: 1;  
+  left: 0;
+  top: 0;
+  width: 100%;  
+  height: auto;  
+  overflow: auto;  
+  background-color: rgba(0,0,0,0.4);  
+  padding-top: 50px;  
+}
+ 
 .profile-container {
-    padding: 10px;
-     
-  }
+  background-color: #fefefe;
+  margin: 0 0;  
+  padding: 0px;
+  width: 80%;  
+  max-width: 600px;  
+  border-radius: 10px;  
+  box-sizing: border-box;  
+}
+ 
+.toggle-profile-btn {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  position: absolute;
+  top: 20px;  
+  right: 20px;  
+}
+
+.toggle-profile-btn:before {
+  content: '☰'; 
+  font-size: 24px;  
+  color: var(--green); 
+}
+
+ 
+.profile-tags input[type="text"],
+.profile-header textarea,
+.profile-header input[type="text"] {
+  border: 2px solid var(--green);  
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px 0;  
+}
+
+.profile-tags .tag {
+  background-color: var(--light-green);  
+  border-radius: 5px;
+  padding: 5px;
+  margin-right: 5px;  
+}
+
+.profile-tags .tag button {
+  background-color: var(--red);  
+  border: none;
+  border-radius: 5px;
+  margin-left: 5px;  
+  cursor: pointer;
+}
+
+.profile-tags button {
+  background-color: var(--green);  
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 5px;  
+}
+ 
+.profile-overlay.open {
+  display: block;
+}
+
+.profile-tags .tag {
    
+  color: #333;  
+}
+ 
+.profile-tags .tag button {
+  color: white; 
+}
+ 
+.profile-tags input[type="text"],
+.profile-header textarea,
+.profile-header input[type="text"] {
+   
+  color: #333;  
+}
