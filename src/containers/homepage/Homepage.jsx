@@ -15,7 +15,7 @@ const Homepage = () => {
   const inputRef = useRef();
   const [editingIndex, setEditingIndex] = useState("");
   const [mainDraftIndex, setMainDraftIndex] = useState(0);
-
+  const [editStatus, setEditStatus] = useState(true);
   const addDraft = (event) => {
     event.preventDefault();
     setMainDrafts([...mainDrafts, { draftTitle: `maindraft${mainDrafts.length + 1}`, isMain: false }]);
@@ -80,7 +80,7 @@ const Homepage = () => {
         <MainDraftTab />
         <div className="plan-container">
           <ProgressTracker />
-          <Plan />
+          <Plan editStatus={editStatus}/>
         </div>
       </div>
       <div className="homepage-right-container">
