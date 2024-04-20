@@ -73,7 +73,7 @@ const Profile = ({ userId, open, handleClose }) => {
         placeholder="Minor"
       />
       {profile.others?.map((tag, index) => (
-        <span key={index} className="tag other">
+        <span key={tag} className="tag other">
           {tag} <button type="button" onClick={() => handleDeleteTag(index)}>Delete</button>
         </span>
       ))}
