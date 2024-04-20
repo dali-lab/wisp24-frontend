@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import './Homepage.css';
 import Plan from '../../components/plan/Plan.jsx';
 import PotentialClass from './PotentialClass.jsx';
 import AddTerms from './AddTerms.jsx';
@@ -27,30 +28,30 @@ const Homepage = () => {
   const deleteDraft = (index) => {
     if (mainDrafts.length > 1) {
       if (editingIndex === index) {
-        setEditingIndex("")
+        setEditingIndex('');
       }
       const updatedDrafts = mainDrafts.filter((draft, i) => i !== index);
-      setMainDrafts(updatedDrafts)
+      setMainDrafts(updatedDrafts);
     }
-  }
+  };
 
   const editDraft = (index) => {
     setEditingIndex(index);
-  }
+  };
 
   const startEdit = (index) => {
-    setEditingIndex(index)
-  }
+    setEditingIndex(index);
+  };
 
   const titleChangeSubmit = (index) => {
-    if (inputRef.current.value.length === 0) {return}
+    if (inputRef.current.value.length === 0) { return; }
     const updatedDrafts = mainDrafts.map((mainDraft, i) => {
       if (index == i) {
-        return {draftTitle: inputRef.current.value}
+        return { draftTitle: inputRef.current.value };
       } else {
-        return mainDraft
+        return mainDraft;
       }
-    })
+    });
     setMainDrafts(updatedDrafts);
     console.log(updatedDrafts);
     setEditingIndex("");
