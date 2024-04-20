@@ -1,93 +1,99 @@
-/* eslint-disable react/no-array-index-key */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Profile.css';
+import { getUserData, updateUserData } from '../../services/datastore'; // Adjust the path as necessary
 
-const Profile = ({ profileData, open, handleClose }) => {
-  const [profile, setProfile] = useState(profileData || {});
-  const [newTag, setNewTag] = useState('');
+const Profile = ({ userId, open, handleClose }) => {
+  const [profile, setProfile] = useState({});
 
-  const handleNameChange = (newName) => {
-    setProfile((prevProfile) => ({ ...prevProfile, name: newName }));
+  useEffect(() => {
+    if (userId) {
+      getUserData(userId).then(setProfile).catch(console.error);
+    }
+  }, [userId]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      [name]: value
+    }));
   };
 
-  const handleMajorChange = (newMajor) => {
-    setProfile((prevProfile) => ({ ...prevProfile, major: newMajor }));
+  const handleSaveProfile = () => {
+    updateUserData(userId, profile)
+      .then(() => {
+        alert('Profile updated successfully!');
+        handleClose();
+      })
+      .catch((error) => {
+        console.error('Error updating profile:', error);
+        alert('Failed to update profile.');
+      });
   };
 
-  const handleMinorChange = (newMinor) => {
-    setProfile((prevProfile) => ({ ...prevProfile, minor: newMinor }));
-  };
-
-  const handleBioChange = (newBio) => {
-    setProfile((prevProfile) => ({ ...prevProfile, biography: newBio }));
+  const handleAddTag = () => {
+    const newTag = profile.newTag?.trim();
+    if (newTag && !profile.others?.includes(newTag)) {
+      setProfile((prevProfile) => ({
+        ...prevProfile,
+        others: [...(prevProfile.others || []), newTag],
+        newTag: ''
+      }));
+    }
   };
 
   const handleDeleteTag = (tagIndex) => {
     setProfile((prevProfile) => ({
       ...prevProfile,
-      others: prevProfile.others.filter((_, index) => index !== tagIndex),
+      others: prevProfile.others.filter((_, index) => index !== tagIndex)
     }));
-  };
-
-  const renderOtherTags = () => {
-    return profile.others?.map((other, index) => (
-      <span key={index} className="tag other">
-        {other} <button type="button" onClick={() => handleDeleteTag(index)}>Delete</button>
-      </span>
-    ));
-  };
-
-  const handleAddTag = () => {
-    const tagToAdd = newTag.trim();
-    if (tagToAdd && !profile.others?.includes(tagToAdd)) {
-      setProfile((prevProfile) => ({
-        ...prevProfile,
-        others: [...(prevProfile.others || []), tagToAdd],
-      }));
-      setNewTag('');
-    }
   };
 
   return (
     <div className="profile-container" style={{ display: open ? 'block' : 'none' }}>
-      <div className="profile-container">
-        <div className="profile-header">
-          <input
-            type="text"
-            value={profile.name}
-            onChange={(e) => handleNameChange(e.target.value)}
-            placeholder="Name"
-          />
-          <div className="profile-tags">
-            <input
-              type="text"
-              value={profile.major}
-              onChange={(e) => handleMajorChange(e.target.value)}
-              placeholder="Major"
-            />
-            <input
-              type="text"
-              value={profile.minor}
-              onChange={(e) => handleMinorChange(e.target.value)}
-              placeholder="Minor"
-            />
-            {renderOtherTags()}
-            <input
-              type="text"
-              value={newTag}
-              onChange={(e) => setNewTag(e.target.value)}
-              placeholder="Enter new tag"
-            />
-            <button type="button" onClick={handleAddTag}>Add New Tag</button>
-          </div>
-          <textarea
-            value={profile.biography}
-            onChange={(e) => handleBioChange(e.target.value)}
-            placeholder="Biography"
-          />
-        </div>
-      </div>
+      <input
+        type="text"
+        value={profile.name || ''}
+        onChange={handleInputChange}
+        name="name"
+        placeholder="Name"
+      />
+      <input
+        type="text"
+        value={profile.major || ''}
+        onChange={handleInputChange}
+        name="major"
+        placeholder="Major"
+      />
+      <input
+        type="text"
+        value={profile.minor || ''}
+        onChange={handleInputChange}
+        name="minor"
+        placeholder="Minor"
+      />
+      {profile.others?.map((tag, index) => (
+        <span key={index} className="tag other">
+          {tag} <button type="button" onClick={() => handleDeleteTag(index)}>Delete</button>
+        </span>
+      ))}
+      <input
+        type="text"
+        value={profile.newTag || ''}
+        onChange={handleInputChange}
+        name="newTag"
+        placeholder="Enter new tag"
+      />
+      <button type="button" onClick={handleAddTag}>Add New Tag</button>
+      <textarea
+        value={profile.biography || ''}
+        onChange={handleInputChange}
+        name="biography"
+        placeholder="Biography"
+      />
+      <button type="button" onClick={handleSaveProfile}>Save Profile</button>
     </div>
   );
 };
+
 export default Profile;

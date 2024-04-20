@@ -3,6 +3,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
+import {
+  getDatabase, ref, set, update, remove, onValue
+} from 'firebase/database';
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 // Your web app’s Firebase configuration
@@ -20,3 +24,33 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+// Initialize the Firebase Realtime Database
+const db = getDatabase(initializeApp(firebaseConfig));
+
+export const getUserData = (userId) => {
+  return new Promise((resolve, reject) => {
+    const userRef = ref(db, `users/${userId}`);
+    onValue(userRef, (snapshot) => {
+      const data = snapshot.val();
+      resolve(data);
+    }, {
+      onlyOnce: true
+    });
+  });
+};
+
+export const updateUserData = (userId, updates) => {
+  const userRef = ref(db, `users/${userId}`);
+  return update(userRef, updates);
+};
+
+export const addUserData = (userId, data) => {
+  const userRef = ref(db, `users/${userId}`);
+  return set(userRef, data);
+};
+
+export const removeUserData = (userId) => {
+  const userRef = ref(db, `users/${userId}`);
+  return remove(userRef);
+};
