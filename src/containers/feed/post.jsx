@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import './feed.css';
-import Plan from '../../components/Plan/Plan';
+import Plan from '../../components/plan/Plan';
 
 const Post = (props) => {
   const [filter, setFilter] = useState(false);
+  const [editStatus, setEditStatus] = useState(false);
   return (
     <div>
       {props.users.map((user) => (
@@ -34,7 +35,7 @@ const Post = (props) => {
               </div>
             </div>
           </div>
-          <div className="Dplan-container"> <Plan /> </div>
+          <div className="Dplan-container"> <Plan editStatus={editStatus} /> </div>
           <div className="tag-container">
             <span> tags: </span>
             {user.tags.map((tag) => (
