@@ -16,7 +16,7 @@ const EditingDraft = (props) => {
   const setSelectedDraft = () => {
     props.handleSelectedDraft('');
   };
-
+  // updates what is typed in the box, applies to old draft
   useEffect(() => {
     if (selectedDraft !== -1 && drafts[selectedDraft] != null) {
       setInput((prevInput) => ({
@@ -31,7 +31,7 @@ const EditingDraft = (props) => {
   const handleTermChange = (event) => {
     const { name, value } = event.target;
     setInputData((prevData) => {
-      return { ...prevData, [name]: value };
+      return { ...prevData, [name]: value }; // copies previous input
     });
   };
 
@@ -40,6 +40,7 @@ const EditingDraft = (props) => {
   };
 
   const changeNameToggleSubmit = () => {
+    // updateDraftName((prevState) => ({ ...prevState }), inputData.draftName);
     setInput((prevState) => ({
       ...prevState,
       draftName: inputData.draftName,
@@ -79,7 +80,7 @@ const EditingDraft = (props) => {
   };
 
   let content;
-  if (nameEditingState) {
+  if (nameEditingState) { // if true
     content = (
       <div>
         <input type="text" onChange={handleTermChange} name="draftName" value={inputData.draftName} />

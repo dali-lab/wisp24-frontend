@@ -11,13 +11,17 @@ const AddTerms = () => {
     }
   ]);
 
+  // useEffect(()=>{
+
+  // })
   const handleClick = (event) => {
     event.preventDefault();
-    setSelectedDraft(-1);
+    setSelectedDraft(-1); // initialize new draft
   };
 
   const handleSelectedDraft = (index) => {
     setSelectedDraft(index);
+    console.log('ID of selected draft:', index);
   };
 
   const changeTermName = (newName) => {
