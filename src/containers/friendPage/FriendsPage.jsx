@@ -47,15 +47,19 @@ const FriendsPage = ({ userId }) => {
   return (
     <div className="friends-page">
       <FriendsNav />
-      <input
-        type="text"
-        placeholder="Search friends..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="search-bar"
-      />
-      <div className="friends-container">
-        {renderFriendsList()}
+
+      <div className="container">
+        <input
+          type="text"
+          placeholder="Search friends..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-bar"
+        />
+        <div className="friends-container">
+          {renderFriendsList()}
+        </div>
+
       </div>
     </div>
   );
