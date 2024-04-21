@@ -4,7 +4,6 @@ import PotentialClass from './PotentialClass.jsx';
 import AddTerms from './AddTerms.jsx';
 import './Homepage.css';
 import ProgressTracker from './ProgressTracker.jsx';
-import { addNewCourse } from '../../services/datastore.js';
 // import { signOut } from 'firebase/auth';
 
 const Homepage = () => {
@@ -16,24 +15,6 @@ const Homepage = () => {
   const inputRef = useRef();
   const [editingIndex, setEditingIndex] = useState('');
   const [mainDraftIndex, setMainDraftIndex] = useState(0);
-  const [courseName, setCourseName] = useState('');
-  const [courseID, setCourseID] = useState(0); // is it an issue that this resets if u reload the page?
-  const [NRO, setNRO] = useState(false);
-
-  const newCourseName = (event) => {
-    // console.log('course typing registered');
-    setCourseName(event.target.value);
-  };
-
-  const createCourse = () => {
-    // console.log('create course button click registered');
-    addNewCourse(courseID, courseName, 'NW', NRO, 'CS1', 'orange');
-    setCourseID(courseID + 1);
-  };
-
-  const changeNRO = () => {
-    setNRO(!NRO);
-  };
 
   const addDraft = (event) => {
     event.preventDefault();
@@ -65,7 +46,7 @@ const Homepage = () => {
   const titleChangeSubmit = (index) => {
     if (inputRef.current.value.length === 0) { return; }
     const updatedDrafts = mainDrafts.map((mainDraft, i) => {
-      if (index == i) {
+      if (index === i) {
         return { draftTitle: inputRef.current.value };
       } else {
         return mainDraft;
@@ -97,13 +78,6 @@ const Homepage = () => {
   return (
     <div className="homepage-main-container">
       <div className="homepage-left-container">
-
-        <div>
-          <input type="text" placeholder="Course Name" value={courseName} onChange={newCourseName} />
-          <button type="submit" onClick={changeNRO}>{NRO ? 'Remove NRO' : 'Set NRO'}</button>
-          <button type="submit" onClick={createCourse}>Create Course</button>
-        </div>
-
         {/* <button onClick={addNewCourse} type='submit'>ADD COURSE (test)</button> */}
         <MainDraftTab />
         <div className="plan-container">

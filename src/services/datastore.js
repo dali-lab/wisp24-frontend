@@ -31,20 +31,22 @@ const db = getDatabase(app);
 
 // read
 export function getAllCourses(callback = () => {}) {
-  const courseRef = ref(db, 'courses/');
+  const courseRef = ref(db, 'course/');
   onValue(courseRef, (snapshot) => {
     const courses = snapshot.val();
     callback(courses);
   });
 }
 
-export function addNewCourse(courseID, courseName, courseDistrib, courseNRO, coursePrereq, courseColor) {
+export function addNewCourse(courseID, courseName, courseDistrib, courseNRO, coursePrereq, courseColor, courseCRN) {
   set(ref(db, `course/${courseID}`), {
     name: courseName,
     distrib: courseDistrib,
     nro: courseNRO,
     prereq: coursePrereq,
-    color: courseColor
+    color: courseColor,
+    crn: courseCRN,
+    id: courseID
   });
 }
 
@@ -52,10 +54,11 @@ export function deleteCourse(courseID) {
   remove(ref(db, `course/${courseID}`));
 }
 
-export function updateCourse(courseID, newName, newNRO, newColor) {
+export function updateCourse(courseID, newName, newNRO, newColor, newCRN) {
   update(ref(db, `course/${courseID}`), {
     name: newName,
     nro: newNRO,
-    color: newColor
+    color: newColor,
+    crn: newCRN
   });
 }
