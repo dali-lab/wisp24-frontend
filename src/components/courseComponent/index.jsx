@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 // import TermComponent from '../TermComponent';
 import './index.css';
 import { deleteCourse } from '../../services/datastore';
-
 // course component
 const CourseComponent = (props) => {
   // const [name, setName] = useState(props.name);

@@ -15,7 +15,7 @@ const Homepage = () => {
   const inputRef = useRef();
   const [editingIndex, setEditingIndex] = useState('');
   const [mainDraftIndex, setMainDraftIndex] = useState(0);
-
+  const [editStatus, setEditStatus] = useState(true);
   const addDraft = (event) => {
     event.preventDefault();
     setMainDrafts([...mainDrafts, { draftTitle: `maindraft${mainDrafts.length + 1}`, isMain: false }]);
@@ -29,28 +29,37 @@ const Homepage = () => {
     if (mainDrafts.length > 1) {
       if (editingIndex === index) {
         setEditingIndex('');
+        setEditingIndex('');
       }
       const updatedDrafts = mainDrafts.filter((draft, i) => i !== index);
       setMainDrafts(updatedDrafts);
+      setMainDrafts(updatedDrafts);
     }
+  };
   };
 
   const editDraft = (index) => {
     setEditingIndex(index);
   };
+  };
 
   const startEdit = (index) => {
     setEditingIndex(index);
   };
+    setEditingIndex(index);
+  };
 
   const titleChangeSubmit = (index) => {
+    if (inputRef.current.value.length === 0) { return; }
     if (inputRef.current.value.length === 0) { return; }
     const updatedDrafts = mainDrafts.map((mainDraft, i) => {
       if (index === i) {
         return { draftTitle: inputRef.current.value };
       } else {
         return mainDraft;
+        return mainDraft;
       }
+    });
     });
     setMainDrafts(updatedDrafts);
     console.log(updatedDrafts);
@@ -82,7 +91,7 @@ const Homepage = () => {
         <MainDraftTab />
         <div className="plan-container">
           <ProgressTracker />
-          <Plan />
+          <Plan editStatus={editStatus}/>
         </div>
       </div>
       <div className="homepage-right-container">
