@@ -54,3 +54,55 @@ export const removeUserData = (userId) => {
   const userRef = ref(db, `users/${userId}`);
   return remove(userRef);
 };
+
+export function addFriend(userId, friendId) {
+  set(ref(db, `friends/${userId}/${friendId}`), true);
+}
+
+export function removeFriend(userId, friendId) {
+  remove(ref(db, `friends/${userId}/${friendId}`));
+}
+
+export function addFollower(userId, followerId) {
+  set(ref(db, `followers/${userId}/${followerId}`), true);
+}
+
+export function removeFollower(userId, followerId) {
+  remove(ref(db, `followers/${userId}/${followerId}`));
+}
+
+export function addFollowing(userId, followingId) {
+  set(ref(db, `following/${userId}/${followingId}`), true);
+}
+
+export function removeFollowing(userId, followingId) {
+  remove(ref(db, `following/${userId}/${followingId}`));
+}
+
+export function addFriendRequest(fromUserId, toUserId) {
+  set(ref(db, `requests/${toUserId}/incoming/${fromUserId}`), true);
+  set(ref(db, `requests/${fromUserId}/outgoing/${toUserId}`), true);
+}
+
+export function removeFriendRequest(fromUserId, toUserId) {
+  remove(ref(db, `requests/${toUserId}/incoming/${fromUserId}`));
+  remove(ref(db, `requests/${fromUserId}/outgoing/${toUserId}`));
+}
+
+export const fetchAllUsers = () => {
+  return new Promise((resolve, reject) => {
+    const usersRef = ref(db, 'users');
+    onValue(usersRef, (snapshot) => {
+      const usersObj = snapshot.val();
+      const usersArray = usersObj ? Object.keys(usersObj).map((key) => ({
+        ...usersObj[key],
+        id: key
+      })) : [];
+      resolve(usersArray);
+    }, {
+      onlyOnce: true
+    }, (error) => {
+      reject(error);
+    });
+  });
+};
