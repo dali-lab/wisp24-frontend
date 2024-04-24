@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 
 const EditingDraft = (props) => {
@@ -41,10 +42,12 @@ const EditingDraft = (props) => {
 
   const changeNameToggleSubmit = () => {
     // updateDraftName((prevState) => ({ ...prevState }), inputData.draftName);
+
     setInput((prevState) => ({
       ...prevState,
       draftName: inputData.draftName,
     }));
+
     setInputData((prevState) => ({
       ...prevState,
       draftName: '', // Reset the input field after saving the class

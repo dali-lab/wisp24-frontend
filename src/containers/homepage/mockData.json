@@ -2,8 +2,13 @@
     "drafts": [
         {
             "id": 1,
-            "name": "draft1",
-            "classes":["class1", "class2"]
+            "draftName": "draft1",
+            "classList":["class1", "class2"]
+        },
+        {
+            "id": 2,
+            "draftName": "draft2",
+            "classList":["class1", "class2"]
         }
     ]
 

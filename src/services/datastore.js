@@ -5,7 +5,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import {
-  getDatabase, ref, set, update, remove, onValue
+  getDatabase, ref, set, update, remove, onValue, push
 } from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -26,18 +26,7 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getDatabase(app);
 
-// access to all terms of the user
-export function addTerm(draftName, draftID, input) {
-  set(ref(db, 'drafts/' + draftID), {
-    name: draftName,
-    classes: input, // array of input classes
-  });
-}
-
-export function getTerm(draftID, callback = () => {}, location) {
-  // location is a boolean
-  // true  === plan
-  // false === component
+export function getTerm(draftID, callback = () => {}) {
   const drafRef = ref(db, 'drafts/' + draftID);
   onValue(drafRef, (snapshot) => {
     const draft = snapshot.val(); // gets the snapshot of the data
@@ -52,18 +41,28 @@ export function getAllTerm(callback = () => {}) {
     callback(drafts);
   });
 }
-
-export function updateDraftName(draftName, newName) {
-  const drafRef = ref(db, 'draft/' + draftName);
+/* TERM SUBMIT */
+export function addTerm(termID, input) {
+  const reference = ref(db, 'drafts/' + termID);
+  set(reference, { // get unique id
+    id: termID,
+    draftName: input.draftName,
+    classList: input.classList,
+  });
+}
+export function updateTerm(id, data) {
+  const drafRef = ref(db, 'drafts/' + id);
   update(drafRef, {
-    name: newName,
+    draftName: data.draftName,
+    classList: data.classList,
   });
 }
 
-export function updateClasses(draftID) {
-  const drafRef = ref(db, 'draft/' + draftID);
-}
-
 export function deleteTerm(draftID) {
-  remove(ref(db, 'draft/' + draftID));
+  const termRef = ref(db, 'drafts/' + draftID);
+  remove(termRef).then(() => {
+    console.log('Term successfully deleted.');
+  }).catch((error) => {
+    console.error('Error removing term:', error);
+  });
 }
