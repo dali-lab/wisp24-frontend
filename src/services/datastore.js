@@ -21,6 +21,7 @@ const firebaseConfig = {
   appId: '1:426977445411:web:a9d4a032947150a19f1396',
   measurementId: 'G-DGN0K66FGC'
 };
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
@@ -64,5 +65,41 @@ export function deleteTerm(draftID) {
     console.log('Term successfully deleted.');
   }).catch((error) => {
     console.error('Error removing term:', error);
+  });
+}
+
+// CRUD, create, read, update, delete
+
+// read
+export function getAllCourses(callback = () => {}) {
+  const courseRef = ref(db, 'course/');
+  onValue(courseRef, (snapshot) => {
+    const courses = snapshot.val();
+    callback(courses);
+  });
+}
+
+export function addNewCourse(courseID, courseName, courseDistrib, courseNRO, coursePrereq, courseColor, courseCRN) {
+  set(ref(db, `course/${courseID}`), {
+    name: courseName,
+    distrib: courseDistrib,
+    nro: courseNRO,
+    prereq: coursePrereq,
+    color: courseColor,
+    crn: courseCRN,
+    id: courseID
+  });
+}
+
+export function deleteCourse(courseID) {
+  remove(ref(db, `course/${courseID}`));
+}
+
+export function updateCourse(courseID, newName, newNRO, newColor, newCRN) {
+  update(ref(db, `course/${courseID}`), {
+    name: newName,
+    nro: newNRO,
+    color: newColor,
+    crn: newCRN
   });
 }
