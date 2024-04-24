@@ -36,18 +36,14 @@ const Homepage = () => {
       setMainDrafts(updatedDrafts);
     }
   };
-  };
 
   const editDraft = (index) => {
     setEditingIndex(index);
-  };
-  };
+  }
 
   const startEdit = (index) => {
     setEditingIndex(index);
-  };
-    setEditingIndex(index);
-  };
+  }
 
   const titleChangeSubmit = (index) => {
     if (inputRef.current.value.length === 0) { return; }
@@ -60,7 +56,7 @@ const Homepage = () => {
         return mainDraft;
       }
     });
-    });
+
     setMainDrafts(updatedDrafts);
     console.log(updatedDrafts);
     setEditingIndex('');
@@ -100,6 +96,8 @@ const Homepage = () => {
       </div>
     </div>
   );
-};
+
+
+}
 
 export default Homepage;
