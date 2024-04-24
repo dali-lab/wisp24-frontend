@@ -6,7 +6,6 @@ import { getAnalytics } from 'firebase/analytics';
 import {
   getDatabase, ref, set, update, remove, onValue
 } from 'firebase/database';
-
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 // Your web app’s Firebase configuration
@@ -21,36 +20,45 @@ const firebaseConfig = {
   appId: '1:426977445411:web:a9d4a032947150a19f1396',
   measurementId: 'G-DGN0K66FGC'
 };
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-// Initialize the Firebase Realtime Database
-const db = getDatabase(initializeApp(firebaseConfig));
+const db = getDatabase(app);
 
-export const getUserData = (userId) => {
-  return new Promise((resolve, reject) => {
-    const userRef = ref(db, `users/${userId}`);
-    onValue(userRef, (snapshot) => {
-      const data = snapshot.val();
-      resolve(data);
-    }, {
-      onlyOnce: true
-    });
+// CRUD, create, read, update, delete
+
+// read
+export function getAllCourses(callback = () => {}) {
+  const courseRef = ref(db, 'course/');
+  onValue(courseRef, (snapshot) => {
+    const courses = snapshot.val();
+    callback(courses);
   });
-};
+}
 
-export const updateUserData = (userId, updates) => {
-  const userRef = ref(db, `users/${userId}`);
-  return update(userRef, updates);
-};
+export function addNewCourse(courseID, courseName, courseDistrib, courseNRO, coursePrereq, courseColor, courseCRN) {
+  set(ref(db, `course/${courseID}`), {
+    name: courseName,
+    distrib: courseDistrib,
+    nro: courseNRO,
+    prereq: coursePrereq,
+    color: courseColor,
+    crn: courseCRN,
+    id: courseID
+  });
+}
 
-export const addUserData = (userId, data) => {
-  const userRef = ref(db, `users/${userId}`);
-  return set(userRef, data);
-};
+export function deleteCourse(courseID) {
+  remove(ref(db, `course/${courseID}`));
+}
 
-export const removeUserData = (userId) => {
-  const userRef = ref(db, `users/${userId}`);
-  return remove(userRef);
-};
+export function updateCourse(courseID, newName, newNRO, newColor, newCRN) {
+  update(ref(db, `course/${courseID}`), {
+    name: newName,
+    nro: newNRO,
+    color: newColor,
+    crn: newCRN
+  });
+}
