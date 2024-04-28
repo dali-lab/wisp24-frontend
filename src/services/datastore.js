@@ -7,6 +7,7 @@ import { getAnalytics } from 'firebase/analytics';
 import {
   getDatabase, ref, set, update, remove, onValue, push
 } from 'firebase/database';
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 // Your web app’s Firebase configuration
@@ -25,6 +26,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getDatabase(app);
+// Initialize the Firebase Realtime Database
+// const db = getDatabase(initializeApp(firebaseConfig));
 
 export function getTerm(draftID, callback = () => {}) {
   const drafRef = ref(db, 'drafts/' + draftID);
@@ -66,3 +69,30 @@ export function deleteTerm(draftID) {
     console.error('Error removing term:', error);
   });
 }
+
+export const getUserData = (userId) => {
+  return new Promise((resolve, reject) => {
+    const userRef = ref(db, `users/${userId}`);
+    onValue(userRef, (snapshot) => {
+      const data = snapshot.val();
+      resolve(data);
+    }, {
+      onlyOnce: true
+    });
+  });
+};
+
+export const updateUserData = (userId, updates) => {
+  const userRef = ref(db, `users/${userId}`);
+  return update(userRef, updates);
+};
+
+export const addUserData = (userId, data) => {
+  const userRef = ref(db, `users/${userId}`);
+  return set(userRef, data);
+};
+
+export const removeUserData = (userId) => {
+  const userRef = ref(db, `users/${userId}`);
+  return remove(userRef);
+};

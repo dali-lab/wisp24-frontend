@@ -1,0 +1,30 @@
+.friends-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;  
+    align-content: space-evenly;  
+    flex-wrap: wrap;
+    gap: 10px;
+    
+    
+    
+
+}
+
+.friends-page {
+    background-color: #EFF3F0;
+    margin: 20px;
+    
+    
+  
+}
+
+Friend {
+    display: flex;
+    flex-basis: auto;
+}
+
+.search-bar {
+
+}
