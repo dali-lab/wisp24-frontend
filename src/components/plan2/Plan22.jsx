@@ -54,7 +54,7 @@ const Plan22 = () => {
   const DraggableTerm = forwardRef(({
     term, index, courses
   }, ref) => {
-    const [{ isDragging }, drag] = useDrag(() => ({
+    const [{ isDragging }, drag, dragPreview] = useDrag(() => ({
       type: 'TERM',
       item: { term, index },
       collect: (monitor) => ({
@@ -77,7 +77,7 @@ const Plan22 = () => {
     drop(ref);
 
     return (
-      <div ref={ref} className="draggable-term" style={{ opacity: isDragging ? 0.5 : 1, background: isOver ? 'lightblue' : 'transparent' }}>
+      <div ref={drag} className="draggable-term" style={{ opacity: isDragging ? 0.5 : 1, background: isOver ? 'lightblue' : 'transparent' }}>
         <TermComponent
           courses={courses}
           termID={index}
@@ -103,5 +103,3 @@ const Plan22 = () => {
     </div>
   );
 };
-
-export default Plan22;

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { Table } from 'antd';
 import { DnDProvider, useDrag, useDrop } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 const type = 'DragableCell';
 
@@ -8,7 +9,7 @@ const DragableCell = ({
   index, moveCell, className, style, ...restProps
 }) => {
   const ref = useRef();
-  const [{ isDrop, dropClassName }, drop] = useDrop(() => ({
+  const [{ isOver, dropClassName }, drop] = useDrop(() => ({
     accept: type,
     collect: (monitor) => {
       const { index: dragIndex } = monitor.getItem || {};
