@@ -1,3 +1,4 @@
+/* eslint-disable prefer-template */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-unused-vars */
 // Import the functions you need from the SDKs you need
@@ -24,8 +25,48 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-
 const db = getDatabase(app);
+
+export function getTerm(draftID, callback = () => {}) {
+  const drafRef = ref(db, 'drafts/' + draftID);
+  onValue(drafRef, (snapshot) => {
+    const draft = snapshot.val(); // gets the snapshot of the data
+    callback(draft); // return data to the caller
+  });
+}
+
+export function getAllTerm(callback = () => {}) {
+  const draftRef = ref(db, 'drafts/');
+  onValue(draftRef, (snapshot) => {
+    const drafts = snapshot.val();
+    callback(drafts);
+  });
+}
+/* TERM SUBMIT */
+export function addTerm(termID, input) {
+  const reference = ref(db, 'drafts/' + termID);
+  set(reference, { // get unique id
+    id: termID,
+    draftName: input.draftName,
+    classList: input.classList,
+  });
+}
+export function updateTerm(id, data) {
+  const drafRef = ref(db, 'drafts/' + id);
+  update(drafRef, {
+    draftName: data.draftName,
+    classList: data.classList,
+  });
+}
+
+export function deleteTerm(draftID) {
+  const termRef = ref(db, 'drafts/' + draftID);
+  remove(termRef).then(() => {
+    console.log('Term successfully deleted.');
+  }).catch((error) => {
+    console.error('Error removing term:', error);
+  });
+}
 
 // CRUD, create, read, update, delete
 

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, { useEffect, useState } from 'react';
 import './Homepage.css';
 import { addNewCourse, deleteCourse, getAllCourses } from '../../services/datastore.js';
