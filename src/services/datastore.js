@@ -4,7 +4,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import {
-  getDatabase, ref, set, update, remove, onValue
+  getDatabase, ref, push, update, remove, onValue
 } from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -39,7 +39,7 @@ export function getAllCourses(callback = () => {}) {
 }
 
 export function addNewCourse(courseID, courseName, courseDistrib, courseNRO, coursePrereq, courseColor, courseCRN) {
-  set(ref(db, `course/${courseID}`), {
+  push(ref(db, `course/${courseID}`), {
     name: courseName,
     distrib: courseDistrib,
     nro: courseNRO,
