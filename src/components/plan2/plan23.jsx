@@ -1,4 +1,6 @@
-import React, { useState, forwardRef } from 'react';
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import TermComponent from '../termComponent';

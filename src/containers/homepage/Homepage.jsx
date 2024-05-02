@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
-import Plan23 from '../../components/plan2/plan23.jsx';
+import Plan23 from '../../components/plan2/Plan23.jsx';
 import PotentialClass from './PotentialClass.jsx';
 import AddTerms from './AddTerms.jsx';
 import './Homepage.css';
 import ProgressTracker from './ProgressTracker.jsx';
 import {
-  getAllDrafts, addNewDraft, delDraft, updateDraft, updateDraftTerm
+  getAllDrafts, addNewDraft, delDraft, updateDraft
 } from '../../services/datastore.js';
 
 const Homepage = () => {
@@ -44,10 +44,6 @@ const Homepage = () => {
 
   const deleteDraft = (id) => {
     delDraft(id);
-  };
-
-  const editDraft = (index) => {
-    setEditingIndex(index);
   };
 
   const startEdit = (index) => {
