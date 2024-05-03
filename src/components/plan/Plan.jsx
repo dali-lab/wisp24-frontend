@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './Plan.css';
 import TermComponent from '../termComponent';
 
-const Plan = () => {
+const Plan = (props) => {
   const [termName, setTermName] = useState('');
   const [listOfTermNames, setListOfTermNames] = useState([
     { termName: 'term1', courses: [] },
@@ -51,6 +51,7 @@ const Plan = () => {
     });
     setListOfTermNames([...updatedCourseList]);
   };
+  console.log('here:', props.editStatus);
 
   return (
     <div className="table-container">
@@ -75,6 +76,7 @@ const Plan = () => {
               addCourse={addCourse}
               delCourse={delCourse}
               edit={false}
+              editStatus={props.editStatus}
             />
             </td>
             <td><TermComponent
@@ -85,6 +87,7 @@ const Plan = () => {
               addCourse={addCourse}
               delCourse={delCourse}
               edit={false}
+              editStatus={props.editStatus}
             />
             </td>
             <td><TermComponent
@@ -95,6 +98,7 @@ const Plan = () => {
               addCourse={addCourse}
               delCourse={delCourse}
               edit={false}
+              editStatus={props.editStatus}
             />
             </td>
             <td><TermComponent
@@ -105,6 +109,7 @@ const Plan = () => {
               addCourse={addCourse}
               delCourse={delCourse}
               edit={false}
+              editStatus={props.editStatus}
             />
             </td>
           </tr>
@@ -118,6 +123,7 @@ const Plan = () => {
               addCourse={addCourse}
               delCourse={delCourse}
               edit={false}
+              editStatus={props.editStatus}
             />
             </td>
             <td><TermComponent
@@ -128,6 +134,7 @@ const Plan = () => {
               addCourse={addCourse}
               delCourse={delCourse}
               edit={false}
+              editStatus={props.editStatus}
             />
             </td>
             <td><TermComponent
@@ -138,6 +145,7 @@ const Plan = () => {
               addCourse={addCourse}
               delCourse={delCourse}
               edit={false}
+              editStatus={props.editStatus}
             />
             </td>
             <td><TermComponent
@@ -148,6 +156,7 @@ const Plan = () => {
               addCourse={addCourse}
               delCourse={delCourse}
               edit={false}
+              editStatus={props.editStatus}
             />
             </td>
           </tr>
@@ -161,6 +170,7 @@ const Plan = () => {
               addCourse={addCourse}
               delCourse={delCourse}
               edit={false}
+              editStatus={props.editStatus}
             />
             </td>
             <td><TermComponent
@@ -171,6 +181,7 @@ const Plan = () => {
               addCourse={addCourse}
               delCourse={delCourse}
               edit={false}
+              editStatus={props.editStatus}
             />
             </td>
             <td><TermComponent
@@ -181,6 +192,7 @@ const Plan = () => {
               addCourse={addCourse}
               delCourse={delCourse}
               edit={false}
+              editStatus={props.editStatus}
             />
             </td>
             <td><TermComponent
@@ -191,6 +203,7 @@ const Plan = () => {
               addCourse={addCourse}
               delCourse={delCourse}
               edit={false}
+              editStatus={props.editStatus}
             />
             </td>
           </tr>
@@ -204,6 +217,7 @@ const Plan = () => {
               addCourse={addCourse}
               delCourse={delCourse}
               edit={false}
+              editStatus={props.editStatus}
             />
             </td>
             <td><TermComponent
@@ -214,6 +228,7 @@ const Plan = () => {
               addCourse={addCourse}
               delCourse={delCourse}
               edit={false}
+              editStatus={props.editStatus}
             />
             </td>
             <td><TermComponent
@@ -224,6 +239,7 @@ const Plan = () => {
               addCourse={addCourse}
               delCourse={delCourse}
               edit={false}
+              editStatus={props.editStatus}
             />
             </td>
             <td><TermComponent
@@ -234,6 +250,7 @@ const Plan = () => {
               addCourse={addCourse}
               delCourse={delCourse}
               edit={false}
+              editStatus={props.editStatus}
             />
             </td>
           </tr>

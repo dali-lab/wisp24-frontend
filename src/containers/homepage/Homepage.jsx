@@ -45,7 +45,6 @@ const Homepage = () => {
   const deleteDraft = (id) => {
     delDraft(id);
   };
-
   const startEdit = (index) => {
     setEditingIndex(index);
   };
