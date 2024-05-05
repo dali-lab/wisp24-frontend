@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import Plan23 from '../../components/plan2/plan23.jsx';
+import Plan2 from '../../components/plan2/Plan2.jsx';
 import PotentialClass from './PotentialClass.jsx';
 import AddTerms from './AddTerms.jsx';
 import './Homepage.css';
@@ -100,7 +100,7 @@ const Homepage = () => {
         <MainDraftTab />
         <div className="plan-container">
           <ProgressTracker />
-          <Plan23 />
+          <Plan2 />
         </div>
       </div>
       <div className="homepage-right-container">

@@ -15,7 +15,7 @@ import Test from '../containers/authentication/signOutPanel';
 import Homepage from '../containers/homepage/Homepage';
 import Feed from '../containers/feed/feed';
 import Navbar from './navbar/Navbar';
-import Plan23 from './plan2/Plan23';
+import Plan23 from './plan2/Plan2.jsx';
 
 const Welcome = () => (
   <div>

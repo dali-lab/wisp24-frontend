@@ -100,7 +100,7 @@ const TermComponent = (props) => {
 
   return (
 
-    <div className="term">
+    <div className="term" style={{ border: props.isOver ? '3px solid orange' : '' }}>
       <div className="course-container">{allCourses}</div>
       <div className="term-component-input">
         <input type="text" value={courseName} placeholder="Course Name" onChange={courseNameFunction} />
