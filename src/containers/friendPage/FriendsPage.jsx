@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Friend from '../../components/friend/Friend.jsx';
@@ -9,7 +10,7 @@ const FriendsPage = ({ userId }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [friendsData, setFriendsData] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  
   useEffect(() => {
     const fetchFriends = async () => {
       try {
@@ -32,6 +33,7 @@ const FriendsPage = ({ userId }) => {
     if (loading) return <p>Loading friends...</p>;
 
     const filteredFriends = friendsData.filter((friend) => friend.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    const [searchTerm, setSearchTerm] = useState('');
 
     if (filteredFriends.length > 0) {
       return filteredFriends.map((friendData) => (
@@ -59,7 +61,31 @@ const FriendsPage = ({ userId }) => {
         <div className="friends-container">
           {renderFriendsList()}
         </div>
-
+      <input
+        type="text"
+        placeholder="Search friends..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="search-bar"
+      />
+      <div className="friends-container">
+        {/* {filteredFriends.length > 0 ? (
+          filteredFriends.map((friendData) => (
+            <Link key={friendData.id} to={`/profile/${friendData.name}`}>
+              <Friend friendData={friendData} />
+            </Link>
+          ))
+        ) : (
+          <p>No friends match your search.</p>
+        )} */}
+        <Link
+          to={{
+            pathname: `/profile/${sampleFriendData.id}`,
+            state: { friendData: sampleFriendData }
+          }}
+        >
+          <Friend friendData={sampleFriendData} />
+        </Link>
       </div>
     </div>
   );

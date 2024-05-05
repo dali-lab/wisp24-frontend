@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable no-unused-vars */
 import React, { useState, useRef } from 'react';
 import Plan from '../../components/plan/Plan.jsx';
 import PotentialClass from './PotentialClass.jsx';
@@ -39,11 +42,11 @@ const Homepage = () => {
 
   const editDraft = (index) => {
     setEditingIndex(index);
-  }
+  };
 
   const startEdit = (index) => {
     setEditingIndex(index);
-  }
+  };
 
   const titleChangeSubmit = (index) => {
     if (inputRef.current.value.length === 0) { return; }
@@ -52,7 +55,6 @@ const Homepage = () => {
       if (index === i) {
         return { draftTitle: inputRef.current.value };
       } else {
-        return mainDraft;
         return mainDraft;
       }
     });
@@ -70,7 +72,7 @@ const Homepage = () => {
           return (
             <div onClick={() => selectMainDraft(index)} className={`tab-list ${index === mainDraftIndex ? 'selectedDraft' : 'nonselectedDraft'}`} key={index}>
               <div>{editingIndex === index ? <input type="text" ref={inputRef} /> : mainDraft.draftTitle}</div>
-              {editingIndex === index ? <button type="submit" onClick={() => titleChangeSubmit(index)}>Submit</button> : <button onClick={() => startEdit(index)}>Edit</button>}
+              {editingIndex === index ? <button type="submit" onClick={() => titleChangeSubmit(index)}>Submit</button> : <button type="submit" onClick={() => startEdit(index)}>Edit</button>}
               <button type="submit" onClick={() => deleteDraft(index)}>Delete</button>
             </div>
           );
@@ -87,7 +89,7 @@ const Homepage = () => {
         <MainDraftTab />
         <div className="plan-container">
           <ProgressTracker />
-          <Plan editStatus={editStatus}/>
+          <Plan editStatus={editStatus} />
         </div>
       </div>
       <div className="homepage-right-container">
@@ -96,8 +98,6 @@ const Homepage = () => {
       </div>
     </div>
   );
-
-
-}
+};
 
 export default Homepage;
