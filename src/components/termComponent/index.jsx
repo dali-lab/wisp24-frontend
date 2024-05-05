@@ -14,6 +14,8 @@ const TermComponent = (props) => {
   // const [del, setDel] = useState(false);
   const [courses, setCourses] = useState(initialCourses);
   const [courseName, setCourseName] = useState('');
+  const [editStatus, setEdit] = useState(props.editStatus);
+  console.log('termcomponent', props.editStatus);
 
   useEffect(() => {
     setCourses(props.courses);
@@ -103,8 +105,12 @@ const TermComponent = (props) => {
     <div className="term" style={{ border: props.isOver ? '3px solid orange' : '' }}>
       <div className="course-container">{allCourses}</div>
       <div className="term-component-input">
-        <input type="text" value={courseName} placeholder="Course Name" onChange={courseNameFunction} />
-        <button type="submit" onClick={() => addCourse(termID)}>Add</button>
+        {editStatus ? (
+          <div>
+            <input type="text" value={courseName} placeholder="Course Name" onChange={courseNameFunction} />
+            <button type="submit" onClick={() => addCourse(termID)}>Add</button>
+          </div>
+        ) : <div />}
       </div>
     </div>
   );

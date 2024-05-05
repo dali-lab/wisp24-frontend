@@ -3,38 +3,20 @@
 import React, { useState, useEffect } from 'react';
 // import TermComponent from '../TermComponent';
 import './index.css';
-
+import { deleteCourse } from '../../services/datastore';
 // course component
 const CourseComponent = (props) => {
-  const [name, setName] = useState(props.courseName);
-  const [distrib, setDistrib] = useState('CI');
-  const [del, setDel] = useState(props.del);
-  const [id, setID] = useState(props.id);
-
-  useEffect(() => {
-    setID(props.id);
-  }, [props.id]);
-
-  const delCourse = (index) => {
-    props.delCourse(index);
-  };
-
-  // const newCourseNameFunction = (event) => {
-  //   if (event.target.value in listOfCourses) {
-  //     setName(event.target.value);
-  //   } else {
-  //     setName(null);
-  //   }
-  // };
-
-  // const delCourse = (event) => {
-  //   props.del(props.id);
-  // };
+  // const [name, setName] = useState(props.name);
+  // const [distrib, setDistrib] = useState('');
+  // const [id, setID] = useState(props.courseID);
+  // const [prereq, setPrereq] = useState('');
+  // const [nro, setNRO] = useState(props.courseNRO);
+  // const [color, setColor] = useState('');
 
   return (
     <div className="course-content-div">
-      <div><p>{id}: {name} ({distrib})</p></div>
-      <div className="course-individual-delete"><button type="button" onClick={() => delCourse(id)}>X</button></div>
+      <div><p>{props.crn}: {props.name} ({props.distrib})</p></div>
+      <div className="course-individual-delete"><button type="button" onClick={() => deleteCourse(props.id)}>X</button></div>
     </div>
   );
 };

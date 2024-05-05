@@ -1,0 +1,18 @@
+{
+    "drafts": [
+        {
+            "id": 1,
+            "draftName": "draft1",
+            "classList":["class1", "class2"]
+        },
+        {
+            "id": 2,
+            "draftName": "draft2",
+            "classList":["class1", "class2"]
+        }
+    ]
+
+
+
+
+}
