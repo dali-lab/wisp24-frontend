@@ -48,6 +48,7 @@ const Homepage = () => {
   const startEdit = (index) => {
     setEditingIndex(index);
   };
+  };
 
   const titleChangeSubmit = (id) => {
     if (inputRef.current.value.length === 0) { return; }
@@ -104,6 +105,7 @@ const Homepage = () => {
       </div>
     </div>
   );
+};
 };
 
 export default Homepage;
