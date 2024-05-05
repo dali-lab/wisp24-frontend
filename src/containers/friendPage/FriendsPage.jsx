@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Friend from '../../components/friend/Friend.jsx';
@@ -14,8 +15,6 @@ const FriendsPage = ({ friendsList }) => {
     biography: 'blah',
     followStatus: 'friends',
   };
-
-  
 
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -44,7 +43,7 @@ const FriendsPage = ({ friendsList }) => {
         ) : (
           <p>No friends match your search.</p>
         )} */}
-         <Link
+        <Link
           to={{
             pathname: `/profile/${sampleFriendData.id}`,
             state: { friendData: sampleFriendData }
