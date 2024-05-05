@@ -5,7 +5,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import {
-  getDatabase, ref, push, update, remove, onValue
+  getDatabase, ref, update, remove, onValue, get, push, set,
 } from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -27,6 +27,10 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getDatabase(app);
 
+export function getAllDrafts(callback = () => {}) {
+  const draftRef = ref(db, 'Draft/');
+}
+// Listen for changes and update callback
 export function getTerm(draftID, callback = () => {}) {
   const drafRef = ref(db, 'drafts/' + draftID);
   onValue(drafRef, (snapshot) => {
@@ -42,6 +46,36 @@ export function getAllTerm(callback = () => {}) {
     callback(drafts);
   });
 }
+
+export const addNewDraft = (draftName, termList) => {
+  const newDraftRef = ref(db, 'Draft/');
+  push(newDraftRef, {
+    name: draftName,
+    list: termList,
+  });
+};
+
+export const delDraft = (draftId) => {
+  console.log('Deleting draft with ID:', draftId);
+  const deleteDraftRef = ref(db, `Draft/${draftId}`);
+  remove(deleteDraftRef).then(() => {
+    console.log('successfully deleted');
+  }).catch((err) => {
+    console.log(`error removing draft: ${err}`);
+  });
+};
+
+export const updateDraft = (draftId, newDraftName) => {
+  update(ref(db, `Draft/${draftId}`), {
+    name: newDraftName,
+  });
+};
+
+export const updateDraftTerm = (draftId, termList) => {
+  update(ref(db, `Draft/${draftId}`), {
+    list: termList,
+  });
+};
 /* TERM SUBMIT */
 export function addTerm(termID, input) {
   const reference = ref(db, 'drafts/' + termID);
@@ -160,9 +194,9 @@ export function updateCourse(newName, newNRO, newColor, newCRN) {
 }
 
 export function getUserData() {
-  // to fill in later!
+  // fill in later!
 }
 
 export function updateUserData() {
-  // to fill in later!
+  // fill in later!
 }
