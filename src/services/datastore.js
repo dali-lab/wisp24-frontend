@@ -5,7 +5,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import {
-  getDatabase, ref, set, update, remove, onValue, push
+  getDatabase, ref, push, update, remove, onValue
 } from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -45,7 +45,7 @@ export function getAllTerm(callback = () => {}) {
 /* TERM SUBMIT */
 export function addTerm(termID, input) {
   const reference = ref(db, 'drafts/' + termID);
-  set(reference, { // get unique id
+  push(reference, { // get unique id
     id: termID,
     draftName: input.draftName,
     classList: input.classList,
@@ -79,24 +79,23 @@ export function getAllCourses(callback = () => {}) {
   });
 }
 
-export function addNewCourse(courseID, courseName, courseDistrib, courseNRO, coursePrereq, courseColor, courseCRN) {
-  set(ref(db, `course/${courseID}`), {
+export function addNewCourse(courseName, courseDistrib, courseNRO, coursePrereq, courseColor, courseCRN) {
+  push(ref(db, 'course/'), {
     name: courseName,
     distrib: courseDistrib,
     nro: courseNRO,
     prereq: coursePrereq,
     color: courseColor,
     crn: courseCRN,
-    id: courseID
   });
 }
 
-export function deleteCourse(courseID) {
-  remove(ref(db, `course/${courseID}`));
+export function deleteCourse() {
+  remove(ref(db, 'course/'));
 }
 
-export function updateCourse(courseID, newName, newNRO, newColor, newCRN) {
-  update(ref(db, `course/${courseID}`), {
+export function updateCourse(newName, newNRO, newColor, newCRN) {
+  update(ref(db, 'course/'), {
     name: newName,
     nro: newNRO,
     color: newColor,

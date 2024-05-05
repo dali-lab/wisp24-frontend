@@ -39,11 +39,11 @@ const Homepage = () => {
 
   const editDraft = (index) => {
     setEditingIndex(index);
-  }
+  };
 
   const startEdit = (index) => {
     setEditingIndex(index);
-  }
+  };
 
   const titleChangeSubmit = (index) => {
     if (inputRef.current.value.length === 0) { return; }
@@ -87,7 +87,7 @@ const Homepage = () => {
         <MainDraftTab />
         <div className="plan-container">
           <ProgressTracker />
-          <Plan editStatus={editStatus}/>
+          <Plan editStatus={editStatus} />
         </div>
       </div>
       <div className="homepage-right-container">
@@ -96,8 +96,6 @@ const Homepage = () => {
       </div>
     </div>
   );
-
-
-}
+};
 
 export default Homepage;
