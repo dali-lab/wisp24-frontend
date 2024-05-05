@@ -68,7 +68,7 @@ const AddTerms = () => {
     console.log('termDatas:', termData);
     if (termData.id !== '') {
       const term = terms[index];
-      updateTermName(term.id, termData.termName); // Assuming `input.draftName` contains the new name
+      updateTermName(term.id, termData.termName); 
       updateCourse(term.id, term.courses);
     } else {
       addTerm(termData, (termId) => {
@@ -78,7 +78,7 @@ const AddTerms = () => {
           console.log(key);
         }
       }).then(
-        console.log('new termid:', newId)
+        console.log('new termid:', newId),
         ((termData.courses).forEach((course) => {
           addNewCourse(newId, course);
           console.log('new termid:', newId);
