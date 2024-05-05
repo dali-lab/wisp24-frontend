@@ -10,7 +10,7 @@ const FriendsPage = ({ userId }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [friendsData, setFriendsData] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     const fetchFriends = async () => {
       try {
@@ -33,7 +33,6 @@ const FriendsPage = ({ userId }) => {
     if (loading) return <p>Loading friends...</p>;
 
     const filteredFriends = friendsData.filter((friend) => friend.name.toLowerCase().includes(searchTerm.toLowerCase()));
-    const [searchTerm, setSearchTerm] = useState('');
 
     if (filteredFriends.length > 0) {
       return filteredFriends.map((friendData) => (
@@ -61,13 +60,7 @@ const FriendsPage = ({ userId }) => {
         <div className="friends-container">
           {renderFriendsList()}
         </div>
-      <input
-        type="text"
-        placeholder="Search friends..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="search-bar"
-      />
+      </div>
       <div className="friends-container">
         {/* {filteredFriends.length > 0 ? (
           filteredFriends.map((friendData) => (
@@ -78,14 +71,14 @@ const FriendsPage = ({ userId }) => {
         ) : (
           <p>No friends match your search.</p>
         )} */}
-        <Link
+        {/* <Link
           to={{
             pathname: `/profile/${sampleFriendData.id}`,
             state: { friendData: sampleFriendData }
           }}
         >
           <Friend friendData={sampleFriendData} />
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

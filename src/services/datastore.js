@@ -74,7 +74,7 @@ export const removeUserData = (userId) => {
 };
 
 export function addFriend(userId, friendId) {
-  set(ref(db, `friends/${userId}/${friendId}`), true);
+  push(ref(db, `friends/${userId}/${friendId}`), true);
 }
 
 export function removeFriend(userId, friendId) {
@@ -82,7 +82,7 @@ export function removeFriend(userId, friendId) {
 }
 
 export function addFollower(userId, followerId) {
-  set(ref(db, `followers/${userId}/${followerId}`), true);
+  push(ref(db, `followers/${userId}/${followerId}`), true);
 }
 
 export function removeFollower(userId, followerId) {
@@ -90,7 +90,7 @@ export function removeFollower(userId, followerId) {
 }
 
 export function addFollowing(userId, followingId) {
-  set(ref(db, `following/${userId}/${followingId}`), true);
+  push(ref(db, `following/${userId}/${followingId}`), true);
 }
 
 export function removeFollowing(userId, followingId) {
@@ -98,8 +98,8 @@ export function removeFollowing(userId, followingId) {
 }
 
 export function addFriendRequest(fromUserId, toUserId) {
-  set(ref(db, `requests/${toUserId}/incoming/${fromUserId}`), true);
-  set(ref(db, `requests/${fromUserId}/outgoing/${toUserId}`), true);
+  push(ref(db, `requests/${toUserId}/incoming/${fromUserId}`), true);
+  push(ref(db, `requests/${fromUserId}/outgoing/${toUserId}`), true);
 }
 
 export function removeFriendRequest(fromUserId, toUserId) {
