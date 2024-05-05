@@ -5,7 +5,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import {
-  getDatabase, ref, set, update, remove, onValue, push, get
+  getDatabase, ref, update, remove, onValue, get, push, set,
 } from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
