@@ -1,18 +1,51 @@
 {
-    "drafts": [
-        {
-            "id": 1,
-            "draftName": "draft1",
-            "classList":["class1", "class2"]
-        },
-        {
-            "id": 2,
-            "draftName": "draft2",
-            "classList":["class1", "class2"]
-        }
-    ]
-
-
-
-
-}
+    "Terms":{
+         "term1":{
+             "termName": "term1",
+             "course":{
+                 "course1":{
+                     "name": "Introduction to Computer Science",
+                     "distrib": "Science",
+                     "nro": "101",
+                     "prereq": "None",
+                     "color": "Blue",
+                     "crn": "12345",
+                     "id": "CS101"
+                 },
+                 "course2":{
+                     "name": "English Composition",
+                     "distrib": "Writing",
+                     "nro": "102",
+                     "prereq": "None",
+                     "color": "Red",
+                     "crn": "67890",
+                     "id": "ENGL102"
+                 }
+             }
+         },
+         "term2":{
+             "termName": "term2",
+             "course":{
+                 "coursee1":{
+                     "name": "Calculus I",
+                     "distrib": "Math",
+                     "nro": "201",
+                     "prereq": "Pre-Calculus",
+                     "color": "Green",
+                     "crn": "54321",
+                     "id": "MATH201"
+                 },
+                 "coursee2":{
+                     "name": "History of Art",
+                     "distrib": "Humanities",
+                     "nro": "202",
+                     "prereq": "None",
+                     "color": "Yellow",
+                     "crn": "13579",
+                     "id": "ARTH202"
+                 }
+             }
+         }
+    }
+ }
+ 
