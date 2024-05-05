@@ -16,10 +16,7 @@ import Test from '../containers/authentication/signOutPanel';
 import Homepage from '../containers/homepage/Homepage';
 import Feed from '../containers/feed/feed';
 import Navbar from './navbar/Navbar';
-<<<<<<< HEAD
 import Plan23 from './plan2/Plan2.jsx';
-=======
-import Plan23 from './plan2/Plan23';
 import FriendsPage from '../containers/friendPage/FriendsPage';
 import RequestsPage from '../containers/friendPage/RequestsPage';
 import FollowingPage from '../containers/friendPage/FollowingPage';
@@ -28,7 +25,6 @@ import ViewProfile from '../containers/friendPage/ViewProfile';
 import Profile from './profile/Profile';
 // eslint-disable-next-line no-unused-vars
 import Sidebar from './profile/Sidebar';
->>>>>>> 962ada4ac74ef97161688a27efef19bf7321b3a3
 
 const Welcome = () => (
   <div>

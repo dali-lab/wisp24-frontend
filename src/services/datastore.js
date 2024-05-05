@@ -192,3 +192,11 @@ export function updateCourse(newName, newNRO, newColor, newCRN) {
     crn: newCRN
   });
 }
+
+export function getUserData() {
+  // fill in later!
+}
+
+export function updateUserData() {
+  // fill in later!
+}
