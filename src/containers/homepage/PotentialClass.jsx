@@ -9,7 +9,7 @@ const PotentialClass = () => {
   // const [input, setInput] = useState();
   // const [editing, setEditing] = useState(false);
   const [courseName, setCourseName] = useState('');
-  const [courseID, setCourseID] = useState(0); // is it an issue that this resets if u reload the page?
+  // const [courseID, setCourseID] = useState(0); // is it an issue that this resets if u reload the page?
   const [NRO, setNRO] = useState(false);
   const [courseList, setCourseList] = useState([]);
 
@@ -39,8 +39,7 @@ const PotentialClass = () => {
 
   const createCourse = () => {
     // console.log('create course button click registered');
-    addNewCourse(courseID, courseName, 'NW', NRO, 'CS1', 'orange', '92510');
-    setCourseID(courseID + 1);
+    addNewCourse(courseName, 'NW', NRO, 'CS1', 'orange', '92510');
   };
 
   const changeNRO = () => {
