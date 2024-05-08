@@ -27,26 +27,13 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getDatabase(app);
 
+// fetches all 4-year plan drafts
 export function getAllDrafts(callback = () => {}) {
   const draftRef = ref(db, 'Draft/');
 }
-// Listen for changes and update callback
-export function getTerm(draftID, callback = () => {}) {
-  const drafRef = ref(db, 'drafts/' + draftID);
-  onValue(drafRef, (snapshot) => {
-    const draft = snapshot.val(); // gets the snapshot of the data
-    callback(draft); // return data to the caller
-  });
-}
 
-export function getAllTerm(callback = () => {}) {
-  const draftRef = ref(db, 'drafts/');
-  onValue(draftRef, (snapshot) => {
-    const drafts = snapshot.val();
-    callback(drafts);
-  });
-}
-
+// *********** PLANS ********************
+// add new plan draft
 export const addNewDraft = (draftName, termList) => {
   const newDraftRef = ref(db, 'Draft/');
   push(newDraftRef, {
@@ -55,6 +42,7 @@ export const addNewDraft = (draftName, termList) => {
   });
 };
 
+// delete plan draft
 export const delDraft = (draftId) => {
   console.log('Deleting draft with ID:', draftId);
   const deleteDraftRef = ref(db, `Draft/${draftId}`);
@@ -65,18 +53,22 @@ export const delDraft = (draftId) => {
   });
 };
 
+// update plan draft
 export const updateDraft = (draftId, newDraftName) => {
   update(ref(db, `Draft/${draftId}`), {
     name: newDraftName,
   });
 };
 
+// updates the list of terms in the draft
 export const updateDraftTerm = (draftId, termList) => {
   update(ref(db, `Draft/${draftId}`), {
     list: termList,
   });
 };
-/* TERM SUBMIT */
+
+// *********** TERMS*****************
+// add new term draft
 export function addTerm(termID, input) {
   const reference = ref(db, 'drafts/' + termID);
   push(reference, { // get unique id
@@ -85,6 +77,26 @@ export function addTerm(termID, input) {
     classList: input.classList,
   });
 }
+
+// fetches a term draft by ID
+export function getTerm(draftID, callback = () => {}) {
+  const drafRef = ref(db, 'drafts/' + draftID);
+  onValue(drafRef, (snapshot) => {
+    const draft = snapshot.val(); // gets the snapshot of the data
+    callback(draft); // return data to the caller
+  });
+}
+
+// gets all terms
+export function getAllTerm(callback = () => {}) {
+  const draftRef = ref(db, 'drafts/');
+  onValue(draftRef, (snapshot) => {
+    const drafts = snapshot.val();
+    callback(drafts);
+  });
+}
+
+// update a term draft with new name and list of classes
 export function updateTerm(id, data) {
   const drafRef = ref(db, 'drafts/' + id);
   update(drafRef, {
@@ -93,6 +105,7 @@ export function updateTerm(id, data) {
   });
 }
 
+// delete term
 export function deleteTerm(draftID) {
   const termRef = ref(db, 'drafts/' + draftID);
   remove(termRef).then(() => {
@@ -102,15 +115,20 @@ export function deleteTerm(draftID) {
   });
 }
 
+// *********** USERS / FRIENDS ***********
+
+// delete user
 export const removeUserData = (userId) => {
   const userRef = ref(db, `users/${userId}`);
   return remove(userRef);
 };
 
+// needed?
 export function addFriend(userId, friendId) {
   push(ref(db, `friends/${userId}/${friendId}`), true);
 }
 
+// needed?
 export function removeFriend(userId, friendId) {
   remove(ref(db, `friends/${userId}/${friendId}`));
 }
@@ -141,6 +159,8 @@ export function removeFriendRequest(fromUserId, toUserId) {
   remove(ref(db, `requests/${fromUserId}/outgoing/${toUserId}`));
 }
 
+// friend list (mutual follows), following, followers, pending requests
+
 export const fetchAllUsers = () => {
   return new Promise((resolve, reject) => {
     const usersRef = ref(db, 'users');
@@ -160,6 +180,7 @@ export const fetchAllUsers = () => {
 };
 // CRUD, create, read, update, delete
 
+// ************* COURSES ****************
 // read
 export function getAllCourses(callback = () => {}) {
   const courseRef = ref(db, 'course/');
