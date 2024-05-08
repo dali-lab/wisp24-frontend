@@ -89,10 +89,11 @@ export function getAllCourses(callback = () => {}) {
 }
 
 export function getCourseByTerm(termId, callback = () => {}) {
-  const courseRef = ref(db, 'Terms/' + termId + '/courses');
+  const courseRef = ref(db, 'Terms/' + termId + '/courses/');
   onValue(courseRef, (snapshot) => {
     const courses = snapshot.val();
     callback(courses);
+    console.log('successfully retrieved courses');
   });
 }
 
@@ -124,11 +125,11 @@ export function addNewCourse(termID, course) {
 }
 
 export function deleteCourse(termID, courseID) {
-  remove(ref(db, `Terms/${termID}/course/${courseID}`));
+  remove(ref(db, `Terms/${termID}/courses/${courseID}`));
 }
 
 export function updateCourse(termID, courseID, newName) {
-  update(ref(db, `Terms/${termID}/${courseID}`), {
+  update(ref(db, `Terms/${termID}/courses/${courseID}`), {
     name: newName,
   });
 }

@@ -21,10 +21,10 @@ const AddTerms = () => {
         console.log(getTerms);
         const termsList = Object.keys(getTerms).map((termKey) => {
           const termData = getTerms[termKey];
-          const coursesData = Object.keys(termData.courses).map((coursesID) => ({ // map through objects held by course
+          const coursesData = termData.courses ? Object.keys(termData.courses).map((coursesID) => ({ // map through objects held by course
             id: coursesID,
             ...termData.courses[coursesID]
-          }));
+          })) : [];
           return { // will term to the term course data
             id: termKey,
             termName: termData.termName,
@@ -64,18 +64,19 @@ const AddTerms = () => {
     updateTermName(selectedDraft.id, newName);
   };
 
-  const termSubmit = (index, termData) => { // index curr string, need pass in id
+  const termSubmit = (selected, termData) => { // index curr string, need pass in id
     console.log('termDatas:', termData);
-    if (termData.id !== '') {
-      const term = terms[index];
-      updateTermName(term.id, termData.termName); 
-      updateCourse(term.id, term.courses);
+    console.log('selected termsubmit:', selected);
+    if (termData.id !== " ") {
+      // const term = terms[index];
+      updateTermName(termData.id, termData.termName);
+      updateCourse(termData.id, termData.courses);
     } else {
       addTerm(termData, (termId) => {
         if (termId) {
           const key = termId.id;
           setNewId(key);
-          console.log(key);
+          console.log(termId);
         }
       }).then(
         console.log('new termid:', newId),

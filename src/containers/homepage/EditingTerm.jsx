@@ -27,34 +27,31 @@ const EditingDraft = (props) => {
     props.handleSelectedDraft('');
   };
   useEffect(() => {
-    if (selectedDraft === -1) {
-      // const key = addTerm(termData);
-      // props.handleSelectedDraft(key);
-      // console.log(selectedDraft);
-    } else {
-      getTerm(selectedDraft, (term) => {
-        if (term) {
-          getCourseByTerm(selectedDraft, (getCourse) => {
-            if (getCourse) {
-              const courseData = Object.keys(getCourse).map((courseID) => ({
-                id: courseID,
-                ...getCourse[courseID]
-              }
-              ));
-              console.log(courseData);
-              setTermData({
-                id: term.id,
-                termName: term.termName,
-                courses: courseData
-              });
-            }
+    getTerm(selectedDraft, (term) => {
+      if (term) {
+        console.log('coursedata:', term);
+        let courseData;
+        getCourseByTerm(selectedDraft, (getCourse) => {
+          if (getCourse) {
+            courseData = getCourse ? Object.keys(getCourse).map((courseID) => ({
+              id: courseID,
+              ...getCourse[courseID]
+            })) : [];
+          }
+          if (courseData === undefined) {
+            courseData = [];
+          }
+          setTermData({
+            id: term.id,
+            termName: term.termName,
+            courses: courseData,
           });
-        }
-      });
-    }
+        });
+      }
+    });
   }, []);
 
-  console.log('courses:', termData);
+  console.log('term data outside useeffect:', termData);
 
   const [nameEditingState, setNameEditingState] = useState(false);
   const handleTermChange = (event) => {
@@ -93,7 +90,7 @@ const EditingDraft = (props) => {
     if (newClassTitle) {
       setTermData((prevState) => ({
         ...prevState,
-        courses: [...prevState.courses, newClassTitle],
+        courses: [...prevState.courses, { id: '', name: newClassTitle }],
       }));
       // addNewCourse(selectedDraft, newClassTitle);
       setInputData((prevState) => ({
@@ -124,12 +121,12 @@ const EditingDraft = (props) => {
     if (termData.termName === '') {
       content = <p onClick={changeNameToggle}>Add Title</p>;
     } else {
-      content = <p>{termData.draftName}</p>;
+      content = <p>{termData.termName}</p>;
     }
   } else {
-    content = <p onClick={changeNameToggle}>{termData.Name}</p>;
+    content = <p onClick={changeNameToggle}>{termData.termName}</p>;
   }
-  console.log('content:', input);
+  console.log('content:', termData);
   return (
     <div className="editing-term">
       <div>{content}</div>
@@ -137,6 +134,7 @@ const EditingDraft = (props) => {
         return (
           <div key={classItem}>
             <div>{classItem.name}</div>
+            {console.log('class item id', classItem)}
             <button type="button" onClick={() => deleteClass(classItem.id)}>Delete Class</button>
           </div>
         );
