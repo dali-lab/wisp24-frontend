@@ -4,7 +4,6 @@ import {
   BrowserRouter as Router,
   Route, NavLink, Switch,
 } from 'react-router-dom';
-
 import requireAuth from '../hocs/requireAuth';
 
 import AdminPanel from '../containers/adminPanel';
@@ -52,7 +51,7 @@ const App = () => {
         {/* <Navbar /> */}
         <Switch>
           <Route exact path="/" component={Welcome} />
-          <Route exact path="/signin" component={SignInPanel} />
+          <Route exact path="/signup" component={SignUpPanel} />
           <Route exact path="/feed" component={Feed} />
           <Route exact path="/test" component={Test} />
           <Route exact path="/home" component={Homepage} />
