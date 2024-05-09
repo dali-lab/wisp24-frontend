@@ -130,26 +130,25 @@ export function addUser(userID, input) {
     planid: input.planid,
   });
 }
-export function getUserData(userId, callback = () => {}) {
+export function getUserData(userId) {
   const userRef = ref(db, `users/${userId}`);
-  onValue(userRef, (snapshot) => {
-    const userData = snapshot.val();
-    callback(userData);
+  return new Promise((resolve, reject) => {
+    onValue(userRef, (snapshot) => {
+      const userData = snapshot.val();
+      if (userData) {
+        resolve(userData);
+      } else {
+        reject(new Error('No user found with this ID'));
+      }
+    }, {
+      onlyOnce: true
+    });
   });
 }
 
-export function updateUserData(input, callback = () => {}) {
-  const userRef = ref(db, `users/${input.userId}`);
-  update(userRef, {
-    id: input.id,
-    name: input.name,
-    year: input.year,
-    major: input.major,
-    minor: input.minor,
-    netid: input.netid,
-    bio: input.bio,
-    planid: input.planid,
-  });
+export function updateUserData(userId, data) {
+  const userRef = ref(db, `users/${userId}`);
+  return update(userRef, data);
 }
 
 // delete user
