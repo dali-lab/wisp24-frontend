@@ -49,22 +49,22 @@ export function addTerm(input, callback = () => {}) {
   const reference = push(ref(db, 'Terms/'));
   set(reference, {
     id: reference.key,
-    termName: input.termName || null
+    termName: input.termName,
+    courses: {},
   }).then(() => {
-    onValue(reference, (snapshot) => {
-      const key = snapshot.val();
-      if (key) {
-        callback(key.id);
-      }
-    }, {
-      onlyOnce: true // Ensures the listener is only called once and then detached
-    });
+    callback(reference.key);
+  }).catch((error) => {
+    console.error('Error adding term: ', error);
   });
 }
+
 export function updateTermName(id, newName) {
   const TermRef = ref(db, 'Terms/' + id);
   update(TermRef, {
     termName: newName,
+  }).then(() => { // Log on success
+  }).catch((error) => {
+    console.error('Failed to update term name:', error);
   });
 }
 
@@ -117,10 +117,14 @@ export function getCourse(termId, courseId, callback = () => {}) {
 // }
 
 export function addNewCourse(termID, course) {
-  const coursesRef = push(ref(db, `Terms/${termID}/courses/`));
+  const coursesRef = push(ref(db, 'Terms/' + termID + '/courses'));
   set(coursesRef, {
     id: coursesRef.key,
     name: course,
+  }).then(() => {
+    console.log('Course added successfully');
+  }).catch((error) => {
+    console.error('Error adding course: ', error);
   });
 }
 

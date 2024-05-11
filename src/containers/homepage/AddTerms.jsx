@@ -42,7 +42,16 @@ const AddTerms = () => {
 
   const handleClick = (event) => { // for new terms
     event.preventDefault();
-    setSelectedDraft(-1);
+    addTerm({
+      termName: '',
+      courses: {},
+    }, (termId) => {
+      if (termId) {
+        console.log('termid:', termId);
+        setSelectedDraft(termId);
+        console.log('selected draft id'.selectedDraft);
+      }
+    });
   };
 
   const handleSelectedDraft = (termID) => { // for existing terms
@@ -67,25 +76,26 @@ const AddTerms = () => {
   const termSubmit = (selected, termData) => { // index curr string, need pass in id
     console.log('termDatas:', termData);
     console.log('selected termsubmit:', selected);
-    if (termData.id !== " ") {
-      // const term = terms[index];
-      updateTermName(termData.id, termData.termName);
-      updateCourse(termData.id, termData.courses);
-    } else {
-      addTerm(termData, (termId) => {
-        if (termId) {
-          const key = termId.id;
-          setNewId(key);
-          console.log(termId);
-        }
-      }).then(
-        console.log('new termid:', newId),
-        ((termData.courses).forEach((course) => {
-          addNewCourse(newId, course);
-          console.log('new termid:', newId);
-        }))
-      );
-    }
+    setSelectedDraft('');
+    // if (termData.id !== " ") {
+    //   // const term = terms[index];
+    //   updateTermName(termData.id, termData.termName);
+    //   updateCourse(termData.id, termData.courses);
+    // } else {
+    //   addTerm(termData, (termId) => {
+    //     if (termId) {
+    //       const key = termId.id;
+    //       setNewId(key);
+    //       console.log(termId);
+    //     }
+    //   }).then(
+    //     console.log('new termid:', newId),
+    //     ((termData.courses).forEach((course) => {
+    //       addNewCourse(newId, course);
+    //       console.log('new termid:', newId);
+    //     }))
+    //   );
+    // }
   };
 
   const deleteDraft = (event, termID) => {

@@ -1,8 +1,10 @@
+/* eslint-disable quotes */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import {
   getAllCourses, addNewCourse, deleteCourse, updateCourse, getTerm, getCourseByTerm,
-  addTerm
+  addTerm,
+  updateTermName
 } from '../../services/datastore';
 
 const EditingDraft = (props) => {
@@ -66,13 +68,7 @@ const EditingDraft = (props) => {
   };
 
   const changeNameToggleSubmit = () => {
-    // updateDraftName((prevState) => ({ ...prevState }), inputData.draftName);
-
-    setTermData((prevState) => ({
-      ...prevState,
-      termName: inputData.draftName,
-    }));
-
+    updateTermName(selectedDraft, inputData.draftName);
     setInputData((prevState) => ({
       ...prevState,
       draftName: '', // Reset the input field after saving the class
@@ -88,27 +84,19 @@ const EditingDraft = (props) => {
   const saveClass = () => {
     const newClassTitle = inputData.classTitle.trim(); // Trim any leading/trailing whitespace
     if (newClassTitle) {
-      setTermData((prevState) => ({
-        ...prevState,
-        courses: [...prevState.courses, { id: '', name: newClassTitle }],
-      }));
-      // addNewCourse(selectedDraft, newClassTitle);
+      addNewCourse(selectedDraft, newClassTitle);
+      console.log('here ', newClassTitle);
       setInputData((prevState) => ({
         ...prevState,
         classTitle: '', // Reset the input field after saving the class
       }));
     }
   };
-
   const deleteClass = (id) => {
-    // const updatedClassList = input.classList.filter((classItem, i) => i !== index);
-    // setInput((prevState) => ({
-    //   ...prevState,
-    //   classList: updatedClassList,
-    // }));
     deleteCourse(selectedDraft, id);
   };
 
+  console.log('current name editing stat', nameEditingState);
   let content;
   if (nameEditingState) { // if true
     content = (
@@ -117,12 +105,8 @@ const EditingDraft = (props) => {
         {nameEditingState ? <button type="button" onClick={changeNameToggleSubmit}>Save Name</button> : <button type="button" onClick={changeNameToggle}>Change Name</button>}
       </div>
     );
-  } else if (selectedDraft === -1) {
-    if (termData.termName === '') {
-      content = <p onClick={changeNameToggle}>Add Title</p>;
-    } else {
-      content = <p>{termData.termName}</p>;
-    }
+  } else if (termData.termName === "") {
+    content = <p onClick={changeNameToggle}>Add Title</p>;
   } else {
     content = <p onClick={changeNameToggle}>{termData.termName}</p>;
   }
