@@ -3,48 +3,65 @@ import React, { useEffect, useState } from 'react';
 import EditingDraft from './EditingTerm.jsx';
 import './Homepage.css';
 import {
-  updateTerm, getAllTerm, addTerm, deleteTerm
+  updateTermName, getAllTerm, addTermToDraft, deleteTerm,
+  updateCourse,
+  addNewCourse
 } from '../../services/datastore.js';
 
 const AddTerms = () => {
   const [selectedDraft, setSelectedDraft] = useState('');
-  const [drafts, setDrafts] = useState([
-    {
-      id: 0,
-      draftName: 'draft1',
-      classList: ['class1', 'class2'],
-    }
-  ]);
+  const [terms, setTerms] = useState([]); // list of terms
+  const [newId, setNewId] = useState(); // Add new term with details from termData
+  console.log('term', terms);
 
   // fetches user terms from data base
   useEffect(() => {
     getAllTerm((getTerms) => {
       if (getTerms) {
-        const terms = Object.keys(getTerms).map((key) => ({ // returns the object: drafts
-          id: key, // draft id
-          ...getTerms[key]
-        }));
-        setDrafts(terms);
+        console.log(getTerms);
+        const termsList = Object.keys(getTerms).map((termKey) => {
+          const termData = getTerms[termKey];
+          const coursesData = termData.courses ? Object.keys(termData.courses).map((coursesID) => ({ // map through objects held by course
+            id: coursesID,
+            ...termData.courses[coursesID]
+          })) : [];
+          return { // will term to the term course data
+            id: termKey,
+            termName: termData.termName,
+            courses: coursesData // list of courses
+          };
+        });
+        console.log('termlist:', termsList);
+        setTerms(termsList);
       } else {
-        setDrafts([]);
+        setTerms([]);
       }
     });
   }, []);
-  console.log(drafts);
+  console.log(terms);
 
-  const handleClick = (event) => {
+  const handleClick = (event) => { // for new terms
     event.preventDefault();
-    setSelectedDraft(-1); // initialize new draft
+    addTermToDraft({
+      termName: '',
+      courses: {},
+    }, (termId) => {
+      if (termId) {
+        console.log('termid:', termId);
+        setSelectedDraft(termId);
+        console.log('selected draft id'.selectedDraft);
+      }
+    });
   };
 
-  const handleSelectedDraft = (index) => {
-    setSelectedDraft(index);
-    console.log('ID of selected draft:', index);
+  const handleSelectedDraft = (termID) => { // for existing terms
+    setSelectedDraft(termID);
+    console.log('ID of selected Term', termID);
   };
 
   const changeTermName = (newName) => {
-    const updatedDrafts = drafts.map((draft, index) => {
-      if (selectedDraft === index) {
+    const updatedDrafts = terms.map((draft, index) => {
+      if (selectedDraft.termName === draft.name) {
         return (
           { ...draft, draftName: newName }
         );
@@ -52,61 +69,55 @@ const AddTerms = () => {
         return draft;
       }
     });
-    setDrafts(updatedDrafts);
+    setTerms(updatedDrafts);
+    updateTermName(selectedDraft.id, newName);
   };
 
-  const termSubmit = (index, input) => {
-    console.log('inputs:', input);
-    if (index !== -1) {
-      const term = drafts[index];
-      updateTerm(term.id, {
-        ...term,
-        ...input
-      });
-    } else {
-      const i = drafts.length + 1;
-      addTerm(i, {
-        ...input // copy input
-      });
-    }
+  const termSubmit = (selected, termData) => { // index curr string, need pass in id
+    console.log('termDatas:', termData);
+    console.log('selected termsubmit:', selected);
+    setSelectedDraft('');
+    // if (termData.id !== " ") {
+    //   // const term = terms[index];
+    //   updateTermName(termData.id, termData.termName);
+    //   updateCourse(termData.id, termData.courses);
+    // } else {
+    //   addTerm(termData, (termId) => {
+    //     if (termId) {
+    //       const key = termId.id;
+    //       setNewId(key);
+    //       console.log(termId);
+    //     }
+    //   }).then(
+    //     console.log('new termid:', newId),
+    //     ((termData.courses).forEach((course) => {
+    //       addNewCourse(newId, course);
+    //       console.log('new termid:', newId);
+    //     }))
+    //   );
+    // }
   };
-  const deleteDraft = (event, index) => {
+
+  const deleteDraft = (event, termID) => {
     event.stopPropagation();
-    deleteTerm(index);
+    deleteTerm(termID);
   };
-
-  // const termSubmit = (index, input) => {
-  //   let updatedDrafts;
-  //   // updateDraft(index, input);
-  //   if (index !== -1) {
-  //     updatedDrafts = drafts.map((draftItem, i) => {
-  //       if (i === index) {
-  //         return input;
-  //       } else {
-  //         // addTerm(NULL,input, index);
-  //         console.log(input);
-  //         return draftItem;
-  //       }
-  //     });
-  //   } else {
-  //     updatedDrafts = [...drafts, input];
-  //   }
-  //   setDrafts(updatedDrafts);
-  // };
 
   const AllDrafts = () => {
-    const alldrafts = drafts.map((draft, index) => {
+    const alldrafts = terms.map((term, index) => {
       return (
-        <div className="term-draft" tabIndex={0} role="button" key={draft.newName}>
+        <div className="term-draft" tabIndex={0} role="button" key={term.termName}>
           <div className="term-draft-content-container">
-            <div className="term-draft-content-container-name-specific" tabIndex={0} role="button" onClick={() => handleSelectedDraft(index)}>
-              <div className="term-draft-button-container"><button type="button" onClick={(event) => deleteDraft(event, draft.id)}>Delete</button></div>
-              <div className="term-draft-name">{draft.draftName}</div>
+            <div className="term-draft-content-container-name-specific" tabIndex={0} role="button" onClick={() => handleSelectedDraft(term.id)}>
+              <div className="term-draft-button-container"><button type="button" onClick={(event) => deleteDraft(event, term.id)}>Delete</button></div>
+              <div className="term-draft-name">{term.termName}</div>
             </div>
             <div className="term-draft-class-container" tabIndex={0} role="button" onClick={() => handleSelectedDraft(index)}>
-              {draft.classList && draft.classList.map((draftItem) => {
+              {term.courses && term.courses.map((course) => {
                 return (
-                  <div key={draftItem} className="term-draft-class-wrapper"><div className="term-draft-class">{draftItem}</div></div>
+                  <div key={course.id} className="term-draft-class-wrapper">
+                    <div className="term-draft-class">{course.name}</div>
+                  </div>
                 );
               })}
             </div>
@@ -121,7 +132,7 @@ const AddTerms = () => {
     <div className="add-terms">
       <div className="term-draft-content-container-name">Add Terms</div>
       <div className="term-draft-container">
-        {selectedDraft !== '' ? <EditingDraft handleSelectedDraft={handleSelectedDraft} drafts={drafts} selectedDraft={selectedDraft} termSubmit={termSubmit} changeTermName={changeTermName} />
+        {selectedDraft !== '' ? <EditingDraft handleSelectedDraft={handleSelectedDraft} drafts={terms} selectedDraft={selectedDraft} termSubmit={termSubmit} changeTermName={changeTermName} />
           : (
             <>
               <div role="button" tabIndex={0} onClick={handleClick} className="term-draft-button"><p>Add Draft</p></div>

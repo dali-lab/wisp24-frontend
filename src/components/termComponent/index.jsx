@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/no-named-as-default */
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import CourseComponent from '../courseComponent';
 import './index.css';
 
@@ -15,7 +15,11 @@ const TermComponent = (props) => {
   const [courses, setCourses] = useState(initialCourses);
   const [courseName, setCourseName] = useState('');
   const [editStatus, setEdit] = useState(props.editStatus);
-  console.log('termcomponent', props.editStatus);
+  const [onTerm, setOnTerm] = useState(true);
+  const [offEdit, setOffEdit] = useState(false);
+  const [offTermComment, setOffTermComment] = useState('');
+
+  const textRef = useRef();
 
   useEffect(() => {
     setCourses(props.courses);
@@ -27,6 +31,11 @@ const TermComponent = (props) => {
     setCourseName(event.target.value);
   };
 
+  const offTermSubmit = () => {
+    setOffTermComment(textRef.current.value);
+    setOffEdit(!offEdit);
+  };
+
   const delCourse = (courseIndex) => {
     props.delCourse(termID, courseIndex);
   };
@@ -35,6 +44,14 @@ const TermComponent = (props) => {
   const addCourse = (index) => {
     props.addCourse(props.termID, courseName);
     setCourseName('');
+  };
+
+  const toggleOnOff = () => {
+    setOnTerm(!onTerm);
+  };
+
+  const editToggle = () => {
+    setOffEdit(!offEdit);
   };
 
   // const [courseName, setCourseName] = useState('');
@@ -102,17 +119,42 @@ const TermComponent = (props) => {
 
   return (
 
-    <div className="term" style={{ border: props.isOver ? '3px solid orange' : '' }}>
-      <div className="course-container">{allCourses}</div>
-      <div className="term-component-input">
-        {editStatus ? (
-          <div>
-            <input type="text" value={courseName} placeholder="Course Name" onChange={courseNameFunction} />
-            <button type="submit" onClick={() => addCourse(termID)}>Add</button>
+    <>
+      {onTerm
+        ? (
+          <div className="term" style={{ border: props.isOver ? '3px solid orange' : '' }}>
+            <button onClick={toggleOnOff} type="button">switch</button>
+            <div className="course-container">{allCourses}</div>
+            <div className="term-component-input">
+              {editStatus ? (
+                <div>
+                  <input type="text" value={courseName} placeholder="Course Name" onChange={courseNameFunction} />
+                  <button type="submit" onClick={() => addCourse(termID)}>Add</button>
+                </div>
+              ) : <div />}
+            </div>
           </div>
-        ) : <div />}
-      </div>
-    </div>
+        )
+        : (
+          <div className="term" style={{ border: props.isOver ? '3px solid orange' : '' }}>
+            {offEdit
+              ? (
+                <>
+                  <button onClick={toggleOnOff} type="button">switch</button>
+                  <textarea ref={textRef} />
+                  <button onClick={offTermSubmit} type="button">submit</button>
+                </>
+              )
+              : (
+                <div>
+                  <button onClick={toggleOnOff} type="button">switch</button>
+                  <p>{offTermComment}</p>
+                  <button type="button" onClick={editToggle}>edit</button>
+                </div>
+              )}
+          </div>
+        )}
+    </>
   );
 };
 export default TermComponent;
