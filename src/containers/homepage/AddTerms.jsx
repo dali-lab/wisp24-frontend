@@ -7,6 +7,7 @@ import {
   updateCourse,
   addNewCourse
 } from '../../services/datastore.js';
+import CourseComponent from '../../components/courseComponent/index.jsx';
 
 const AddTerms = () => {
   const [selectedDraft, setSelectedDraft] = useState('');
@@ -102,7 +103,7 @@ const AddTerms = () => {
     event.stopPropagation();
     deleteTerm(termID);
   };
-
+  // display using course component
   const AllDrafts = () => {
     const alldrafts = terms.map((term, index) => {
       return (
@@ -116,7 +117,8 @@ const AddTerms = () => {
               {term.courses && term.courses.map((course) => {
                 return (
                   <div key={course.id} className="term-draft-class-wrapper">
-                    <div className="term-draft-class">{course.name}</div>
+                    {/* <div className="term-draft-class">{course.name}</div> */}
+                    <CourseComponent name={course.name} />
                   </div>
                 );
               })}

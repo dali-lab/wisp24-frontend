@@ -12,11 +12,15 @@ const CourseComponent = (props) => {
   // const [prereq, setPrereq] = useState('');
   // const [nro, setNRO] = useState(props.courseNRO);
   // const [color, setColor] = useState('');
+  const [isTerm, setIsTerm] = useState();
+
+  // need check whether course located in term or located in the potential classes
 
   return (
     <div className="course-content-div">
-      <div><p>{props.crn}: {props.name} ({props.distrib})</p></div>
-      <div className="course-individual-delete"><button type="button" onClick={() => deleteCourse(props.id)}>X</button></div>
+      {/* <div><p>{props.crn}: {props.name} ({props.distrib})</p></div> */}
+      <div><p>{props.name}</p></div>
+      <div className="course-individual-delete"><button type="button" onClick={() => deleteCourse(props.termID, props.courseID)}>X</button></div>
     </div>
   );
 };

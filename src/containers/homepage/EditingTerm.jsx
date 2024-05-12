@@ -6,6 +6,7 @@ import {
   addTerm,
   updateTermName
 } from '../../services/datastore';
+import CourseComponent from '../../components/courseComponent';
 
 const EditingDraft = (props) => {
   const { selectedDraft, drafts } = props;
@@ -51,7 +52,7 @@ const EditingDraft = (props) => {
         });
       }
     });
-  }, []);
+  }, [selectedDraft]);
 
   console.log('term data outside useeffect:', termData);
 
@@ -117,9 +118,10 @@ const EditingDraft = (props) => {
       <div>{termData.courses && termData.courses.map((classItem, index) => {
         return (
           <div key={classItem}>
-            <div>{classItem.name}</div>
+            {/* <div>{classItem.name}</div> */}
+            <CourseComponent name={classItem.name} termID={selectedDraft} courseID={classItem.id} isTerm={true} />
             {console.log('class item id', classItem)}
-            <button type="button" onClick={() => deleteClass(classItem.id)}>Delete Class</button>
+            {/* <button type="button" onClick={() => deleteClass(classItem.id)}>Delete Class</button> */}
           </div>
         );
       })}
