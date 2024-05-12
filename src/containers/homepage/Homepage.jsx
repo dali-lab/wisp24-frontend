@@ -8,7 +8,7 @@ import {
   getAllDrafts, addNewDraft, delDraft, updateDraft
 } from '../../services/datastore.js';
 
-const Homepage = () => {
+const Homepage = ({ userId }) => {
   const [mainDrafts, setMainDrafts] = useState(null);
   const inputRef = useRef();
   const [editingIndex, setEditingIndex] = useState('');
@@ -91,8 +91,12 @@ const Homepage = () => {
 
   const DropdownMenu = () => {
     const [major, setMajor] = useState('');
+    const [userID, setUserID] = useState('');
+    setUserID(userID);
+
     const handleClickMajor = (event) => {
       setMajor(event.target.value);
+      updateUserData()
     };
 
     return (

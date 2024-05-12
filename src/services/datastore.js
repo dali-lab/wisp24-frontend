@@ -214,10 +214,24 @@ export function updateCourse(newName, newNRO, newColor, newCRN) {
   });
 }
 
-export function getUserData() {
-  // fill in later!
+export function getUserData(userID, callback = () => {}) {
+  const userRef = ref(db, 'user/' + userID);
+  onValue(userRef, (snapshot) => {
+    const user = snapshot.val(); // gets the snapshot of the user Data
+    callback(user); // return user Data to the caller
+  });
 }
 
-export function updateUserData() {
+export function updateUserData(userName, userID, realName, userMajor, userMinor, userYear) {
   // fill in later!
+  update(ref(db, 'user/'), {
+    username: userName,
+    id: userID,
+    name: realName,
+    major: userMajor,
+    minor: userMinor,
+    year: userYear
+  });
 }
+
+
