@@ -22,12 +22,12 @@ const Profile = ({ userId, open, handleClose }) => {
   const handleSaveProfile = () => {
     updateUserData(userId, profile)
       .then(() => {
-        alert('Profile updated successfully!');
+        console.log('Profile updated successfully!');
         handleClose();
       })
       .catch((error) => {
         console.error('Error updating profile:', error);
-        alert('Failed to update profile.');
+        console.log('Failed to update profile.');
       });
   };
 

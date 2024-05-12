@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import {
-  getAllCourses, addNewCourse, deleteCourse, updateCourse, getTerm, getCourseByTerm,
+  getAllCourses, addNewCourseInTerm, deleteCourse, updateCourse, getTerm, getCourseByTerm,
   addTerm,
   updateTermName
 } from '../../services/datastore';
@@ -84,7 +84,7 @@ const EditingDraft = (props) => {
   const saveClass = () => {
     const newClassTitle = inputData.classTitle.trim(); // Trim any leading/trailing whitespace
     if (newClassTitle) {
-      addNewCourse(selectedDraft, newClassTitle);
+      addNewCourseInTerm(selectedDraft, newClassTitle);
       console.log('here ', newClassTitle);
       setInputData((prevState) => ({
         ...prevState,
