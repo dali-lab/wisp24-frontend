@@ -71,7 +71,15 @@ export const updateDraftTerm = (draftId, termList) => {
 
 // *********** TERMS*****************
 // add new term draft
-// fetches a term draft by ID
+export function addTermToDraft(termID, input) {
+  const reference = ref(db, 'drafts/' + termID);
+  push(reference, { // get unique id
+    id: termID,
+    draftName: input.draftName,
+    classList: input.classList,
+  });
+}
+
 export function getTerm(TermID, callback = () => {}) {
   const drafRef = ref(db, 'Terms/' + TermID);
   onValue(drafRef, (snapshot) => {
@@ -233,24 +241,6 @@ export function addNewCourse(courseID, courseName, courseDistrib, courseNRO, cou
   });
 }
 
-export function addNewCourseInTerm(termID, course) {
-  const coursesRef = push(ref(db, 'Terms/' + termID + '/courses'));
-  set(coursesRef, {
-    id: coursesRef.key,
-    name: course,
-  }).then(() => {
-    console.log('Course added successfully');
-  }).catch((error) => {
-    console.error('Error adding course: ', error);
-  });
-}
-
-export function deleteCourse(termID, courseID) {
-  remove(ref(db, `Terms/${termID}/courses/${courseID}`));
-}
-
-// export function updateCourse(termID, courseID, newName) {
-//   update(ref(db, `Terms/${termID}/courses/${courseID}`), {
 // export function addNewCourse(courseName, courseDistrib, courseNRO, coursePrereq, courseColor, courseCRN) {
 //   push(ref(db, 'course/'), {
 //     name: courseName,
@@ -261,6 +251,10 @@ export function deleteCourse(termID, courseID) {
 //     crn: courseCRN,
 //   });
 // }
+
+export function deleteCourse() {
+  remove(ref(db, 'course/'));
+}
 
 export function updateCourse(newName, newNRO, newColor, newCRN) {
   update(ref(db, 'course/'), {
