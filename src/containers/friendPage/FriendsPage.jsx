@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Friend from '../../components/friend/Friend.jsx';
@@ -59,7 +60,25 @@ const FriendsPage = ({ userId }) => {
         <div className="friends-container">
           {renderFriendsList()}
         </div>
-
+      </div>
+      <div className="friends-container">
+        {/* {filteredFriends.length > 0 ? (
+          filteredFriends.map((friendData) => (
+            <Link key={friendData.id} to={`/profile/${friendData.name}`}>
+              <Friend friendData={friendData} />
+            </Link>
+          ))
+        ) : (
+          <p>No friends match your search.</p>
+        )} */}
+        {/* <Link
+          to={{
+            pathname: `/profile/${sampleFriendData.id}`,
+            state: { friendData: sampleFriendData }
+          }}
+        >
+          <Friend friendData={sampleFriendData} />
+        </Link> */}
       </div>
     </div>
   );

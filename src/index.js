@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
+import { createRoot } from 'react-dom/client';
 
 import ActionTypes from './utils/store';
 import reducers from './store/reducers';
@@ -34,10 +35,11 @@ getTokenFromLocalStorage().then((authToken) => {
 });
 
 // we now wrap App in a Provider
-ReactDOM.render(
+const rootElement = document.getElementById('main');
+const root = createRoot(rootElement);
+root.render(
   // eslint-disable-next-line react/jsx-filename-extension
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('main'),
 );

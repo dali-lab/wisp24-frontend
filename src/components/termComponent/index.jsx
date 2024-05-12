@@ -6,12 +6,13 @@ import CourseComponent from '../courseComponent';
 import './index.css';
 
 const TermComponent = (props) => {
+  const { courses: initialCourses = [] } = props;
   const [termName, setTermName] = useState(''); // take from termbuilder class
   // const [newTermName, setNewTermName] = useState('');
   const [termID, setTermID] = useState('');
   // const [newCourseDistrib, setNewCourseDistrib] = useState('');
   // const [del, setDel] = useState(false);
-  const [courses, setCourses] = useState([]);
+  const [courses, setCourses] = useState(initialCourses);
   const [courseName, setCourseName] = useState('');
   const [editStatus, setEdit] = useState(props.editStatus);
   console.log('termcomponent', props.editStatus);
@@ -20,7 +21,7 @@ const TermComponent = (props) => {
     setCourses(props.courses);
     setTermID(props.termID);
     setTermName(props.termName);
-  }, [props.courses, props.termID, props.termName]);
+  }, []);
 
   const courseNameFunction = (event) => {
     setCourseName(event.target.value);
@@ -83,7 +84,7 @@ const TermComponent = (props) => {
   // can i make it delete based on the coursename???
 
   let allCourses = '';
-  if (courses.length !== null) {
+  if (courses && typeof courses === 'object') { // Check if courses is an object
     allCourses = Object.entries(courses).map(([id, course]) => {
       return (
         <CourseComponent
@@ -92,17 +93,16 @@ const TermComponent = (props) => {
           id={id}
           key={id}
           delCourse={delCourse}
-          del={false} // callback eventually
+          del={false}
         />
       );
     });
   }
-
   // if editing term!
 
   return (
 
-    <div className="term">
+    <div className="term" style={{ border: props.isOver ? '3px solid orange' : '' }}>
       <div className="course-container">{allCourses}</div>
       <div className="term-component-input">
         {editStatus ? (

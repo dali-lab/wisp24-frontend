@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import TermComponent from '../termComponent';
 import './index.css';
 
