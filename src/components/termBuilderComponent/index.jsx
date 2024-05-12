@@ -5,6 +5,7 @@ import './index.css';
 const TermBuilderComponent = () => {
   const [termName, setTermName] = useState('');
   const [listOfTermNames, setListOfTermNames] = useState([]);
+  const [onTerm, setOnTerm] = useState(true);
 
   // save new term button, adds to term name list
   const saveNewTerm = () => {
@@ -19,6 +20,10 @@ const TermBuilderComponent = () => {
     const newList = listOfTermNames.filter((n) => n !== name);
     setListOfTermNames(newList);
     // setListOfTermNames(listOfTermNames.filter((i) => i.termName !== name));
+  };
+
+  const setOnOff = () => {
+    setOnTerm(!onTerm);
   };
 
   // const [termID, setTermID] = useState(0);
@@ -76,13 +81,23 @@ const TermBuilderComponent = () => {
 
   return (
     <div>
-      <div className="termbuilder">
-        <p className="title">Term Builder</p>
-        <input type="text" value={termName} placeholder="Term Title" onChange={termNameFunction} />
-        <button type="submit" onClick={saveNewTerm}>Save New Term</button>
-        {/* <TermComponent /> */}
-        {allTerms}
-      </div>
+      {onTerm
+        ? (
+          <div className="termbuilder">
+            <button onClick={setOnOff} type="button">switch</button>
+            <p className="title">Term Builder</p>
+            <input type="text" value={termName} placeholder="Term Title" onChange={termNameFunction} />
+            <button type="submit" onClick={saveNewTerm}>Save New Term</button>
+            {/* <TermComponent /> */}
+            {allTerms}
+          </div>
+        )
+        : (
+          <div>
+            <button onClick={setOnOff} type="button">switch</button>
+            <textarea />
+          </div>
+        )}
     </div>
 
   );

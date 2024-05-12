@@ -39,6 +39,8 @@ const Plan23 = () => {
     setListOfTermNames(updatedCourseList);
   };
 
+  const [editStatus, setEditStatus] = useState(true);
+
   const delCourse = (index, courseIndex) => {
     const updatedCourseList = listOfTermNames.map((term, i) => {
       if (index === i) {
@@ -65,6 +67,7 @@ const Plan23 = () => {
       <div ref={dragPreview} style={{ opacity: isDragging ? 0.5 : 1 }}>
         <div ref={drag}>
           <TermComponent
+            editStatus={props.editStatus}
             termName={props.termName || ''}
             courses={props.courses}
             termID={props.termID} // changed from index to termID
@@ -107,6 +110,7 @@ const Plan23 = () => {
         style={{ backgroundcolor: props.isOver ? 'rgba(0,0,0,1)' : '' }}
       >
         <TermCard
+          editStatus={props.editStatus}
           termName={props.termName || ''}
           courses={props.courses}
           termID={props.termID} // changed from index to termID
@@ -138,6 +142,7 @@ const Plan23 = () => {
               <td>
                 <TermContainer
                   courses={listOfTermNames[0].courses}
+                  editStatus={editStatus}
                   termID={0}
                   key={listOfTermNames[0].id}
                   addCourse={addCourse}
@@ -149,6 +154,7 @@ const Plan23 = () => {
                 <TermContainer
                   courses={listOfTermNames[1].courses}
                   termID={1}
+                  editStatus={editStatus}
                   key={listOfTermNames[1].id}
                   addCourse={addCourse}
                   delCourse={delCourse}
@@ -158,6 +164,7 @@ const Plan23 = () => {
               <td> <TermContainer
                 courses={listOfTermNames[2].courses}
                 termID={2}
+                editStatus={editStatus}
                 key={listOfTermNames[2].id}
                 addCourse={addCourse}
                 delCourse={delCourse}
@@ -167,6 +174,7 @@ const Plan23 = () => {
               <td><TermContainer
                 courses={listOfTermNames[3].courses}
                 termID={3}
+                editStatus={editStatus}
                 key={listOfTermNames[3].id}
                 addCourse={addCourse}
                 delCourse={delCourse}
@@ -179,6 +187,7 @@ const Plan23 = () => {
               <td><TermContainer
                 courses={listOfTermNames[4].courses}
                 termID={4}
+                editStatus={editStatus}
                 key={listOfTermNames[3].id}
                 addCourse={addCourse}
                 delCourse={delCourse}
@@ -188,6 +197,7 @@ const Plan23 = () => {
               <td><TermContainer
                 courses={listOfTermNames[5].courses}
                 termID={5}
+                editStatus={editStatus}
                 key={listOfTermNames[5].id}
                 addCourse={addCourse}
                 delCourse={delCourse}
@@ -196,6 +206,7 @@ const Plan23 = () => {
               </td>
               <td><TermContainer
                 courses={listOfTermNames[6].courses}
+                editStatus={editStatus}
                 termID={6}
                 key={listOfTermNames[6].id}
                 addCourse={addCourse}
@@ -206,6 +217,7 @@ const Plan23 = () => {
               <td><TermContainer
                 courses={listOfTermNames[7].courses}
                 termID={7}
+                editStatus={editStatus}
                 key={listOfTermNames[7].id}
                 addCourse={addCourse}
                 delCourse={delCourse}
@@ -218,6 +230,7 @@ const Plan23 = () => {
               <td><TermContainer
                 courses={listOfTermNames[8].courses}
                 termID={8}
+                editStatus={editStatus}
                 key={listOfTermNames[8].id}
                 addCourse={addCourse}
                 delCourse={delCourse}
@@ -227,6 +240,7 @@ const Plan23 = () => {
               <td><TermContainer
                 courses={listOfTermNames[9].courses}
                 termID={9}
+                editStatus={editStatus}
                 key={listOfTermNames[9].id}
                 addCourse={addCourse}
                 delCourse={delCourse}
@@ -236,6 +250,7 @@ const Plan23 = () => {
               <td><TermContainer
                 courses={listOfTermNames[10].courses}
                 termID={10}
+                editStatus={editStatus}
                 key={listOfTermNames[10].id}
                 addCourse={addCourse}
                 delCourse={delCourse}
@@ -245,6 +260,7 @@ const Plan23 = () => {
               <td><TermContainer
                 courses={listOfTermNames[11].courses}
                 termID={11}
+                editStatus={editStatus}
                 key={listOfTermNames[11].id}
                 addCourse={addCourse}
                 delCourse={delCourse}
@@ -257,6 +273,7 @@ const Plan23 = () => {
               <td><TermContainer
                 courses={listOfTermNames[12].courses}
                 termID={12}
+                editStatus={editStatus}
                 key={listOfTermNames[12].id}
                 addCourse={addCourse}
                 delCourse={delCourse}
@@ -266,6 +283,7 @@ const Plan23 = () => {
               <td><TermContainer
                 courses={listOfTermNames[13].courses}
                 termID={13}
+                editStatus={editStatus}
                 key={listOfTermNames[13].id}
                 addCourse={addCourse}
                 delCourse={delCourse}
@@ -275,6 +293,7 @@ const Plan23 = () => {
               <td><TermContainer
                 courses={listOfTermNames[14].courses}
                 termID={14}
+                editStatus={editStatus}
                 key={listOfTermNames[14].id}
                 addCourse={addCourse}
                 delCourse={delCourse}
@@ -284,6 +303,7 @@ const Plan23 = () => {
               <td><TermContainer
                 courses={listOfTermNames[15].courses}
                 termID={15}
+                editStatus={editStatus}
                 key={listOfTermNames[15].id}
                 addCourse={addCourse}
                 delCourse={delCourse}

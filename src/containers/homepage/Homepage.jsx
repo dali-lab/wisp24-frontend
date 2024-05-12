@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import Plan2 from '../../components/plan2/Plan2.jsx';
 import PotentialClass from './PotentialClass.jsx';
 import AddTerms from './AddTerms.jsx';
+import Delete from '../../components/delete/Delete.jsx';
 import './Homepage.css';
 import ProgressTracker from './ProgressTracker.jsx';
 import {
@@ -13,6 +14,8 @@ const Homepage = () => {
   const inputRef = useRef();
   const [editingIndex, setEditingIndex] = useState('');
   const [mainDraftIndex, setMainDraftIndex] = useState(0);
+  const [popup, setPopup] = useState(false);
+  const [deletingIndex, setDeletingIndex] = useState('');
 
   useEffect(() => {
     getAllDrafts((draftsList) => {
@@ -42,9 +45,19 @@ const Homepage = () => {
     setMainDraftIndex(id);
   };
 
-  const deleteDraft = (id) => {
-    delDraft(id);
+  const togglePopup = () => {
+    setPopup(!popup);
   };
+
+  const deleteDraft = () => {
+    delDraft(deletingIndex);
+  };
+
+  const goToDelete = (id) => {
+    togglePopup();
+    setDeletingIndex(id);
+  };
+
   const startEdit = (index) => {
     setEditingIndex(index);
   };
@@ -80,7 +93,7 @@ const Homepage = () => {
               <div>{editingIndex === mainDraft.id ? <input type="text" ref={inputRef} /> : mainDraft.name}</div>
               {editingIndex === mainDraft.id ? <button type="button" onClick={() => titleChangeSubmit(mainDraft.id)}>Submit</button>
                 : <button type="button" onClick={() => startEdit(mainDraft.id)}>Edit</button>}
-              <button type="button" onClick={() => deleteDraft(mainDraft.id)}>Delete</button>
+              <button type="button" onClick={() => goToDelete(mainDraft.id)}>Delete</button>
             </div>
           );
         })}
@@ -91,9 +104,10 @@ const Homepage = () => {
 
   return (
     <div className="homepage-main-container">
+      {popup && <Delete togglePopup={togglePopup} deleteDraft={deleteDraft} />}
       <div className="homepage-left-container">
         <MainDraftTab />
-        <div className="plan-container">
+        <div className="plan-container2">
           <ProgressTracker />
           <Plan2 />
         </div>

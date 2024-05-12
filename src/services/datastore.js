@@ -29,13 +29,16 @@ const db = getDatabase(app);
 // Initialize the Firebase Realtime Database
 // const db = getDatabase(initializeApp(firebaseConfig));
 
-// fetches all 4-year plan drafts
-export function getAllDrafts(callback = () => {}) {
-  const draftRef = ref(db, 'Draft/');
-}
-
 // *********** PLANS ********************
 // add new plan draft
+export function getAllDrafts(callback = () => {}) {
+  const draftRef = ref(db, 'Draft/');
+  onValue(draftRef, (snapshot) => {
+    const drafts = snapshot.val();
+    callback(drafts);
+  });
+}
+
 export const addNewDraft = (draftName, termList) => {
   const newDraftRef = ref(db, 'Draft/');
   push(newDraftRef, {
