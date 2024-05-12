@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import EditingDraft from './EditingTerm.jsx';
 import './Homepage.css';
 import {
-  updateTermName, getAllTerm, addTerm, deleteTerm,
+  updateTermName, getAllTerm, addTermToDraft, deleteTerm,
   updateCourse,
   addNewCourse
 } from '../../services/datastore.js';
@@ -42,7 +42,7 @@ const AddTerms = () => {
 
   const handleClick = (event) => { // for new terms
     event.preventDefault();
-    addTerm({
+    addTermToDraft({
       termName: '',
       courses: {},
     }, (termId) => {

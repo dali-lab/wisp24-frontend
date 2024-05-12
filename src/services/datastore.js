@@ -5,7 +5,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import {
-  getDatabase, ref, set, update, remove, onValue, push
+  getDatabase, ref, update, remove, onValue, get, push, set,
 } from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -29,6 +29,57 @@ const db = getDatabase(app);
 // Initialize the Firebase Realtime Database
 // const db = getDatabase(initializeApp(firebaseConfig));
 
+// fetches all 4-year plan drafts
+export function getAllDrafts(callback = () => {}) {
+  const draftRef = ref(db, 'Draft/');
+}
+
+// *********** PLANS ********************
+// add new plan draft
+export const addNewDraft = (draftName, termList) => {
+  const newDraftRef = ref(db, 'Draft/');
+  push(newDraftRef, {
+    name: draftName,
+    list: termList,
+  });
+};
+
+// delete plan draft
+export const delDraft = (draftId) => {
+  console.log('Deleting draft with ID:', draftId);
+  const deleteDraftRef = ref(db, `Draft/${draftId}`);
+  remove(deleteDraftRef).then(() => {
+    console.log('successfully deleted');
+  }).catch((err) => {
+    console.log(`error removing draft: ${err}`);
+  });
+};
+
+// update plan draft
+export const updateDraft = (draftId, newDraftName) => {
+  update(ref(db, `Draft/${draftId}`), {
+    name: newDraftName,
+  });
+};
+
+// updates the list of terms in the draft
+export const updateDraftTerm = (draftId, termList) => {
+  update(ref(db, `Draft/${draftId}`), {
+    list: termList,
+  });
+};
+
+// *********** TERMS*****************
+// add new term draft
+export function addTermToDraft(termID, input) {
+  const reference = ref(db, 'drafts/' + termID);
+  push(reference, { // get unique id
+    id: termID,
+    draftName: input.draftName,
+    classList: input.classList,
+  });
+}
+
 export function getTerm(termID, callback = () => {}) {
   const drafRef = ref(db, 'Terms/' + termID);
   onValue(drafRef, (snapshot) => {
@@ -37,6 +88,7 @@ export function getTerm(termID, callback = () => {}) {
   });
 }
 
+// gets all terms
 export function getAllTerm(callback = () => {}) {
   const draftRef = ref(db, 'Terms/');
   onValue(draftRef, (snapshot) => {
@@ -77,8 +129,72 @@ export function deleteTerm(termID) {
   });
 }
 
+// *********** USERS / FRIENDS ***********
+
+// delete user
+export const removeUserData = (userId) => {
+  const userRef = ref(db, `users/${userId}`);
+  return remove(userRef);
+};
+
+// needed?
+export function addFriend(userId, friendId) {
+  push(ref(db, `friends/${userId}/${friendId}`), true);
+}
+
+// needed?
+export function removeFriend(userId, friendId) {
+  remove(ref(db, `friends/${userId}/${friendId}`));
+}
+
+export function addFollower(userId, followerId) {
+  push(ref(db, `followers/${userId}/${followerId}`), true);
+}
+
+export function removeFollower(userId, followerId) {
+  remove(ref(db, `followers/${userId}/${followerId}`));
+}
+
+export function addFollowing(userId, followingId) {
+  push(ref(db, `following/${userId}/${followingId}`), true);
+}
+
+export function removeFollowing(userId, followingId) {
+  remove(ref(db, `following/${userId}/${followingId}`));
+}
+
+export function addFriendRequest(fromUserId, toUserId) {
+  push(ref(db, `requests/${toUserId}/incoming/${fromUserId}`), true);
+  push(ref(db, `requests/${fromUserId}/outgoing/${toUserId}`), true);
+}
+
+export function removeFriendRequest(fromUserId, toUserId) {
+  remove(ref(db, `requests/${toUserId}/incoming/${fromUserId}`));
+  remove(ref(db, `requests/${fromUserId}/outgoing/${toUserId}`));
+}
+
+// friend list (mutual follows), following, followers, pending requests
+
+export const fetchAllUsers = () => {
+  return new Promise((resolve, reject) => {
+    const usersRef = ref(db, 'users');
+    onValue(usersRef, (snapshot) => {
+      const usersObj = snapshot.val();
+      const usersArray = usersObj ? Object.keys(usersObj).map((key) => ({
+        ...usersObj[key],
+        id: key
+      })) : [];
+      resolve(usersArray);
+    }, {
+      onlyOnce: true
+    }, (error) => {
+      reject(error);
+    });
+  });
+};
 // CRUD, create, read, update, delete
 
+// ************* COURSES ****************
 // read
 export function getAllCourses(callback = () => {}) {
   const courseRef = ref(db, 'Term/');
@@ -116,33 +232,31 @@ export function getCourse(termId, courseId, callback = () => {}) {
 //   });
 // }
 
-export function addNewCourse(termID, course) {
-  const coursesRef = push(ref(db, 'Terms/' + termID + '/courses'));
-  set(coursesRef, {
-    id: coursesRef.key,
-    name: course,
-  }).then(() => {
-    console.log('Course added successfully');
-  }).catch((error) => {
-    console.error('Error adding course: ', error);
+export function addNewCourse(courseName, courseDistrib, courseNRO, coursePrereq, courseColor, courseCRN) {
+  push(ref(db, 'course/'), {
+    name: courseName,
+    distrib: courseDistrib,
+    nro: courseNRO,
+    prereq: coursePrereq,
+    color: courseColor,
+    crn: courseCRN,
   });
 }
 
-export function deleteCourse(termID, courseID) {
-  remove(ref(db, `Terms/${termID}/courses/${courseID}`));
+export function deleteCourse() {
+  remove(ref(db, 'course/'));
 }
 
-export function updateCourse(termID, courseID, newName) {
-  update(ref(db, `Terms/${termID}/courses/${courseID}`), {
+export function updateCourse(newName, newNRO, newColor, newCRN) {
+  update(ref(db, 'course/'), {
     name: newName,
   });
 }
 
-// export function updateCourse(termID, courseID, newName, newNRO, newColor, newCRN) {
-//   update(ref(db, `Terms/${termID}/${courseID}`), {
-//     name: newName,
-//     nro: newNRO,
-//     color: newColor,
-//     crn: newCRN
-//   });
-// }
+export function getUserData() {
+  // fill in later!
+}
+
+export function updateUserData() {
+  // fill in later!
+}
