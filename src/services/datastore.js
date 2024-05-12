@@ -26,6 +26,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getDatabase(app);
+// Initialize the Firebase Realtime Database
+// const db = getDatabase(initializeApp(firebaseConfig));
 
 // fetches all 4-year plan drafts
 export function getAllDrafts(callback = () => {}) {
@@ -69,7 +71,7 @@ export const updateDraftTerm = (draftId, termList) => {
 
 // *********** TERMS*****************
 // add new term draft
-export function addTerm(termID, input) {
+export function addTermToDraft(termID, input) {
   const reference = ref(db, 'drafts/' + termID);
   push(reference, { // get unique id
     id: termID,
@@ -78,9 +80,8 @@ export function addTerm(termID, input) {
   });
 }
 
-// fetches a term draft by ID
-export function getTerm(draftID, callback = () => {}) {
-  const drafRef = ref(db, 'drafts/' + draftID);
+export function getTerm(termID, callback = () => {}) {
+  const drafRef = ref(db, 'Terms/' + termID);
   onValue(drafRef, (snapshot) => {
     const draft = snapshot.val(); // gets the snapshot of the data
     callback(draft); // return data to the caller
@@ -89,25 +90,38 @@ export function getTerm(draftID, callback = () => {}) {
 
 // gets all terms
 export function getAllTerm(callback = () => {}) {
-  const draftRef = ref(db, 'drafts/');
+  const draftRef = ref(db, 'Terms/');
   onValue(draftRef, (snapshot) => {
     const drafts = snapshot.val();
     callback(drafts);
   });
 }
-
-// update a term draft with new name and list of classes
-export function updateTerm(id, data) {
-  const drafRef = ref(db, 'drafts/' + id);
-  update(drafRef, {
-    draftName: data.draftName,
-    classList: data.classList,
+/* TERM SUBMIT */
+export function addTerm(input, callback = () => {}) {
+  const reference = push(ref(db, 'Terms/'));
+  set(reference, {
+    id: reference.key,
+    termName: input.termName,
+    courses: {},
+  }).then(() => {
+    callback(reference.key);
+  }).catch((error) => {
+    console.error('Error adding term: ', error);
   });
 }
 
-// delete term
-export function deleteTerm(draftID) {
-  const termRef = ref(db, 'drafts/' + draftID);
+export function updateTermName(id, newName) {
+  const TermRef = ref(db, 'Terms/' + id);
+  update(TermRef, {
+    termName: newName,
+  }).then(() => { // Log on success
+  }).catch((error) => {
+    console.error('Failed to update term name:', error);
+  });
+}
+
+export function deleteTerm(termID) {
+  const termRef = ref(db, 'Terms/' + termID);
   remove(termRef).then(() => {
     console.log('Term successfully deleted.');
   }).catch((error) => {
@@ -183,12 +197,40 @@ export const fetchAllUsers = () => {
 // ************* COURSES ****************
 // read
 export function getAllCourses(callback = () => {}) {
-  const courseRef = ref(db, 'course/');
+  const courseRef = ref(db, 'Term/');
   onValue(courseRef, (snapshot) => {
     const courses = snapshot.val();
     callback(courses);
   });
 }
+
+export function getCourseByTerm(termId, callback = () => {}) {
+  const courseRef = ref(db, 'Terms/' + termId + '/courses/');
+  onValue(courseRef, (snapshot) => {
+    const courses = snapshot.val();
+    callback(courses);
+    console.log('successfully retrieved courses');
+  });
+}
+
+export function getCourse(termId, courseId, callback = () => {}) {
+  const reference = `Terms/Term/${termId}/${courseId}`;
+  onValue(reference, (snapshot) => {
+    const courses = snapshot.val();
+    callback(courses);
+  });
+}
+// export function addNewCourse(courseID, courseName, courseDistrib, courseNRO, coursePrereq, courseColor, courseCRN) {
+//   set(ref(db, `Term/course/${courseID}`), {
+//     name: courseName,
+//     distrib: courseDistrib,
+//     nro: courseNRO,
+//     prereq: coursePrereq,
+//     color: courseColor,
+//     crn: courseCRN,
+//     id: courseID
+//   });
+// }
 
 export function addNewCourse(courseName, courseDistrib, courseNRO, coursePrereq, courseColor, courseCRN) {
   push(ref(db, 'course/'), {
@@ -208,9 +250,6 @@ export function deleteCourse() {
 export function updateCourse(newName, newNRO, newColor, newCRN) {
   update(ref(db, 'course/'), {
     name: newName,
-    nro: newNRO,
-    color: newColor,
-    crn: newCRN
   });
 }
 
