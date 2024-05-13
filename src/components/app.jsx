@@ -7,8 +7,6 @@ import {
 import requireAuth from '../hocs/requireAuth';
 
 import AdminPanel from '../containers/adminPanel';
-import SearchBar from '../containers/search/searchBar';
-import SearchPane from '../containers/search/searchPane';
 import SignUpPanel from '../containers/authentication/signUpPanel';
 import SignInPanel from '../containers/authentication/signInPanel';
 import Test from '../containers/authentication/signOutPanel';
@@ -27,11 +25,7 @@ import Sidebar from './profile/Sidebar';
 
 const Welcome = () => (
   <div>
-    <NavLink to="/signin">Sign In</NavLink>
     <NavLink to="/signup">Sign Up</NavLink>
-    <NavLink to="/feed">Feed</NavLink>
-    <SearchBar />
-    <SearchPane />
   </div>
 );
 
@@ -44,7 +38,6 @@ const App = () => {
 
   return (
     <Router>
-      <Route exact path="/signup" component={SignUpPanel} />
       <div className="root-div">
         <Navbar toggleSidebar={toggleSidebar} />
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} userData="username" />

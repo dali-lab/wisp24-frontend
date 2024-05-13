@@ -1,11 +1,12 @@
 import React from 'react';
-import { GoogleLogin } from 'react-oauth/google';
-import { useNavigate } from 'react-router-dom';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { GoogleLogin } from '@react-oauth/google';
+import { useHistory } from 'react-router-dom';
 import { getAuth, GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
 import { addUser } from '../../../services/datastore';
 
 const SignUpPanel = () => {
-  const navigate = useNavigate();
+  const history = useHistory();
   const auth = getAuth();
 
   const handleSuccess = async (response) => {
@@ -27,7 +28,7 @@ const SignUpPanel = () => {
       }
 
       console.log('Login Success:', user.displayName);
-      navigate('/home');
+      history.push('/home');
     } catch (error) {
       console.error('Firebase auth error:', error);
     }
