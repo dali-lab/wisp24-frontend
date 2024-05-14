@@ -12,6 +12,7 @@ const PotentialClass = () => {
   // const [courseID, setCourseID] = useState(0); // is it an issue that this resets if u reload the page?
   const [NRO, setNRO] = useState(false);
   const [courseList, setCourseList] = useState([]);
+  const inPlan = false;
 
   // const handleChange = (event) => {
   //   event.preventDefault();
@@ -63,6 +64,7 @@ const PotentialClass = () => {
           id={id}
           delete={deleteCourse}
           nro={course.nro}
+          location={inPlan}
           color={course.color}
           distrib={course.distrib}
           prereq={course.prereq}
@@ -81,7 +83,7 @@ const PotentialClass = () => {
         </div>
       ))}
       </div> */}
-      <div>
+      <div className="potential-wrapper">
         {allCourses}
       </div>
 

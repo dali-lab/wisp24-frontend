@@ -18,6 +18,7 @@ const TermComponent = (props) => {
   const [onTerm, setOnTerm] = useState(true);
   const [offEdit, setOffEdit] = useState(false);
   const [offTermComment, setOffTermComment] = useState('');
+  const inPlan = true;
 
   const textRef = useRef();
 
@@ -60,6 +61,7 @@ const TermComponent = (props) => {
       return (
         <CourseComponent
           course={course}
+          location={inPlan}
           courseDistrib={course.distrib}
           id={id}
           key={id}

@@ -4,7 +4,7 @@ import EditingDraft from './EditingTerm.jsx';
 import './Homepage.css';
 import {
   updateTermName, getAllTerm, addTermToDraft, deleteTerm,
-  updateCourse,
+  updateCourse, addTerm,
   addNewCourse
 } from '../../services/datastore.js';
 
@@ -38,7 +38,7 @@ const AddTerms = () => {
 
   const handleClick = (event) => { // for new terms
     event.preventDefault();
-    addTermToDraft({
+    addTerm({
       termName: '',
       courses: {},
     }, (termId) => {

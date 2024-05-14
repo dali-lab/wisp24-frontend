@@ -101,11 +101,10 @@ export const updateDraftTerm = (draftId, termList) => {
 // *********** TERMS*****************
 // add new term draft
 export function addTermToDraft(termID, input) {
-  const reference = ref(db, 'drafts/' + termID);
-  push(reference, { // get unique id
-    id: termID,
-    draftName: input.draftName,
-    classList: input.classList,
+  const reference = ref(db, 'Terms/' + termID);
+  push(reference, {
+    termName: input.termName,
+    courses: input.courses,
   });
 }
 
@@ -131,7 +130,7 @@ export function addTerm(input, callback = () => {}) {
   set(reference, {
     id: reference.key,
     termName: input.termName,
-    courses: {},
+    courses: [],
   }).then(() => {
     callback(reference.key);
   }).catch((error) => {
@@ -273,8 +272,8 @@ export function addNewCourse(courseName, courseDistrib, courseNRO, coursePrereq,
   });
 }
 
-export function deleteCourse() {
-  remove(ref(db, 'course/'));
+export function deleteCourse(deleteId) {
+  remove(ref(db, `course/${deleteId}`));
 }
 
 export function updateCourse(newName, newNRO, newColor, newCRN) {
