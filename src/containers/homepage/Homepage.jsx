@@ -89,31 +89,15 @@ const Homepage = () => {
     );
   };
 
-  const DropdownMenu = () => {
-    const [major, setMajor] = useState('');
-    const handleClickMajor = (event) => {
-      setMajor(event.target.value);
-    };
 
-    return (
-      <div>
-        <select id="dropdown" value={major} onChange={handleClickMajor}>
-          <option value="">Choose your major</option>
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-        </select>
-      </div>
-    );
-  };
 
   return (
     <div className="homepage-main-container">
       <div className="homepage-left-container">
-        <DropdownMenu />
         <MainDraftTab />
         <div className="plan-container">
           <ProgressTracker />
+          {/* <DropdownMenu /> */}
           <Plan2 />
         </div>
       </div>
