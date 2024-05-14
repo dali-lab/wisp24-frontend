@@ -117,46 +117,85 @@ export function deleteTerm(draftID) {
 
 // *********** USERS / FRIENDS ***********
 
+export function addUser(userID, input) {
+  const reference = ref(db, `users/${userID}`);
+  push(reference, {
+    id: input.id,
+    name: input.name,
+    year: input.year,
+    major: input.major,
+    minor: input.minor,
+    netid: input.netid,
+    bio: input.bio,
+    planid: input.planid,
+  });
+}
+export function getUserData(userId) {
+  const userRef = ref(db, `users/${String(userId)}`);
+  return new Promise((resolve, reject) => {
+    onValue(userRef, (snapshot) => {
+      const userData = snapshot.val();
+      if (userData) {
+        resolve(userData);
+      } else {
+        reject(new Error('No user found with this ID'));
+      }
+    }, {
+      onlyOnce: true
+    });
+  });
+}
+
+export function updateUserData(userId, data) {
+  const userRef = ref(db, `users/${String(userId)}`);
+  return update(userRef, data);
+}
+
+export function updateUserMajor(userId, major) {
+  const userRef = ref(db, `users/${String(userId)}/major`);
+  return update(userRef, major);
+}
+
 // delete user
 export const removeUserData = (userId) => {
-  const userRef = ref(db, `users/${userId}`);
+  const userRef = ref(db, `users/${String(userId)}`);
   return remove(userRef);
 };
 
 // needed?
 export function addFriend(userId, friendId) {
-  push(ref(db, `friends/${userId}/${friendId}`), true);
+  push(ref(db, `friends/${String(userId)}/${String(friendId)}`), true);
 }
 
 // needed?
 export function removeFriend(userId, friendId) {
-  remove(ref(db, `friends/${userId}/${friendId}`));
+  remove(ref(db, `friends/${String(userId)}/${String(friendId)}`));
 }
 
 export function addFollower(userId, followerId) {
-  push(ref(db, `followers/${userId}/${followerId}`), true);
+  push(ref(db, `followers/${String(userId)}/${String(followerId)}`), true);
 }
 
 export function removeFollower(userId, followerId) {
-  remove(ref(db, `followers/${userId}/${followerId}`));
+  remove(ref(db, `followers/${String(userId)}/${String(followerId)}`));
 }
 
 export function addFollowing(userId, followingId) {
-  push(ref(db, `following/${userId}/${followingId}`), true);
+  push(ref(db, `following/${String(userId)}/${String(followingId)}`), true);
 }
 
 export function removeFollowing(userId, followingId) {
-  remove(ref(db, `following/${userId}/${followingId}`));
+  remove(ref(db, `following/${String(userId)}/${String(followingId)}`));
 }
 
 export function addFriendRequest(fromUserId, toUserId) {
-  push(ref(db, `requests/${toUserId}/incoming/${fromUserId}`), true);
-  push(ref(db, `requests/${fromUserId}/outgoing/${toUserId}`), true);
+  push(ref(db, `requests/${String(toUserId)}/incoming/${String(fromUserId)}`), true);
+  push(ref(db, `requests/${String(fromUserId)}/outgoing/${String(toUserId)}`), true);
 }
 
 export function removeFriendRequest(fromUserId, toUserId) {
-  remove(ref(db, `requests/${toUserId}/incoming/${fromUserId}`));
-  remove(ref(db, `requests/${fromUserId}/outgoing/${toUserId}`));
+  remove(ref(db, `requests/${String(toUserId)}/incoming/${String(fromUserId)}`));
+  remove(ref(db, `requests/${String(fromUserId)}/outgoing/${String(toUserId)}`));
 }
 
 // friend list (mutual follows), following, followers, pending requests
@@ -178,7 +217,6 @@ export const fetchAllUsers = () => {
     });
   });
 };
-// CRUD, create, read, update, delete
 
 // ************* COURSES ****************
 // read
@@ -213,25 +251,3 @@ export function updateCourse(newName, newNRO, newColor, newCRN) {
     crn: newCRN
   });
 }
-
-export function getUserData(userID, callback = () => {}) {
-  const userRef = ref(db, 'user/' + userID);
-  onValue(userRef, (snapshot) => {
-    const user = snapshot.val(); // gets the snapshot of the user Data
-    callback(user); // return user Data to the caller
-  });
-}
-
-export function updateUserData(userName, userID, realName, userMajor, userMinor, userYear) {
-  // fill in later!
-  update(ref(db, 'user/'), {
-    username: userName,
-    id: userID,
-    name: realName,
-    major: userMajor,
-    minor: userMinor,
-    year: userYear
-  });
-}
-
-

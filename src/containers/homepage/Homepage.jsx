@@ -5,10 +5,13 @@ import AddTerms from './AddTerms.jsx';
 import './Homepage.css';
 import ProgressTracker from './ProgressTracker.jsx';
 import {
-  getAllDrafts, addNewDraft, delDraft, updateDraft
+  getAllDrafts, addNewDraft, delDraft, updateDraft,
+  // updateUserData,
+  updateUserMajor, addUser
 } from '../../services/datastore.js';
 
-const Homepage = ({ userId }) => {
+const Homepage = (props) => {
+  const { userID } = props;
   const [mainDrafts, setMainDrafts] = useState(null);
   const inputRef = useRef();
   const [editingIndex, setEditingIndex] = useState('');
@@ -91,12 +94,14 @@ const Homepage = ({ userId }) => {
 
   const DropdownMenu = () => {
     const [major, setMajor] = useState('');
-    const [userID, setUserID] = useState('');
-    setUserID(userID);
 
     const handleClickMajor = (event) => {
+      console.log('click function called');
       setMajor(event.target.value);
-      updateUserData()
+      addUser(props.userID, {
+        id: props.userID, name: 'Ellie', year: 2027, netid: 123, major, minor: null, bio: 'hello', planid: 123
+      });
+      updateUserMajor(props.userID, major);
     };
 
     return (
