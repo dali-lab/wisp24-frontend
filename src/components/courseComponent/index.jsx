@@ -13,10 +13,15 @@ const CourseComponent = (props) => {
   // const [nro, setNRO] = useState(props.courseNRO);
   // const [color, setColor] = useState('');
 
+  const delCourse = () => {
+    props.delCourse(props.course.id);
+    console.log(props.course.id);
+  };
+
   return (
     <div className="course-content-div">
-      <div><p>{props.crn}: {props.name} ({props.distrib})</p></div>
-      <div className="course-individual-delete"><button type="button" onClick={() => deleteCourse(props.id)}>X</button></div>
+      <div className="course-description-container"><p className="course-description">{props.course?.crn}: {props.course?.name} ({props.course?.distrib})</p></div>
+      <div className="course-individual-delete"><button type="button" onClick={delCourse}>x</button></div>
     </div>
   );
 };

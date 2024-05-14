@@ -33,12 +33,19 @@ const Homepage = () => {
       }
     });
   }, [getAllDrafts]);
-  console.log(mainDrafts);
+
+  useEffect(() => {
+    if (mainDrafts) {
+      if (mainDraftIndex === 0) {
+        if (mainDrafts[0] && mainDrafts[0].id) {
+          setMainDraftIndex(mainDrafts[0].id);
+        }
+      }
+    }
+  }, [mainDrafts]);
 
   const addDraft = () => {
-    /* event.preventDefault();
-    setMainDrafts([...mainDrafts, { draftTitle: `maindraft${mainDrafts.length + 1}`}]); */
-    addNewDraft(`maindraft${mainDrafts.length + 1}`, []);
+    addNewDraft(`maindraft${mainDrafts.length + 1}`);
   };
 
   const selectMainDraft = (id) => {
@@ -50,6 +57,10 @@ const Homepage = () => {
   };
 
   const deleteDraft = () => {
+    if (deletingIndex === mainDraftIndex) {
+      const otherDraftIndex = (mainDraftIndex === 0) ? 1 : 0; // For example, select the first draft as an alternative
+      setMainDraftIndex(otherDraftIndex);
+    }
     delDraft(deletingIndex);
   };
 
@@ -78,7 +89,6 @@ const Homepage = () => {
   };
 
   const MainDraftTab = () => {
-    console.log(mainDrafts);
     return (
       <div className="tab-container">
         {mainDrafts && Array.isArray(mainDrafts) && mainDrafts.map((mainDraft) => {
@@ -109,7 +119,7 @@ const Homepage = () => {
         <MainDraftTab />
         <div className="plan-container2">
           <ProgressTracker />
-          <Plan2 />
+          <Plan2 mainDrafts={mainDrafts} mainDraftIndex={mainDraftIndex} />
         </div>
       </div>
       <div className="homepage-right-container">

@@ -156,7 +156,7 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 85vh;
+    height: 90vh;
 }
 
 .homepage-left-container {
@@ -166,11 +166,11 @@
     padding: 20px;
     height: 100%;
     overflow: wrap;
-    min-width: 870px;
+    min-width: 940px;
 }
 
 .homepage-right-container {
-    min-width: 200px;
+    min-width: 300px;
     display: flex;
     flex-direction: column;
     width: 30%;

@@ -36,8 +36,8 @@ const TermComponent = (props) => {
     setOffEdit(!offEdit);
   };
 
-  const delCourse = (courseIndex) => {
-    props.delCourse(termID, courseIndex);
+  const delCourse = (courseId) => {
+    props.delCourse(props.termID, courseId);
   };
 
   // add course button
@@ -54,58 +54,12 @@ const TermComponent = (props) => {
     setOffEdit(!offEdit);
   };
 
-  // const [courseName, setCourseName] = useState('');
-  // const [newCourseName, setNewCourseName] = useState('');
-  // const [editTerm, setEditTerm] = useState(true);
-
-  // keeps newTermName updated when typing
-  // const newTermNameFunction = (event) => {
-  //   setNewTermName (event.target.value);
-  // }
-
-  // //when you click the save name button
-  // const termNameFunction = () => {
-  //   setTermName (newTermName);
-  // }
-
-  // // when typing course name this keeps course name updated
-  // const newCourseNameFunction = (event) => {
-  //   setNewCourseName(event.target.value);
-  // };
-
-  // when you click the button to add the course this adds to the list of courses
-  // const addNewCourse = () => {
-  //   setCourseName(newCourseName);
-  //   courses.append(courseName);
-  // };
-
-  // when you press the button that says save term
-  // const saveTerm = () => {
-  //   // setCourses([courses]); //is this necessary or redundant?
-  //   // setTermName(termName);
-  //   setEditTerm(false);
-  // }
-
-  // when you press an edit button
-  // const editTermFunction = () => {
-  //   setEditTerm(true);
-  // }
-
-  // const newCourseDistribFunction = (event) => {
-  //   setNewCourseDistrib(event.target.value);
-  // };
-
-  // const delCourse = (id) => {
-  //   setCourses(courses.filter((i) => i.id !== id));
-  // };
-  // can i make it delete based on the coursename???
-
   let allCourses = '';
   if (courses && typeof courses === 'object') { // Check if courses is an object
     allCourses = Object.entries(courses).map(([id, course]) => {
       return (
         <CourseComponent
-          courseName={course}
+          course={course}
           courseDistrib={course.distrib}
           id={id}
           key={id}
@@ -127,7 +81,7 @@ const TermComponent = (props) => {
             <div className="course-container">{allCourses}</div>
             <div className="term-component-input">
               {editStatus ? (
-                <div>
+                <div className="add-class-block">
                   <input type="text" value={courseName} placeholder="Course Name" onChange={courseNameFunction} />
                   <button type="submit" onClick={() => addCourse(termID)}>Add</button>
                 </div>

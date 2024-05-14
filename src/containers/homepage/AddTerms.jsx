@@ -12,13 +12,11 @@ const AddTerms = () => {
   const [selectedDraft, setSelectedDraft] = useState('');
   const [terms, setTerms] = useState([]); // list of terms
   const [newId, setNewId] = useState(); // Add new term with details from termData
-  console.log('term', terms);
 
   // fetches user terms from data base
   useEffect(() => {
     getAllTerm((getTerms) => {
       if (getTerms) {
-        console.log(getTerms);
         const termsList = Object.keys(getTerms).map((termKey) => {
           const termData = getTerms[termKey];
           const coursesData = termData.courses ? Object.keys(termData.courses).map((coursesID) => ({ // map through objects held by course
@@ -31,14 +29,12 @@ const AddTerms = () => {
             courses: coursesData // list of courses
           };
         });
-        console.log('termlist:', termsList);
         setTerms(termsList);
       } else {
         setTerms([]);
       }
     });
   }, []);
-  console.log(terms);
 
   const handleClick = (event) => { // for new terms
     event.preventDefault();

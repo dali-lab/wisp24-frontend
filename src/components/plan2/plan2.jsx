@@ -1,56 +1,61 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useState, forwardRef } from 'react';
+import React, { useState, forwardRef, useEffect } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import TermComponent from '../termComponent';
+import { updateDraftTerm } from '../../services/datastore.js';
 import './Plan2.css';
 
-const Plan23 = () => {
-  const [listOfTermNames, setListOfTermNames] = useState([
-    { id: 0, termName: 'term0', courses: ['course1', 'course2'] },
-    { id: 1, termName: 'term1', courses: ['course1', 'course2'] },
-    { id: 2, termName: 'term2', courses: ['course1'] },
-    { id: 3, termName: 'term3', courses: ['course1'] },
-    { id: 4, termName: 'term4', courses: ['course1'] },
-    { id: 5, termName: 'term5', courses: ['course1'] },
-    { id: 6, termName: 'term6', courses: ['course1'] },
-    { id: 7, termName: 'term7', courses: ['course1'] },
-    { id: 8, termName: 'term8', courses: ['course1'] },
-    { id: 9, termName: 'term9', courses: ['course1'] },
-    { id: 10, termName: 'term10', courses: ['course1'] },
-    { id: 11, termName: 'term11', courses: ['course1'] },
-    { id: 12, termName: 'term12', courses: ['course1'] },
-    { id: 13, termName: 'term13', courses: ['course1'] },
-    { id: 14, termName: 'term14', courses: ['course1'] },
-    { id: 15, termName: 'term15', courses: ['course1'] },
-  ]);
+// <Plan2 mainDrafts={mainDrafts} mainDraftIndex={mainDraftIndex} />
+const Plan23 = (props) => {
+  const [listOfTermNames, setListOfTermNames] = useState([]);
+
+  useEffect(() => {
+    if (props.mainDrafts && props.mainDraftIndex) {
+      const draftWithMatchingID = props.mainDrafts.find((draft) => draft.id === props.mainDraftIndex);
+      setListOfTermNames(draftWithMatchingID.list);
+    } else {
+      setListOfTermNames([]);
+    }
+  }, [props.mainDrafts, props.mainDraftIndex]);
 
   const addCourse = (index, courseName) => {
+    const newCourse = {
+      crn: 'COSC##',
+      distrib: 'TLA',
+      name: courseName,
+    };
     const updatedCourseList = listOfTermNames.map((term, i) => {
       if (index === i) {
-        const updatedCourses = [...term.courses, courseName];
+        const updatedCourses = [...term.courses, newCourse];
         return { ...term, courses: updatedCourses };
       } else {
         return term;
       }
     });
     setListOfTermNames(updatedCourseList);
+
+    // Update the draft in the backend
+    updateDraftTerm(props.mainDraftIndex, updatedCourseList);
   };
 
   const [editStatus, setEditStatus] = useState(true);
 
-  const delCourse = (index, courseIndex) => {
+  const delCourse = (index, courseId) => {
     const updatedCourseList = listOfTermNames.map((term, i) => {
       if (index === i) {
-        const updatedCourses = term.courses.filter((course, idx) => idx !== Number(courseIndex));
+        const updatedCourses = term.courses.filter((course) => course.id !== courseId);
         return { ...term, courses: updatedCourses };
       } else {
         return term;
       }
     });
     setListOfTermNames([...updatedCourseList]);
+
+    // Update the draft in the backend
+    updateDraftTerm(props.mainDraftIndex, updatedCourseList);
   };
 
   const TermCard = (props) => {
@@ -141,10 +146,10 @@ const Plan23 = () => {
               <td><div className="term-holder year-column">1st</div></td>
               <td>
                 <TermContainer
-                  courses={listOfTermNames[0].courses}
+                  courses={listOfTermNames[0]?.courses}
                   editStatus={editStatus}
                   termID={0}
-                  key={listOfTermNames[0].id}
+                  key={listOfTermNames[0]?.id}
                   addCourse={addCourse}
                   delCourse={delCourse}
                   edit={false}
@@ -152,30 +157,30 @@ const Plan23 = () => {
               </td>
               <td>
                 <TermContainer
-                  courses={listOfTermNames[1].courses}
+                  courses={listOfTermNames[1]?.courses}
                   termID={1}
                   editStatus={editStatus}
-                  key={listOfTermNames[1].id}
+                  key={listOfTermNames[1]?.id}
                   addCourse={addCourse}
                   delCourse={delCourse}
                   edit={false}
                 />
               </td>
               <td> <TermContainer
-                courses={listOfTermNames[2].courses}
+                courses={listOfTermNames[2]?.courses}
                 termID={2}
                 editStatus={editStatus}
-                key={listOfTermNames[2].id}
+                key={listOfTermNames[2]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
               />
               </td>
               <td><TermContainer
-                courses={listOfTermNames[3].courses}
+                courses={listOfTermNames[3]?.courses}
                 termID={3}
                 editStatus={editStatus}
-                key={listOfTermNames[3].id}
+                key={listOfTermNames[3]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
@@ -185,40 +190,40 @@ const Plan23 = () => {
             <tr className="term-rows">
               <td><div className="term-holder year-column">2nd</div></td>
               <td><TermContainer
-                courses={listOfTermNames[4].courses}
+                courses={listOfTermNames[4]?.courses}
                 termID={4}
                 editStatus={editStatus}
-                key={listOfTermNames[3].id}
+                key={listOfTermNames[3]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
               />
               </td>
               <td><TermContainer
-                courses={listOfTermNames[5].courses}
+                courses={listOfTermNames[5]?.courses}
                 termID={5}
                 editStatus={editStatus}
-                key={listOfTermNames[5].id}
+                key={listOfTermNames[5]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
               />
               </td>
               <td><TermContainer
-                courses={listOfTermNames[6].courses}
+                courses={listOfTermNames[6]?.courses}
                 editStatus={editStatus}
                 termID={6}
-                key={listOfTermNames[6].id}
+                key={listOfTermNames[6]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
               />
               </td>
               <td><TermContainer
-                courses={listOfTermNames[7].courses}
+                courses={listOfTermNames[7]?.courses}
                 termID={7}
                 editStatus={editStatus}
-                key={listOfTermNames[7].id}
+                key={listOfTermNames[7]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
@@ -228,40 +233,40 @@ const Plan23 = () => {
             <tr className="term-rows">
               <td><div className="term-holder year-column">3rd</div></td>
               <td><TermContainer
-                courses={listOfTermNames[8].courses}
+                courses={listOfTermNames[8]?.courses}
                 termID={8}
                 editStatus={editStatus}
-                key={listOfTermNames[8].id}
+                key={listOfTermNames[8]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
               />
               </td>
               <td><TermContainer
-                courses={listOfTermNames[9].courses}
+                courses={listOfTermNames[9]?.courses}
                 termID={9}
                 editStatus={editStatus}
-                key={listOfTermNames[9].id}
+                key={listOfTermNames[9]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
               />
               </td>
               <td><TermContainer
-                courses={listOfTermNames[10].courses}
+                courses={listOfTermNames[10]?.courses}
                 termID={10}
                 editStatus={editStatus}
-                key={listOfTermNames[10].id}
+                key={listOfTermNames[10]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
               />
               </td>
               <td><TermContainer
-                courses={listOfTermNames[11].courses}
+                courses={listOfTermNames[11]?.courses}
                 termID={11}
                 editStatus={editStatus}
-                key={listOfTermNames[11].id}
+                key={listOfTermNames[11]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
@@ -271,40 +276,40 @@ const Plan23 = () => {
             <tr className="term-rows">
               <td><div className="term-holder year-column">4th</div></td>
               <td><TermContainer
-                courses={listOfTermNames[12].courses}
+                courses={listOfTermNames[12]?.courses}
                 termID={12}
                 editStatus={editStatus}
-                key={listOfTermNames[12].id}
+                key={listOfTermNames[12]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
               />
               </td>
               <td><TermContainer
-                courses={listOfTermNames[13].courses}
+                courses={listOfTermNames[13]?.courses}
                 termID={13}
                 editStatus={editStatus}
-                key={listOfTermNames[13].id}
+                key={listOfTermNames[13]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
               />
               </td>
               <td><TermContainer
-                courses={listOfTermNames[14].courses}
+                courses={listOfTermNames[14]?.courses}
                 termID={14}
                 editStatus={editStatus}
-                key={listOfTermNames[14].id}
+                key={listOfTermNames[14]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
               />
               </td>
               <td><TermContainer
-                courses={listOfTermNames[15].courses}
+                courses={listOfTermNames[15]?.courses}
                 termID={15}
                 editStatus={editStatus}
-                key={listOfTermNames[15].id}
+                key={listOfTermNames[15]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
