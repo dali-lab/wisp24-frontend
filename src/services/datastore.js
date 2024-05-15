@@ -272,6 +272,23 @@ export function addNewCourse(courseName, courseDistrib, courseNRO, coursePrereq,
   });
 }
 
+export function addNewCourseInTerm(termID, course) {
+  const coursesRef = push(ref(db, 'Terms/' + termID + '/courses'));
+  set(coursesRef, {
+    id: coursesRef.key,
+    name: course,
+  }).then(() => {
+    console.log('Course added successfully');
+  }).catch((error) => {
+    console.error('Error adding course: ', error);
+  });
+}
+
+export function deleteCourseInTerm(termID, courseID) {
+  remove(ref(db, `Terms/${termID}/courses/${courseID}`));
+}
+
+
 export function deleteCourse(deleteId) {
   remove(ref(db, `course/${deleteId}`));
 }

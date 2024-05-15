@@ -47,6 +47,7 @@ const Plan23 = (props) => {
     const updatedCourseList = listOfTermNames.map((term, i) => {
       if (index === i) {
         const updatedCourses = term.courses.filter((course) => course.id !== courseId);
+        console.log(updatedCourses);
         return { ...term, courses: updatedCourses };
       } else {
         return term;

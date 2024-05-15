@@ -14,7 +14,7 @@ const CourseComponent = (props) => {
   // const [color, setColor] = useState('');
 
   const delCourse = () => {
-    if (props.inPlan) {
+    if (props.location) {
       props.delCourse(props.course.id);
       console.log(props.course.id);
     } else {

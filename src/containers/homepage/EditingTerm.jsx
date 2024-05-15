@@ -3,8 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import {
   getAllCourses, addNewCourse, deleteCourse, updateCourse, getTerm, getCourseByTerm,
-  addTerm,
-  updateTermName
+  addTerm, addNewCourseInTerm,
+  updateTermName,
+  deleteCourseInTerm
 } from '../../services/datastore';
 
 const EditingDraft = (props) => {
@@ -84,7 +85,7 @@ const EditingDraft = (props) => {
   const saveClass = () => {
     const newClassTitle = inputData.classTitle.trim(); // Trim any leading/trailing whitespace
     if (newClassTitle) {
-      addNewCourse(selectedDraft, newClassTitle);
+      addNewCourseInTerm(selectedDraft, newClassTitle);
       console.log('here ', newClassTitle);
       setInputData((prevState) => ({
         ...prevState,
@@ -93,7 +94,7 @@ const EditingDraft = (props) => {
     }
   };
   const deleteClass = (id) => {
-    deleteCourse(selectedDraft, id);
+    deleteCourseInTerm(selectedDraft, id);
   };
 
   console.log('current name editing stat', nameEditingState);
