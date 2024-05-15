@@ -118,9 +118,11 @@ export function deleteTerm(draftID) {
 // *********** USERS / FRIENDS ***********
 
 export function addUser(userID, input) {
-  const reference = ref(db, `users/${userID}`);
+  const reference = ref(db, 'users/{String(userID)}');
+  console.log('add user called');
+  console.log(input);
   push(reference, {
-    id: input.id,
+    id: userID, // change this later
     name: input.name,
     year: input.year,
     major: input.major,
@@ -153,6 +155,7 @@ export function updateUserData(userId, data) {
 
 export function updateUserMajor(userId, major) {
   const userRef = ref(db, `users/${String(userId)}/major`);
+  // console.log('hello' + userId);
   return update(userRef, major);
 }
 

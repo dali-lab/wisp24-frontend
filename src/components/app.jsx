@@ -55,7 +55,12 @@ const App = () => {
           <Route exact path="/signin" component={SignInPanel} />
           <Route exact path="/feed" component={Feed} />
           <Route exact path="/test" component={Test} />
-          <Route exact path="/home" component={Homepage} />
+          {/* <Route exact path="/home" component={Homepage} /> */}
+          <Route
+            exact
+            path="/home"
+            render={() => <Homepage userID="123" />}
+          />
           <Route path="/admin" component={requireAuth(AdminPanel, SignInPanel)} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/plan23" component={Plan23} />

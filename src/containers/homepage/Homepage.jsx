@@ -10,8 +10,7 @@ import {
   updateUserMajor, addUser
 } from '../../services/datastore.js';
 
-const Homepage = (props) => {
-  const { userID } = props;
+const Homepage = ({ userID }) => {
   const [mainDrafts, setMainDrafts] = useState(null);
   const inputRef = useRef();
   const [editingIndex, setEditingIndex] = useState('');
@@ -93,15 +92,15 @@ const Homepage = (props) => {
   };
 
   const DropdownMenu = () => {
-    const [major, setMajor] = useState('');
+    console.log(userID);
+    const [inputMajor, setMajor] = useState('');
 
     const handleClickMajor = (event) => {
-      console.log('click function called');
       setMajor(event.target.value);
-      addUser(props.userID, {
-        id: props.userID, name: 'Ellie', year: 2027, netid: 123, major, minor: null, bio: 'hello', planid: 123
+      addUser(userID, {
+        name: 'Ellie', year: 2027, major: toString(inputMajor), minor: 'comp sci', netid: 1, bio: 'hello', planid: 1
       });
-      updateUserMajor(props.userID, major);
+      updateUserMajor(userID, inputMajor);
     };
 
     return (
