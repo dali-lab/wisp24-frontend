@@ -1,6 +1,8 @@
 /* eslint-disable camelcase */
 import React, { useEffect, useState } from 'react';
 import './Homepage.css';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import { addNewCourse, deleteCourse, getAllCourses } from '../../services/datastore.js';
 import CourseComponent from '../../components/courseComponent/index.jsx';
 
@@ -13,25 +15,6 @@ const PotentialClass = () => {
   const [NRO, setNRO] = useState(false);
   const [courseList, setCourseList] = useState([]);
   const inPlan = false;
-
-  // const handleChange = (event) => {
-  //   event.preventDefault();
-  //   setInput(event.target.value);
-  // };
-
-  // const handleClickEditing = (event) => {
-  //   if (editing) {
-  //     setClasses((prevClasses) => [...prevClasses, input]);
-  //   }
-  //   event.preventDefault();
-  //   setEditing(!editing);
-  // };
-
-  // const handleClickDelete = (index) => {
-  //   deleteCourse(index);
-  //   // const updatedClasses = classes.filter((classItem, i) => i !== index);
-  //   // setClasses(updatedClasses);
-  // };
 
   const newCourseName = (event) => {
     // console.log('course typing registered');
@@ -58,6 +41,7 @@ const PotentialClass = () => {
     allCourses = Object.entries(courseList).map(([id, course]) => {
       return (
         <CourseComponent
+          course={course}
           name={course.name}
           crn={course.crn}
           key={id}
@@ -74,31 +58,33 @@ const PotentialClass = () => {
   }
 
   return (
-    <div className="potential-class">
-      <div className="potential-class-title">Potential Classes</div>
-      {/* <div className="potential-class-container">{classes.map((classItem, index) => (
+    <DndProvider backend={HTML5Backend}>
+      <div className="potential-class">
+        <div className="potential-class-title">Potential Classes</div>
+        {/* <div className="potential-class-container">{classes.map((classItem, index) => (
         <div className="potential-class-item" key={classItem}>
           <p>{classItem}</p>
           <button type="submit" onClick={() => handleClickDelete(index)}>Delete Class</button>
         </div>
       ))}
       </div> */}
-      <div className="potential-wrapper">
-        {allCourses}
-      </div>
-
-      <div className="potential-class-add-container">
-        {/* {editing */}
-        <div className="potential-class-add">
-          <div>
-            <input type="text" placeholder="Course Name" value={courseName} onChange={newCourseName} />
-            <div role="button" tabIndex={0} className="potential-class-add" type="submit" onClick={changeNRO}>{NRO ? 'Remove NRO' : 'Set NRO'}</div>
-          </div>
-          <div role="button" tabIndex={0} className="potential-class-add" type="submit" onClick={createCourse}>Add Class</div>
+        <div className="potential-wrapper">
+          {allCourses}
         </div>
-        {/* : <div role="button" tabIndex={0} className="potential-class-add" type="submit" onClick={handleClickEditing}>Add Class</div>} */}
+
+        <div className="potential-class-add-container">
+          {/* {editing */}
+          <div className="potential-class-add">
+            <div>
+              <input type="text" placeholder="Course Name" value={courseName} onChange={newCourseName} />
+              <div role="button" tabIndex={0} className="potential-class-add" type="submit" onClick={changeNRO}>{NRO ? 'Remove NRO' : 'Set NRO'}</div>
+            </div>
+            <div role="button" tabIndex={0} className="potential-class-add" type="submit" onClick={createCourse}>Add Class</div>
+          </div>
+          {/* : <div role="button" tabIndex={0} className="potential-class-add" type="submit" onClick={handleClickEditing}>Add Class</div>} */}
+        </div>
       </div>
-    </div>
+    </DndProvider>
   );
 };
 

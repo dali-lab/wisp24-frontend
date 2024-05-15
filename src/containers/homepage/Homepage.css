@@ -368,3 +368,7 @@
     background-color: var(--green);
     font-size: 25px;
 }
+
+.tab-name {
+    font-size: 0.8rem;
+}

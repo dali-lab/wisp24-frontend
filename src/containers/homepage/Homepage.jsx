@@ -45,7 +45,11 @@ const Homepage = () => {
   }, [mainDrafts]);
 
   const addDraft = () => {
-    addNewDraft(`maindraft${mainDrafts.length + 1}`);
+    if (mainDrafts.length < 4) {
+      addNewDraft(`maindraft${mainDrafts.length + 1}`);
+    } else {
+      alert('maximum number of drafts');
+    }
   };
 
   const selectMainDraft = (id) => {
@@ -100,7 +104,7 @@ const Homepage = () => {
                 : 'nonselectedDraft'}`}
               key={mainDraft.id}
             >
-              <div>{editingIndex === mainDraft.id ? <input type="text" ref={inputRef} /> : mainDraft.name}</div>
+              <div className="tab-name">{editingIndex === mainDraft.id ? <input type="text" ref={inputRef} /> : mainDraft.name}</div>
               {editingIndex === mainDraft.id ? <button type="button" onClick={() => titleChangeSubmit(mainDraft.id)}>Submit</button>
                 : <button type="button" onClick={() => startEdit(mainDraft.id)}>Edit</button>}
               <button type="button" onClick={() => goToDelete(mainDraft.id)}>Delete</button>

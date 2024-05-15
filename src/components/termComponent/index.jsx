@@ -2,6 +2,7 @@
 /* eslint-disable import/no-named-as-default */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from 'react';
+import { useDrop } from 'react-dnd';
 import CourseComponent from '../courseComponent';
 import './index.css';
 
@@ -18,6 +19,7 @@ const TermComponent = (props) => {
   const [onTerm, setOnTerm] = useState(true);
   const [offEdit, setOffEdit] = useState(false);
   const [offTermComment, setOffTermComment] = useState('');
+  const [termKey, setTermKey] = useState('');
   const inPlan = true;
 
   const textRef = useRef();
@@ -26,6 +28,7 @@ const TermComponent = (props) => {
     setCourses(props.courses);
     setTermID(props.termID);
     setTermName(props.termName);
+    setTermKey(props.termKey);
   }, []);
 
   const courseNameFunction = (event) => {
@@ -40,6 +43,22 @@ const TermComponent = (props) => {
   const delCourse = (courseId) => {
     props.delCourse(props.termID, courseId);
   };
+
+  const [{ isOver }, drop] = useDrop(() => ({
+    accept: 'COURSE',
+    drop: (item, monitor) => {
+      // Handle drop event here
+      const draggedIndex = item.id;
+      const targetIndex = props.termID;
+      console.log('Dropped item:', item);
+      // props.addCourse(props.termID, item.course.name);
+      console.log(`termID: ${props.termID}, termKey: ${item.initialTerm}, courseName: ${item.course.name}`);
+      props.dndDelete(props.termID, item.initialTerm, item.course.name);
+    },
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+    }),
+  }));
 
   // add course button
   const addCourse = (index) => {
@@ -60,6 +79,7 @@ const TermComponent = (props) => {
     allCourses = Object.entries(courses).map(([id, course]) => {
       return (
         <CourseComponent
+          termKey={termKey}
           course={course}
           location={inPlan}
           courseDistrib={course.distrib}
@@ -80,7 +100,7 @@ const TermComponent = (props) => {
         ? (
           <div className="term" style={{ border: props.isOver ? '3px solid orange' : '' }}>
             <button onClick={toggleOnOff} type="button">switch</button>
-            <div className="course-container">{allCourses}</div>
+            <div className="course-container" ref={drop}>{allCourses}</div>
             <div className="term-component-input">
               {editStatus ? (
                 <div className="add-class-block">

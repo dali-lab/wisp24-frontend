@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
+import { useDrag, DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import EditingDraft from './EditingTerm.jsx';
 import './Homepage.css';
 import {
@@ -12,6 +14,16 @@ const AddTerms = () => {
   const [selectedDraft, setSelectedDraft] = useState('');
   const [terms, setTerms] = useState([]); // list of terms
   const [newId, setNewId] = useState(); // Add new term with details from termData
+
+  const deleteDraft = (event, termID) => {
+    event.stopPropagation();
+    deleteTerm(termID);
+  };
+
+  const handleSelectedDraft = (termID) => { // for existing terms
+    setSelectedDraft(termID);
+    console.log('ID of selected Term', termID);
+  };
 
   // fetches user terms from data base
   useEffect(() => {
@@ -36,6 +48,38 @@ const AddTerms = () => {
     });
   }, []);
 
+  const Draft = ({ term, onDelete }) => {
+    const [{ isDragging }, drag] = useDrag({
+      type: 'TERM', // Define the drag type
+      item: {
+        type: 'TERM', termId: term.id, term, inPlan: false
+      }, // Pass the term data in the item
+      collect: (monitor) => ({
+        isDragging: !!monitor.isDragging(),
+      }),
+    });
+
+    return (
+      <div
+        ref={drag}
+        style={{ opacity: isDragging ? 0.5 : 1 }}
+        className="term-draft"
+      >
+        <div>{term.termName}</div>
+        <div className="term-draft-class-container" tabIndex={0} role="button" onClick={() => handleSelectedDraft(index)}>
+          {term.courses && term.courses.map((course) => {
+            return (
+              <div key={course.id} className="term-draft-class-wrapper">
+                <div className="term-draft-class">{course.name}</div>
+              </div>
+            );
+          })}
+        </div>
+        <button type="button" onClick={(event) => deleteDraft(event, term.id)}>Delete</button>
+      </div>
+    );
+  };
+
   const handleClick = (event) => { // for new terms
     event.preventDefault();
     addTerm({
@@ -48,11 +92,6 @@ const AddTerms = () => {
         console.log('selected draft id'.selectedDraft);
       }
     });
-  };
-
-  const handleSelectedDraft = (termID) => { // for existing terms
-    setSelectedDraft(termID);
-    console.log('ID of selected Term', termID);
   };
 
   const changeTermName = (newName) => {
@@ -94,49 +133,31 @@ const AddTerms = () => {
     // }
   };
 
-  const deleteDraft = (event, termID) => {
-    event.stopPropagation();
-    deleteTerm(termID);
-  };
-
   const AllDrafts = () => {
-    const alldrafts = terms.map((term, index) => {
-      return (
-        <div className="term-draft" tabIndex={0} role="button" key={term.termName}>
-          <div className="term-draft-content-container">
-            <div className="term-draft-content-container-name-specific" tabIndex={0} role="button" onClick={() => handleSelectedDraft(term.id)}>
-              <div className="term-draft-button-container"><button type="button" onClick={(event) => deleteDraft(event, term.id)}>Delete</button></div>
-              <div className="term-draft-name">{term.termName}</div>
-            </div>
-            <div className="term-draft-class-container" tabIndex={0} role="button" onClick={() => handleSelectedDraft(index)}>
-              {term.courses && term.courses.map((course) => {
-                return (
-                  <div key={course.id} className="term-draft-class-wrapper">
-                    <div className="term-draft-class">{course.name}</div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      );
-    });
-    return alldrafts;
+    return (
+      <div>
+        {terms.map((individualTerm) => (
+          <Draft onClick={() => setSelectedDraft(individualTerm.id)} key={individualTerm.id} term={individualTerm} onDelete={(event) => deleteDraft(event, individualTerm.id)} />
+        ))}
+      </div>
+    );
   };
 
   return (
-    <div className="add-terms">
-      <div className="term-draft-content-container-name">Add Terms</div>
-      <div className="term-draft-container">
-        {selectedDraft !== '' ? <EditingDraft handleSelectedDraft={handleSelectedDraft} drafts={terms} selectedDraft={selectedDraft} termSubmit={termSubmit} changeTermName={changeTermName} />
-          : (
-            <>
-              <div role="button" tabIndex={0} onClick={handleClick} className="term-draft-button"><p>Add Draft</p></div>
-              <AllDrafts />
-            </>
-          )}
+    <DndProvider backend={HTML5Backend}>
+      <div className="add-terms">
+        <div className="term-draft-content-container-name">Add Terms</div>
+        <div className="term-draft-container">
+          {selectedDraft !== '' ? <EditingDraft handleSelectedDraft={handleSelectedDraft} drafts={terms} selectedDraft={selectedDraft} termSubmit={termSubmit} changeTermName={changeTermName} />
+            : (
+              <>
+                <div role="button" tabIndex={0} onClick={handleClick} className="term-draft-button"><p>Add Draft</p></div>
+                <AllDrafts />
+              </>
+            )}
+        </div>
       </div>
-    </div>
+    </DndProvider>
   );
 };
 

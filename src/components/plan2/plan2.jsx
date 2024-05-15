@@ -11,11 +11,14 @@ import './Plan2.css';
 // <Plan2 mainDrafts={mainDrafts} mainDraftIndex={mainDraftIndex} />
 const Plan23 = (props) => {
   const [listOfTermNames, setListOfTermNames] = useState([]);
+  const [mainDraftIndex, setMainDraftIndex] = useState('');
+  console.log(listOfTermNames);
 
   useEffect(() => {
     if (props.mainDrafts && props.mainDraftIndex) {
       const draftWithMatchingID = props.mainDrafts.find((draft) => draft.id === props.mainDraftIndex);
       setListOfTermNames(draftWithMatchingID.list);
+      setMainDraftIndex(props.mainDraftIndex);
     } else {
       setListOfTermNames([]);
     }
@@ -59,11 +62,41 @@ const Plan23 = (props) => {
     updateDraftTerm(props.mainDraftIndex, updatedCourseList);
   };
 
+  const dndDelete = (index, initialIdx, courseName) => {
+    const newCourse = {
+      crn: 'COSC##',
+      distrib: 'TLA',
+      name: courseName,
+    };
+    const updatedCourseList = listOfTermNames.map((term, i) => {
+      if (index === i) {
+        const updatedCourses = [...term.courses, newCourse];
+        return { ...term, courses: updatedCourses };
+      } else {
+        return term;
+      }
+    });
+    console.log(updatedCourseList);
+    const updatedCourseList2 = updatedCourseList.map((term) => {
+      if (initialIdx === term.id) {
+        console.log(term);
+        const updatedCourses = term.courses.filter((course) => course.name !== courseName);
+        return { ...term, courses: updatedCourses };
+      } else {
+        return term;
+      }
+    });
+    console.log(updatedCourseList2);
+    setListOfTermNames(updatedCourseList2);
+    // Update the draft in the backend
+    updateDraftTerm(props.mainDraftIndex, updatedCourseList2);
+  };
+
   const TermCard = (props) => {
     const id = props.termID;
     const [{ isDragging }, drag, dragPreview] = useDrag(() => ({
       type: 'TERM',
-      item: { id }, // ADD THIS!!
+      item: { id, inPlan: true }, // ADD THIS!!
       collect: (monitor) => ({
         isDragging: monitor.isDragging(),
       }),
@@ -73,6 +106,8 @@ const Plan23 = (props) => {
       <div ref={dragPreview} style={{ opacity: isDragging ? 0.5 : 1 }}>
         <div ref={drag}>
           <TermComponent
+            termKey={props.termKey}
+            dndDelete={dndDelete}
             editStatus={props.editStatus}
             termName={props.termName || ''}
             courses={props.courses}
@@ -91,18 +126,37 @@ const Plan23 = (props) => {
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
       accept: 'TERM',
       drop: (item, monitor) => {
-        const draggedIndex = item.id; // THIS WAS NULL BEFORE!! Now references item: {id} in useDrag hook
-        const targetIndex = props.termID;
+        if (item.inPlan) {
+          console.log(item);
+          const draggedIndex = item.id; // THIS WAS NULL BEFORE!! Now references item: {id} in useDrag hook
+          const targetIndex = props.termID;
 
-        console.log('dragged index: ', draggedIndex, ' | target index: ', targetIndex);
+          console.log('dragged index: ', draggedIndex, ' | target index: ', targetIndex);
 
-        // Swap the terms in the list
-        const updatedTermNames = [...listOfTermNames];
-        const draggedTerm = updatedTermNames[draggedIndex];
-        updatedTermNames[draggedIndex] = updatedTermNames[targetIndex];
-        updatedTermNames[targetIndex] = draggedTerm;
+          // Swap the terms in the list
+          const updatedTermNames = [...listOfTermNames];
+          const draggedTerm = updatedTermNames[draggedIndex];
+          updatedTermNames[draggedIndex] = updatedTermNames[targetIndex];
+          updatedTermNames[targetIndex] = draggedTerm;
 
-        setListOfTermNames(updatedTermNames);
+          setListOfTermNames(updatedTermNames);
+          updateDraftTerm(mainDraftIndex, updatedTermNames);
+          console.log(`${mainDraftIndex}, ${updatedTermNames}`)
+        } else {
+          console.log(item);
+          const targetIndex = props.termID;
+          const updatedTermNames = [...listOfTermNames];
+
+          // type: 'TERM', termId: term.id, term, inPlan: false
+          updatedTermNames[targetIndex] = {
+            courses: item.term.courses,
+            id: item.termId,
+            termName: item.term.termName
+          };
+          setListOfTermNames(updatedTermNames);
+          console.log(updatedTermNames);
+          updateDraftTerm(mainDraftIndex, updatedTermNames);
+        }
       },
       collect: (monitor) => ({
         isOver: monitor.isOver(),
@@ -116,6 +170,7 @@ const Plan23 = (props) => {
         style={{ backgroundcolor: props.isOver ? 'rgba(0,0,0,1)' : '' }}
       >
         <TermCard
+          termKey={props.termKey}
           editStatus={props.editStatus}
           termName={props.termName || ''}
           courses={props.courses}
@@ -151,6 +206,7 @@ const Plan23 = (props) => {
                   editStatus={editStatus}
                   termID={0}
                   key={listOfTermNames[0]?.id}
+                  termKey={listOfTermNames[0]?.id}
                   addCourse={addCourse}
                   delCourse={delCourse}
                   edit={false}
@@ -162,6 +218,7 @@ const Plan23 = (props) => {
                   termID={1}
                   editStatus={editStatus}
                   key={listOfTermNames[1]?.id}
+                  termKey={listOfTermNames[1]?.id}
                   addCourse={addCourse}
                   delCourse={delCourse}
                   edit={false}
@@ -172,6 +229,7 @@ const Plan23 = (props) => {
                 termID={2}
                 editStatus={editStatus}
                 key={listOfTermNames[2]?.id}
+                termKey={listOfTermNames[2]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
@@ -182,6 +240,7 @@ const Plan23 = (props) => {
                 termID={3}
                 editStatus={editStatus}
                 key={listOfTermNames[3]?.id}
+                termKey={listOfTermNames[3]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
@@ -194,7 +253,8 @@ const Plan23 = (props) => {
                 courses={listOfTermNames[4]?.courses}
                 termID={4}
                 editStatus={editStatus}
-                key={listOfTermNames[3]?.id}
+                key={listOfTermNames[4]?.id}
+                termKey={listOfTermNames[4]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
@@ -205,6 +265,7 @@ const Plan23 = (props) => {
                 termID={5}
                 editStatus={editStatus}
                 key={listOfTermNames[5]?.id}
+                termKey={listOfTermNames[5]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
@@ -215,6 +276,7 @@ const Plan23 = (props) => {
                 editStatus={editStatus}
                 termID={6}
                 key={listOfTermNames[6]?.id}
+                termKey={listOfTermNames[6]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
@@ -225,6 +287,7 @@ const Plan23 = (props) => {
                 termID={7}
                 editStatus={editStatus}
                 key={listOfTermNames[7]?.id}
+                termKey={listOfTermNames[7]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
@@ -238,6 +301,7 @@ const Plan23 = (props) => {
                 termID={8}
                 editStatus={editStatus}
                 key={listOfTermNames[8]?.id}
+                termKey={listOfTermNames[8]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
@@ -248,6 +312,7 @@ const Plan23 = (props) => {
                 termID={9}
                 editStatus={editStatus}
                 key={listOfTermNames[9]?.id}
+                termKey={listOfTermNames[9]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
@@ -258,6 +323,7 @@ const Plan23 = (props) => {
                 termID={10}
                 editStatus={editStatus}
                 key={listOfTermNames[10]?.id}
+                termKey={listOfTermNames[10]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
@@ -268,6 +334,7 @@ const Plan23 = (props) => {
                 termID={11}
                 editStatus={editStatus}
                 key={listOfTermNames[11]?.id}
+                termKey={listOfTermNames[11]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
@@ -281,6 +348,7 @@ const Plan23 = (props) => {
                 termID={12}
                 editStatus={editStatus}
                 key={listOfTermNames[12]?.id}
+                termKey={listOfTermNames[12]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
@@ -291,6 +359,7 @@ const Plan23 = (props) => {
                 termID={13}
                 editStatus={editStatus}
                 key={listOfTermNames[13]?.id}
+                termKey={listOfTermNames[13]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
@@ -301,6 +370,7 @@ const Plan23 = (props) => {
                 termID={14}
                 editStatus={editStatus}
                 key={listOfTermNames[14]?.id}
+                termKey={listOfTermNames[14]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
@@ -311,6 +381,7 @@ const Plan23 = (props) => {
                 termID={15}
                 editStatus={editStatus}
                 key={listOfTermNames[15]?.id}
+                termKey={listOfTermNames[15]?.id}
                 addCourse={addCourse}
                 delCourse={delCourse}
                 edit={false}
