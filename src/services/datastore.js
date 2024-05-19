@@ -240,7 +240,13 @@ export function addNewCourse(courseID, courseName, courseDistrib, courseNRO, cou
     id: courseID
   });
 }
-
+export function addNewCourseInTerm(termID, course) {
+  const courseRef = push(ref(db, 'Terms/' + termID + '/courses'));
+  set(courseRef, {
+    id: courseRef.key,
+    name: course,
+  });
+}
 // export function addNewCourse(courseName, courseDistrib, courseNRO, coursePrereq, courseColor, courseCRN) {
 //   push(ref(db, 'course/'), {
 //     name: courseName,

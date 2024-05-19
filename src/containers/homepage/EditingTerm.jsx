@@ -119,7 +119,7 @@ const EditingDraft = (props) => {
         return (
           <div key={classItem}>
             {/* <div>{classItem.name}</div> */}
-            <CourseComponent name={classItem.name} termID={selectedDraft} courseID={classItem.id} isTerm={true} />
+            <CourseComponent name={classItem.name} termID={selectedDraft} courseID={classItem.id} />
             {console.log('class item id', classItem)}
             {/* <button type="button" onClick={() => deleteClass(classItem.id)}>Delete Class</button> */}
           </div>
