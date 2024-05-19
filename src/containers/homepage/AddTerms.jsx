@@ -66,7 +66,7 @@ const AddTerms = () => {
         className="term-draft"
       >
         <div>{term.termName}</div>
-        <div className="term-draft-class-container" tabIndex={0} role="button" onClick={() => handleSelectedDraft(index)}>
+        <div className="term-draft-class-container" tabIndex={0} role="button" onClick={() => handleSelectedDraft(term.id)}>
           {term.courses && term.courses.map((course) => {
             return (
               <div key={course.id} className="term-draft-class-wrapper">

@@ -23,20 +23,24 @@ const TermComponent = (props) => {
   const inPlan = true;
 
   const textRef = useRef();
+  console.log(props);
 
   useEffect(() => {
     setCourses(props.courses);
     setTermID(props.termID);
     setTermName(props.termName);
     setTermKey(props.termKey);
-  }, []);
+    setOnTerm(props.onTerm);
+    setOffTermComment(props.comment);
+  }, [props]);
 
   const courseNameFunction = (event) => {
     setCourseName(event.target.value);
   };
 
-  const offTermSubmit = () => {
+  const offTermSubmit = (index) => {
     setOffTermComment(textRef.current.value);
+    props.addComment(index, textRef.current.value);
     setOffEdit(!offEdit);
   };
 
@@ -66,7 +70,9 @@ const TermComponent = (props) => {
     setCourseName('');
   };
 
-  const toggleOnOff = () => {
+  const toggleOnOff = (index) => {
+    props.toggleOnOff2(index);
+    console.log(props.comment);
     setOnTerm(!onTerm);
   };
 
@@ -99,7 +105,7 @@ const TermComponent = (props) => {
       {onTerm
         ? (
           <div className="term" style={{ border: props.isOver ? '3px solid orange' : '' }}>
-            <button onClick={toggleOnOff} type="button">switch</button>
+            <button onClick={() => toggleOnOff(termID)} type="button">switch</button>
             <div className="course-container" ref={drop}>{allCourses}</div>
             <div className="term-component-input">
               {editStatus ? (
@@ -116,14 +122,14 @@ const TermComponent = (props) => {
             {offEdit
               ? (
                 <>
-                  <button onClick={toggleOnOff} type="button">switch</button>
+                  <button onClick={() => toggleOnOff(termID)} type="button">switch</button>
                   <textarea ref={textRef} />
-                  <button onClick={offTermSubmit} type="button">submit</button>
+                  <button onClick={() => offTermSubmit(termID)} type="button">submit</button>
                 </>
               )
               : (
                 <div>
-                  <button onClick={toggleOnOff} type="button">switch</button>
+                  <button onClick={() => toggleOnOff(termID)} type="button">switch</button>
                   <p>{offTermComment}</p>
                   <button type="button" onClick={editToggle}>edit</button>
                 </div>
