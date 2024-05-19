@@ -26,39 +26,6 @@ const TermBuilderComponent = () => {
     setOnTerm(!onTerm);
   };
 
-  // const [termID, setTermID] = useState(0);
-  // const [listOfTermIDs, setListOfTermIDs] = useState([]);
-  // const [termName, setTermName] = useState('');
-  // // const [listOfTerms, setListofTerms] = useState([]);
-  // // const [counter, setCounter] = useState(0);
-
-  // // when you click the "create term or save term" button
-  // // confused here can i make a static variable?
-  // const createNewTerm = () => {
-  //   temp = listOfTermIDs.append(termID);
-  //   setListOfTermIDs(temp);
-  // const newTerm = {
-  //     termName: newTerm.termName, //is this right
-  //     termID: counter,
-  //     courses: newTerm.courses
-  //     editTerm:false;
-  //     del: false;
-  //   //   };
-
-  //   // setCounter(counter+1);
-  //   return newTerm;
-  // };
-
-  // // typing term name
-  // const termNameFunction = (event) => {
-  //   setTermName(event.target.value);
-  // };
-
-  // // click delete term button
-  // const delTerm = (id) => {
-  //   setListOfTermIDs(listOfTermIDs.filter((i) => i.termID !== id));
-  // };
-
   let allTerms = '';
   if (listOfTermNames.length !== 0) {
     allTerms = Object.entries(listOfTermNames).map(([id, term]) => {

@@ -33,12 +33,23 @@ const Homepage = () => {
       }
     });
   }, [getAllDrafts]);
-  console.log(mainDrafts);
+
+  useEffect(() => {
+    if (mainDrafts) {
+      if (mainDraftIndex === 0) {
+        if (mainDrafts[0] && mainDrafts[0].id) {
+          setMainDraftIndex(mainDrafts[0].id);
+        }
+      }
+    }
+  }, [mainDrafts]);
 
   const addDraft = () => {
-    /* event.preventDefault();
-    setMainDrafts([...mainDrafts, { draftTitle: `maindraft${mainDrafts.length + 1}`}]); */
-    addNewDraft(`maindraft${mainDrafts.length + 1}`, []);
+    if (mainDrafts.length < 4) {
+      addNewDraft(`maindraft${mainDrafts.length + 1}`);
+    } else {
+      alert('maximum number of drafts');
+    }
   };
 
   const selectMainDraft = (id) => {
@@ -50,6 +61,10 @@ const Homepage = () => {
   };
 
   const deleteDraft = () => {
+    if (deletingIndex === mainDraftIndex) {
+      const otherDraftIndex = (mainDraftIndex === 0) ? 1 : 0; // For example, select the first draft as an alternative
+      setMainDraftIndex(otherDraftIndex);
+    }
     delDraft(deletingIndex);
   };
 
@@ -78,7 +93,6 @@ const Homepage = () => {
   };
 
   const MainDraftTab = () => {
-    console.log(mainDrafts);
     return (
       <div className="tab-container">
         {mainDrafts && Array.isArray(mainDrafts) && mainDrafts.map((mainDraft) => {
@@ -90,7 +104,7 @@ const Homepage = () => {
                 : 'nonselectedDraft'}`}
               key={mainDraft.id}
             >
-              <div>{editingIndex === mainDraft.id ? <input type="text" ref={inputRef} /> : mainDraft.name}</div>
+              <div className="tab-name">{editingIndex === mainDraft.id ? <input type="text" ref={inputRef} /> : mainDraft.name}</div>
               {editingIndex === mainDraft.id ? <button type="button" onClick={() => titleChangeSubmit(mainDraft.id)}>Submit</button>
                 : <button type="button" onClick={() => startEdit(mainDraft.id)}>Edit</button>}
               <button type="button" onClick={() => goToDelete(mainDraft.id)}>Delete</button>
@@ -109,7 +123,7 @@ const Homepage = () => {
         <MainDraftTab />
         <div className="plan-container2">
           <ProgressTracker />
-          <Plan2 />
+          <Plan2 mainDrafts={mainDrafts} mainDraftIndex={mainDraftIndex} />
         </div>
       </div>
       <div className="homepage-right-container">

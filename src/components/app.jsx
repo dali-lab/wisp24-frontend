@@ -16,7 +16,6 @@ import Test from '../containers/authentication/signOutPanel';
 import Homepage from '../containers/homepage/Homepage';
 import Feed from '../containers/feed/feed';
 import Navbar from './navbar/Navbar';
-import Plan23 from './plan2/plan2.jsx';
 import FriendsPage from '../containers/friendPage/FriendsPage';
 import RequestsPage from '../containers/friendPage/RequestsPage';
 import FollowingPage from '../containers/friendPage/FollowingPage';
@@ -58,7 +57,6 @@ const App = () => {
           <Route exact path="/home" component={Homepage} />
           <Route path="/admin" component={requireAuth(AdminPanel, SignInPanel)} />
           <Route exact path="/profile" component={Profile} />
-          <Route exact path="/plan23" component={Plan23} />
           <Route exact path="/friends" component={FriendsPage} />
           <Route exact path="/following" component={FollowingPage} />
           <Route exact path="/adduser" component={AddUser} />

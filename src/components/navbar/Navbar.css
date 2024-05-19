@@ -12,12 +12,16 @@
     align-items: center;
     padding-left: 20px;
     padding-right: 20px;
-    height: 45px;
+    height: 30px;
     border-bottom: 2px solid black;
     background: var(--green);
     z-index: 1;
     text-decoration: none;
     width:100vw;
+}
+
+.toggle-username {
+    display: flex;
 }
 
 .navbar-right {
