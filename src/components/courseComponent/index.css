@@ -1,7 +1,7 @@
 .term {
     border: 2px solid rgb(0,0,20);
     margin: 15px;
-    background-color: rgb(141, 191, 147);
+    background-color: var(--color0);
     font-family: gill sans;
     font-weight: 600;
     justify-content: center;
@@ -17,7 +17,7 @@
 .termbuilder {
     border: 2px solid rgb(6, 40, 22);
     margin: 15px;
-    background-color: rgb(230, 243, 233);
+    background-color: var(--color1);
     font-family: gill sans;
     font-weight: 600;
     justify-content: center;
@@ -40,7 +40,7 @@
     flex-direction: row;
     margin-left: 10px;
     margin-right: 10px;
-    background-color: rgb(223, 148, 148);
+    background-color: var(--track0);
     font-family: gill sans;
     font-weight: 600;
     justify-content: space-around;

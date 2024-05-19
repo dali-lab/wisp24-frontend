@@ -121,7 +121,7 @@
 
 .potential-class-add {
     border: 2px solid black;
-    background-color: var(--green);
+    background-color: var(--color0);
     padding: 6px;
     border-radius: 10px; 
 }
@@ -215,7 +215,7 @@
     border-radius: 0 0 10px 10px;
     width: 100%;
     height: 100%;
-    background-color: var(--lightgreen);
+    background-color: var(--color1);
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 15px;
@@ -224,7 +224,6 @@
 
 .progressTracker-container {
     height: 15%;
-    padding: 10px;
 }
 
 .major-edit-toggle {
@@ -266,7 +265,7 @@
     border-radius: 10px;
     width: 100%;
     height: 100%;
-    background-color: var(--lightgreen);
+    background-color: var(--color1);
     margin-top: 7px;
     overflow: scroll;
 }
@@ -276,7 +275,7 @@
     border-radius: 10px;
     width: 100%;
     height: 80%;
-    background-color: var(--lightgreen);
+    background-color: var(--color1);
     margin-bottom: 7px;
 }
 
@@ -287,7 +286,7 @@
     align-items: center;
     height: 15%;
     border-bottom: 2px solid black;
-    background-color: var(--green);
+    background-color: var(--color0);
     font-size: 25px;
 }
 
@@ -298,7 +297,7 @@
     align-items: center;
     height: 15%;
     border-bottom: 2px solid black;
-    background-color: var(--green);
+    background-color: var(--color0);
     font-size: 25px;
 }
 
@@ -350,11 +349,11 @@
 }
 
 .selectedDraft {
-    background-color: var(--lightgreen);
+    background-color: var(--color1);
 }
 
 .nonselectedDraft {
-    background-color: var(--green);
+    background-color: var(--color0);
 }
 
 .add-terms-title {
@@ -365,10 +364,47 @@
     height: 15%;
     width: 100%;
     border-bottom: 2px solid black;
-    background-color: var(--green);
+    background-color: var(--color0);
     font-size: 25px;
 }
 
 .tab-name {
     font-size: 0.8rem;
+}
+
+.color-picker-container2 {
+    margin-left: 78%;
+    display: flex;
+    overflow: visible;
+}
+
+.color-all2 {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 5px;
+    border: 2px solid black;
+    z-index: 1000;
+}
+
+.track-color-picker {
+    position: absolute;
+    left: 30%;
+    height: 50%;
+}
+
+.track-button {
+    border: none;
+    background-color: inherit;
+}
+
+.track0 {
+    background-color: var(--track0);
+}
+.track1 {
+    background-color: var(--track1);
+}
+.track2 {
+    background-color: var(--track2);
 }
