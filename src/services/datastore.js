@@ -161,6 +161,40 @@ export function deleteTerm(termID) {
 
 // *********** USERS / FRIENDS ***********
 
+export function addUser(userID, input) {
+  const reference = ref(db, 'users/' + userID);
+  push(reference, {
+    id: input.id,
+    name: input.name,
+    year: input.year,
+    major: input.major,
+    minor: input.minor,
+    netid: input.netid,
+    bio: input.bio,
+    planid: input.planid,
+  });
+}
+export function getUserData(userId) {
+  const userRef = ref(db, `users/${userId}`);
+  return new Promise((resolve, reject) => {
+    onValue(userRef, (snapshot) => {
+      const userData = snapshot.val();
+      if (userData) {
+        resolve(userData);
+      } else {
+        reject(new Error('No user found with this ID'));
+      }
+    }, {
+      onlyOnce: true
+    });
+  });
+}
+
+export function updateUserData(userId, data) {
+  const userRef = ref(db, `users/${userId}`);
+  return update(userRef, data);
+}
+
 // delete user
 export const removeUserData = (userId) => {
   const userRef = ref(db, `users/${userId}`);
@@ -222,7 +256,6 @@ export const fetchAllUsers = () => {
     });
   });
 };
-// CRUD, create, read, update, delete
 
 // ************* COURSES ****************
 // read
@@ -298,12 +331,4 @@ export function updateCourse(newName, newNRO, newColor, newCRN) {
   update(ref(db, 'course/'), {
     name: newName,
   });
-}
-
-export function getUserData() {
-  // fill in later!
-}
-
-export function updateUserData() {
-  // fill in later!
 }
