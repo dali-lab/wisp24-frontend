@@ -2,9 +2,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import {
-  getAllCourses, addNewCourseInTerm, deleteCourse, updateCourse, getTerm, getCourseByTerm,
-  addTerm,
-  updateTermName
+  getAllCourses, addNewCourse, deleteCourse, updateCourse, getTerm, getCourseByTerm,
+  addTerm, addNewCourseInTerm,
+  updateTermName,
+  deleteCourseInTerm
 } from '../../services/datastore';
 import CourseComponent from '../../components/courseComponent';
 
@@ -94,7 +95,7 @@ const EditingDraft = (props) => {
     }
   };
   const deleteClass = (id) => {
-    deleteCourse(selectedDraft, id);
+    deleteCourseInTerm(selectedDraft, id);
   };
 
   console.log('current name editing stat', nameEditingState);

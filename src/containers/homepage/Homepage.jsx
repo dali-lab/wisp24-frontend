@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
-import Plan2 from '../../components/plan2/Plan2.jsx';
+import Plan2 from '../../components/plan2/plan2.jsx';
 import PotentialClass from './PotentialClass.jsx';
 import AddTerms from './AddTerms.jsx';
+import Delete from '../../components/delete/Delete.jsx';
 import './Homepage.css';
 import ProgressTracker from './ProgressTracker.jsx';
 import {
@@ -13,6 +14,8 @@ const Homepage = () => {
   const inputRef = useRef();
   const [editingIndex, setEditingIndex] = useState('');
   const [mainDraftIndex, setMainDraftIndex] = useState(0);
+  const [popup, setPopup] = useState(false);
+  const [deletingIndex, setDeletingIndex] = useState('');
 
   useEffect(() => {
     getAllDrafts((draftsList) => {
@@ -30,21 +33,46 @@ const Homepage = () => {
       }
     });
   }, [getAllDrafts]);
-  console.log(mainDrafts);
+
+  useEffect(() => {
+    if (mainDrafts) {
+      if (mainDraftIndex === 0) {
+        if (mainDrafts[0] && mainDrafts[0].id) {
+          setMainDraftIndex(mainDrafts[0].id);
+        }
+      }
+    }
+  }, [mainDrafts]);
 
   const addDraft = () => {
-    /* event.preventDefault();
-    setMainDrafts([...mainDrafts, { draftTitle: `maindraft${mainDrafts.length + 1}`}]); */
-    addNewDraft(`maindraft${mainDrafts.length + 1}`, []);
+    if (mainDrafts.length < 4) {
+      addNewDraft(`maindraft${mainDrafts.length + 1}`);
+    } else {
+      alert('maximum number of drafts');
+    }
   };
 
   const selectMainDraft = (id) => {
     setMainDraftIndex(id);
   };
 
-  const deleteDraft = (id) => {
-    delDraft(id);
+  const togglePopup = () => {
+    setPopup(!popup);
   };
+
+  const deleteDraft = () => {
+    if (deletingIndex === mainDraftIndex) {
+      const otherDraftIndex = (mainDraftIndex === 0) ? 1 : 0; // For example, select the first draft as an alternative
+      setMainDraftIndex(otherDraftIndex);
+    }
+    delDraft(deletingIndex);
+  };
+
+  const goToDelete = (id) => {
+    togglePopup();
+    setDeletingIndex(id);
+  };
+
   const startEdit = (index) => {
     setEditingIndex(index);
   };
@@ -65,7 +93,6 @@ const Homepage = () => {
   };
 
   const MainDraftTab = () => {
-    console.log(mainDrafts);
     return (
       <div className="tab-container">
         {mainDrafts && Array.isArray(mainDrafts) && mainDrafts.map((mainDraft) => {
@@ -77,10 +104,10 @@ const Homepage = () => {
                 : 'nonselectedDraft'}`}
               key={mainDraft.id}
             >
-              <div>{editingIndex === mainDraft.id ? <input type="text" ref={inputRef} /> : mainDraft.name}</div>
+              <div className="tab-name">{editingIndex === mainDraft.id ? <input type="text" ref={inputRef} /> : mainDraft.name}</div>
               {editingIndex === mainDraft.id ? <button type="button" onClick={() => titleChangeSubmit(mainDraft.id)}>Submit</button>
                 : <button type="button" onClick={() => startEdit(mainDraft.id)}>Edit</button>}
-              <button type="button" onClick={() => deleteDraft(mainDraft.id)}>Delete</button>
+              <button type="button" onClick={() => goToDelete(mainDraft.id)}>Delete</button>
             </div>
           );
         })}
@@ -91,11 +118,12 @@ const Homepage = () => {
 
   return (
     <div className="homepage-main-container">
+      {popup && <Delete togglePopup={togglePopup} deleteDraft={deleteDraft} />}
       <div className="homepage-left-container">
         <MainDraftTab />
-        <div className="plan-container">
+        <div className="plan-container2">
           <ProgressTracker />
-          <Plan2 />
+          <Plan2 mainDrafts={mainDrafts} mainDraftIndex={mainDraftIndex} />
         </div>
       </div>
       <div className="homepage-right-container">
