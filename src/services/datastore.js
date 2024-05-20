@@ -117,19 +117,38 @@ export function deleteTerm(draftID) {
 
 // *********** USERS / FRIENDS ***********
 
-export function addUser(userID, input) {
-  const reference = ref(db, 'users/' + userID);
-  push(reference, {
-    id: input.id,
-    name: input.name,
-    year: input.year,
-    major: input.major,
-    minor: input.minor,
-    netid: input.netid,
-    bio: input.bio,
-    planid: input.planid,
-  });
+// export function addUser(userID, input) {
+//   const reference = ref(db, 'users/' + userID);
+//   push(reference, {
+//     id: input.id,
+//     name: input.name,
+//     year: input.year,
+//     major: input.major,
+//     minor: input.minor,
+//     netid: input.netid,
+//     bio: input.bio,
+//     planid: input.planid,
+//   });
+// }
+
+export function updateUserData(userID, input) {
+  let userRef = ref(db, `users/${userID}`);
+  if (!userRef) {
+    userRef = ref(db, 'users/' + userID);
+    push(userRef, {
+      id: input.id,
+      name: input.name,
+      year: input.year,
+      major: input.major,
+      minor: input.minor,
+      bio: input.bio,
+      planid: input.planid,
+    });
+  }
+  console.log(input.name);
+  return update(userRef, input);
 }
+
 export function getUserData(userId) {
   const userRef = ref(db, `users/${userId}`);
   return new Promise((resolve, reject) => {
@@ -144,11 +163,6 @@ export function getUserData(userId) {
       onlyOnce: true
     });
   });
-}
-
-export function updateUserData(userId, data) {
-  const userRef = ref(db, `users/${userId}`);
-  return update(userRef, data);
 }
 
 // delete user

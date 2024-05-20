@@ -3,7 +3,7 @@ import React from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import { useHistory } from 'react-router-dom';
 import { getAuth, GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
-import { addUser } from '../../../services/datastore';
+import { updateUserData } from '../../../services/datastore';
 
 const SignUpPanel = () => {
   const history = useHistory();
@@ -11,23 +11,27 @@ const SignUpPanel = () => {
 
   const handleSuccess = async (response) => {
     const credential = GoogleAuthProvider.credential(response.credential);
+    console.log(response);
     try {
       const result = await signInWithCredential(auth, credential);
-      const { user } = result;
+      console.log(result);
 
-      if (result.additionalUserInfo.isNewUser) {
+      if (result.user.uid) {
         const newUser = {
-          id: user.uid,
-          name: user.displayName,
-          email: user.email,
-          profilePic: user.photoURL,
+          id: result.user.uid,
+          name: result.user.displayName,
+          year: '',
+          major: '',
+          minor: '',
+          bio: '',
+          planid: '',
         };
 
-        await addUser(user.uid, newUser);
-        console.log('New user added:', user.displayName);
+        await updateUserData(result.user.uid, newUser);
+        console.log('New user added:', result.displayName);
       }
 
-      console.log('Login Success:', user.displayName);
+      console.log('Login Success:', result.displayName);
       history.push('/home');
     } catch (error) {
       console.error('Firebase auth error:', error);
