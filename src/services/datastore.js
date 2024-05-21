@@ -110,8 +110,8 @@ export function addTermToDraft(termID, input) {
   });
 }
 
-export function getTerm(TermID, callback = () => {}) {
-  const drafRef = ref(db, 'Terms/' + TermID);
+export function getTerm(termID, callback = () => {}) {
+  const drafRef = ref(db, 'Terms/' + termID);
   onValue(drafRef, (snapshot) => {
     const draft = snapshot.val(); // gets the snapshot of the data
     callback(draft); // return data to the caller
@@ -147,15 +147,6 @@ export function updateTermName(id, newName) {
   }).then(() => { // Log on success
   }).catch((error) => {
     console.error('Failed to update term name:', error);
-  });
-}
-
-// update a term draft with new name and list of classes
-export function updateTerm(id, data) {
-  const drafRef = ref(db, 'drafts/' + id);
-  update(drafRef, {
-    draftName: data.draftName,
-    classList: data.classList,
   });
 }
 
@@ -313,26 +304,8 @@ export function addNewCourse(courseName, courseDistrib, courseNRO, coursePrereq,
     prereq: coursePrereq,
     color: courseColor,
     crn: courseCRN,
-    id: courseID
   });
 }
-export function addNewCourseInTerm(termID, course) {
-  const courseRef = push(ref(db, 'Terms/' + termID + '/courses'));
-  set(courseRef, {
-    id: courseRef.key,
-    name: course,
-  });
-}
-// export function addNewCourse(courseName, courseDistrib, courseNRO, coursePrereq, courseColor, courseCRN) {
-//   push(ref(db, 'course/'), {
-//     name: courseName,
-//     distrib: courseDistrib,
-//     nro: courseNRO,
-//     prereq: coursePrereq,
-//     color: courseColor,
-//     crn: courseCRN,
-//   });
-// }
 
 export function addNewCourseInTerm(termID, course) {
   const coursesRef = push(ref(db, 'Terms/' + termID + '/courses'));
@@ -357,5 +330,14 @@ export function deleteCourse(deleteId) {
 export function updateCourse(newName, newNRO, newColor, newCRN) {
   update(ref(db, 'course/'), {
     name: newName,
+  });
+}
+
+/* FEED PAGE TERM + SHARE FIREBASE FUNCTIONS */
+export function getAllFeedUsers(callback = () => {}) {
+  const draftRef = ref(db, 'Feed_Users/');
+  onValue(draftRef, (snapshot) => {
+    const posts = snapshot.val();
+    callback(posts);
   });
 }

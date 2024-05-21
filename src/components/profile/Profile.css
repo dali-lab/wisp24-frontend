@@ -11,6 +11,45 @@
   padding-top: 50px;  
 }
 
+.color-picker-container {
+  display: flex;
+}
+
+.color-sample0 {
+  background-color: var(--color0);
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 7px;
+  padding-right: 7px;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
+.color-all {
+  display: flex;
+  margin: auto;
+}
+
+.color-sample1 {
+  background-color: var(--color1);
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 7px;
+  padding-right: 7px;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
+.color-sample2 {
+  background-color: var(--color2);
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 7px;
+  padding-right: 7px;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
 .profile-container.open {
   display: block;
 }
@@ -21,7 +60,7 @@
   display: flex;
   flex-direction: column;
   left: 0;
-  background-color: var(--green);
+  background-color: var(--color0);
   margin: 0 0;  
   padding: 0px;
   width: 30%;  
@@ -42,7 +81,7 @@
 .toggle-profile-btn:before {
   content: '☰'; 
   font-size: 24px;  
-  color: var(--green); 
+  color: var(--color0); 
 }
 
  
@@ -56,7 +95,7 @@
 }
 
 .profile-tags .tag {
-  background-color: var(--light-green);  
+  background-color: var(--color1);  
   border-radius: 5px;
   padding: 5px;
   margin-right: 5px;  
@@ -71,7 +110,7 @@
 }
 
 .profile-tags button {
-  background-color: var(--green);  
+  background-color: var(--color0);  
   border: none;
   border-radius: 5px;
   padding: 5px 10px;
@@ -84,7 +123,6 @@
 }
 
 .profile-tags .tag {
-   
   color: #333;  
 }
  

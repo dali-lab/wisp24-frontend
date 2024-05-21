@@ -1,40 +1,28 @@
-import React, { useState } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from 'react';
 import 'reactjs-popup/dist/index.css';
+import { getAllDrafts, getAllFeedUsers } from '../../services/datastore';
 import './feed.css';
 import Post from './post';
 import Filter from './feedFilter';
 import Sort from './sort';
 
 const Feed = () => {
-  const [users, setUsers] = useState([
-    {
-      id: 1,
-      name: 'joyce',
-      likes: 0,
-      follow: false,
-      caption: 'click follow and add me as friend!',
-      profile: '/assets/profile.png',
-      tags: ['computer science', '2027', 'wispee'],
-    },
-    {
-      id: 2,
-      name: 'john smith',
-      likes: 0,
-      follow: false,
-      caption: 'i have a very basic name',
-      profile: '/assets/profile.png',
-      tags: ['math', '2024', 'government'],
-    },
-    {
-      id: 3,
-      name: 'You',
-      likes: 10000,
-      follow: false,
-      caption: 'this is your profile',
-      profile: '/assets/profile.png',
-      tags: ['computer science', '2027', 'wispee'],
-    }
-  ]);
+  const [plans, setPlans] = useState([]);
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    getAllFeedUsers((getPost) => {
+      if (getPost) {
+        const postArray = Object.keys(getPost).map((key) => ( // creates a object for each user information
+          {
+            id: key,
+            ...getPost[key],
+          }
+        ));
+        setUsers(postArray);
+      }
+    });
+  }, []);
 
   // these handle functions below will setUsers with new updated array
   // how to do user identifcation on who is liking or disliking
@@ -51,6 +39,7 @@ const Feed = () => {
     <div className="feed-root">
       {/* buttons */}
       <Sort />
+      {/* send information by user, once user data structure is completed */}
       <div className="post-container">
         <Post
           users={users}
