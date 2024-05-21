@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Friend from '../../components/friend/Friend';
 import './AddUserPage.css';
 import FriendsNav from './FriendsNav';
@@ -31,7 +32,16 @@ const AddUserPage = () => {
     }
     if (usersData.length > 0) {
       return usersData.map((friendData) => (
-        <Friend key={friendData.id} friendData={friendData} />
+        <Link
+          key={friendData.id}
+          to={{
+            pathname: `/profile/${friendData.id}`,
+            state: { friendData }
+          }}
+          className="friend-link"
+        >
+          <Friend friendData={friendData} />
+        </Link>
       ));
     }
     return <p>No users found.</p>;

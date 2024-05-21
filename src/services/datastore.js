@@ -199,7 +199,7 @@ export function addFollower(userId, followerId) {
 }
 
 export function removeFollower(userId, followerId) {
-  remove(ref(db, `users/${userId}/followers/${followerId}`));
+  return remove(ref(db, `users/${userId}/followers/${followerId}`));
 }
 
 export function addFollowing(userId, followingId) {
