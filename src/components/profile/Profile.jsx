@@ -7,7 +7,9 @@ const Profile = ({ userId, open, handleClose }) => {
 
   useEffect(() => {
     if (userId) {
-      getUserData(userId).then(setProfile).catch(console.error);
+      getUserData(userId)
+        .then(setProfile)
+        .catch(console.error);
     }
   }, [userId]);
 

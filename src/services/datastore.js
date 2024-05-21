@@ -131,22 +131,45 @@ export function deleteTerm(draftID) {
 //   });
 // }
 
-export function updateUserData(userID, input) {
-  let userRef = ref(db, `users/${userID}`);
-  if (!userRef) {
-    userRef = ref(db, 'users/' + userID);
-    push(userRef, {
-      id: input.id,
-      name: input.name,
-      year: input.year,
-      major: input.major,
-      minor: input.minor,
-      bio: input.bio,
-      planid: input.planid,
-    });
-  }
-  console.log(input.name);
-  return update(userRef, input);
+// export function updateUserData(userID, input) {
+//   let userRef = ref(db, `users/${userID}`);
+//   if (!userRef) {
+//     userRef = ref(db, 'users/' + userID);
+//     push(userRef, {
+//       id: input.id,
+//       name: input.name,
+//       year: input.year,
+//       major: input.major,
+//       minor: input.minor,
+//       bio: input.bio,
+//       planid: input.planid,
+//     });
+//   }
+//   console.log(input.name);
+//   return update(userRef, input);
+// }
+
+export function updateUserData(userId, input) {
+  const userRef = ref(db, `users/${userId}`);
+  return get(userRef).then((snapshot) => {
+    if (!snapshot.exists()) {
+      // If user doesn't exist, create a new one
+      return push(userRef, {
+        id: input.id,
+        name: input.name,
+        year: input.year,
+        major: input.major,
+        minor: input.minor,
+        bio: input.bio,
+        planid: input.planid,
+      });
+    } else {
+      // If user exists, update their data
+      return update(userRef, input);
+    }
+  }).catch((error) => {
+    console.error('Error updating or setting user data:', error);
+  });
 }
 
 export function getUserData(userId) {
@@ -171,40 +194,20 @@ export const removeUserData = (userId) => {
   return remove(userRef);
 };
 
-// needed?
-export function addFriend(userId, friendId) {
-  push(ref(db, `friends/${userId}/${friendId}`), true);
-}
-
-// needed?
-export function removeFriend(userId, friendId) {
-  remove(ref(db, `friends/${userId}/${friendId}`));
-}
-
 export function addFollower(userId, followerId) {
-  push(ref(db, `followers/${userId}/${followerId}`), true);
+  push(ref(db, `users/${userId}/followers/${followerId}`), true);
 }
 
 export function removeFollower(userId, followerId) {
-  remove(ref(db, `followers/${userId}/${followerId}`));
+  remove(ref(db, `users/${userId}/followers/${followerId}`));
 }
 
 export function addFollowing(userId, followingId) {
-  push(ref(db, `following/${userId}/${followingId}`), true);
+  push(ref(db, `users/${userId}/following/${followingId}`), true);
 }
 
 export function removeFollowing(userId, followingId) {
-  remove(ref(db, `following/${userId}/${followingId}`));
-}
-
-export function addFriendRequest(fromUserId, toUserId) {
-  push(ref(db, `requests/${toUserId}/incoming/${fromUserId}`), true);
-  push(ref(db, `requests/${fromUserId}/outgoing/${toUserId}`), true);
-}
-
-export function removeFriendRequest(fromUserId, toUserId) {
-  remove(ref(db, `requests/${toUserId}/incoming/${fromUserId}`));
-  remove(ref(db, `requests/${fromUserId}/outgoing/${toUserId}`));
+  remove(ref(db, `users/${userId}/following/${followingId}`));
 }
 
 // friend list (mutual follows), following, followers, pending requests
