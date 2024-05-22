@@ -296,8 +296,9 @@
 }
 .Dplan-container{
     margin: auto;
-    width: 95%;
+    /* width: 95%; */
     height: 65%;
+    border: 2px solid black;
 }
 
 .tag-container{
