@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Profile.css';
-import { SliderPicker, BlockPicker, ChromePicker } from 'react-color';
+import { ChromePicker } from 'react-color';
 import { getUserData, updateUserData } from '../../services/datastore'; // Adjust the path as necessary
 
 const Profile = ({ userId, open, handleClose }) => {
@@ -109,15 +109,46 @@ const Profile = ({ userId, open, handleClose }) => {
       <button type="button" onClick={handleSaveProfile}>Save Profile</button>
       <div className="color-picker-container">
         {editColorIdx !== 0 ? (
-          <div className="color-all" type="button" onClick={() => handleEditColorIdx(0)}><div className="color-sample0">color1</div>
+          <div
+            className="color-all"
+            role="button"
+            tabIndex="0"
+            type="button"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                handleEditColorIdx(0);
+              }
+            }}
+            onClick={() => handleEditColorIdx(0)}
+          ><div className="color-sample0">color1</div>
           </div>
         ) : <ChromePicker color={color0} onChange={(color) => setColor0(color.hex)} />}
         {editColorIdx !== 1 ? (
-          <div className="color-all" type="button" onClick={() => handleEditColorIdx(1)}><div className="color-sample1">color2</div>
+          <div role="button"
+            tabIndex="0"
+            type="button"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                handleEditColorIdx(0);
+              }
+            }}
+            className="color-all"
+            onClick={() => handleEditColorIdx(1)}
+          ><div className="color-sample1">color2</div>
           </div>
         ) : <ChromePicker color={color1} onChange={(color) => setColor1(color.hex)} />}
         {editColorIdx !== 2 ? (
-          <div className="color-all" type="button" onClick={() => handleEditColorIdx(2)}><div className="color-sample2">color3</div>
+          <div className="color-all"
+            role="button"
+            tabIndex="0"
+            type="button"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                handleEditColorIdx(0);
+              }
+            }}
+            onClick={() => handleEditColorIdx(2)}
+          ><div className="color-sample2">color3</div>
           </div>
         ) : <ChromePicker color={color2} onChange={(color) => setColor2(color.hex)} />}
       </div>
