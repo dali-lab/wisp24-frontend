@@ -6,9 +6,7 @@ import Delete from '../../components/delete/Delete.jsx';
 import './Homepage.css';
 // import ProgressTracker from './ProgressTracker.jsx';
 import {
-  getAllDrafts, addNewDraft, delDraft, updateDraft,
-  // updateUserData,
-  updateUserMajor, addUser
+  getAllDrafts, addNewDraft, delDraft, updateDraft, updateUserData
 } from '../../services/datastore.js';
 
 const Homepage = ({ userID }) => {
@@ -125,10 +123,10 @@ const Homepage = ({ userID }) => {
     const handleClickMajor = (event) => {
       const newMajor = event.target.value;
       setMajor(event.target.value);
-      addUser(userID, {
+      updateUserData(userID, {
         name: 'Ellie', year: 2027, major: newMajor, minor: 'comp sci', netid: 1, bio: 'hello', planid: 1
       });
-      updateUserMajor(userID, inputMajor);
+      updateUserData(userID, inputMajor);
     };
 
     return (

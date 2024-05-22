@@ -161,21 +161,61 @@ export function deleteTerm(termID) {
 
 // *********** USERS / FRIENDS ***********
 
-export function addUser(userID, input) {
-  const reference = ref(db, 'users/{String(userID)}');
-  console.log('add user called');
-  console.log(input);
-  push(reference, {
-    id: userID, // change this later
-    name: input.name,
-    year: input.year,
-    major: input.major,
-    minor: input.minor,
-    netid: input.netid,
-    bio: input.bio,
-    planid: input.planid,
+// export function addUser(userID, input) {
+//   const reference = ref(db, 'users/' + userID);
+//   push(reference, {
+//     id: input.id,
+//     name: input.name,
+//     year: input.year,
+//     major: input.major,
+//     minor: input.minor,
+//     netid: input.netid,
+//     bio: input.bio,
+//     planid: input.planid,
+//   });
+// }
+
+// export function updateUserData(userID, input) {
+//   let userRef = ref(db, `users/${userID}`);
+//   if (!userRef) {
+//     userRef = ref(db, 'users/' + userID);
+//     push(userRef, {
+//       id: input.id,
+//       name: input.name,
+//       year: input.year,
+//       major: input.major,
+//       minor: input.minor,
+//       bio: input.bio,
+//       planid: input.planid,
+//     });
+//   }
+//   console.log(input.name);
+//   return update(userRef, input);
+// }
+
+export function updateUserData(userId, input) {
+  const userRef = ref(db, `users/${userId}`);
+  return get(userRef).then((snapshot) => {
+    if (!snapshot.exists()) {
+      // If user doesn't exist, create a new one
+      return push(userRef, {
+        id: input.id,
+        name: input.name,
+        year: input.year,
+        major: input.major,
+        minor: input.minor,
+        bio: input.bio,
+        planid: input.planid,
+      });
+    } else {
+      // If user exists, update their data
+      return update(userRef, input);
+    }
+  }).catch((error) => {
+    console.error('Error updating or setting user data:', error);
   });
 }
+
 export function getUserData(userId) {
   const userRef = ref(db, `users/${String(userId)}`);
   return new Promise((resolve, reject) => {
@@ -192,57 +232,26 @@ export function getUserData(userId) {
   });
 }
 
-export function updateUserData(userId, data) {
-  const userRef = ref(db, `users/${String(userId)}`);
-  return update(userRef, data);
-}
-
-export function updateUserMajor(userId, major) {
-  const userRef = ref(db, `users/${String(userId)}/major`);
-  // console.log('hello' + userId);
-  return update(userRef, major);
-}
-
 // delete user
 export const removeUserData = (userId) => {
   const userRef = ref(db, `users/${String(userId)}`);
   return remove(userRef);
 };
 
-// needed?
-export function addFriend(userId, friendId) {
-  push(ref(db, `friends/${String(userId)}/${String(friendId)}`), true);
-}
-
-// needed?
-export function removeFriend(userId, friendId) {
-  remove(ref(db, `friends/${String(userId)}/${String(friendId)}`));
-}
-
 export function addFollower(userId, followerId) {
-  push(ref(db, `followers/${String(userId)}/${String(followerId)}`), true);
+  push(ref(db, `users/${userId}/followers/${followerId}`), true);
 }
 
 export function removeFollower(userId, followerId) {
-  remove(ref(db, `followers/${String(userId)}/${String(followerId)}`));
+  return remove(ref(db, `users/${userId}/followers/${followerId}`));
 }
 
 export function addFollowing(userId, followingId) {
-  push(ref(db, `following/${String(userId)}/${String(followingId)}`), true);
+  push(ref(db, `users/${userId}/following/${followingId}`), true);
 }
 
 export function removeFollowing(userId, followingId) {
-  remove(ref(db, `following/${String(userId)}/${String(followingId)}`));
-}
-
-export function addFriendRequest(fromUserId, toUserId) {
-  push(ref(db, `requests/${String(toUserId)}/incoming/${String(fromUserId)}`), true);
-  push(ref(db, `requests/${String(fromUserId)}/outgoing/${String(toUserId)}`), true);
-}
-
-export function removeFriendRequest(fromUserId, toUserId) {
-  remove(ref(db, `requests/${String(toUserId)}/incoming/${String(fromUserId)}`));
-  remove(ref(db, `requests/${String(fromUserId)}/outgoing/${String(toUserId)}`));
+  remove(ref(db, `users/${userId}/following/${followingId}`));
 }
 
 // friend list (mutual follows), following, followers, pending requests

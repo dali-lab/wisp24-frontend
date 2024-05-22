@@ -283,6 +283,7 @@
 .scrollable {
     max-height: 40%;
     overflow-y:auto;
+    padding: 5px;
 }
 
 .potential-class-title {
