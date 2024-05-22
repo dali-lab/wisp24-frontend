@@ -278,12 +278,18 @@
     height: 80%;
     background-color: var(--lightgreen);
     margin-bottom: 7px;
+    align-items: center;
 }
 
 .scrollable {
     max-height: 40%;
     overflow-y:auto;
-    padding: 5px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    /* border: 2px solid black;
+    border-radius: 10px;
+    width: 90%;
+    align-items: center; */
 }
 
 .potential-class-title {
@@ -327,12 +333,13 @@
     justify-content: center;
     flex-direction: column;
     padding-top: 30px;
+    align-items: center;
 }
 
 .potential-class-add-container {
     display: flex;
     justify-content: center;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     position: absolute; /* Use absolute positioning */
     bottom: 0; /* Position it at the bottom */
     width: 100%;
