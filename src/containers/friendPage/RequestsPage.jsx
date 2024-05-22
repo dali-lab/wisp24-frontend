@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Friend from '../../components/friend/Friend.jsx';
 import './RequestsPage.css';
 import FriendsNav from './FriendsNav';
-import { getUserData, addFriend, removeFriendRequest } from '../../services/datastore.js';
+import { getUserData, addFollowing, removeFollower } from '../../services/datastore.js';
 
 const RequestsPage = ({ userId }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -14,9 +14,11 @@ const RequestsPage = ({ userId }) => {
     const fetchRequests = async () => {
       try {
         const data = await getUserData(userId);
-        if (data && data.requests && data.requests.incoming) {
-          const requestIds = Object.keys(data.requests.incoming);
-          const requestsDetails = await Promise.all(requestIds.map((requestId) => getUserData(requestId)));
+        if (data && data.followers) {
+          const followerIds = Object.keys(data.followers);
+          const followingIds = data.following ? Object.keys(data.following) : [];
+          const nonMutualFollowers = followerIds.filter((followerId) => !followingIds.includes(followerId));
+          const requestsDetails = await Promise.all(nonMutualFollowers.map((followerId) => getUserData(followerId)));
           setRequestsData(requestsDetails.filter(Boolean));
         }
       } catch (error) {
@@ -28,20 +30,13 @@ const RequestsPage = ({ userId }) => {
     fetchRequests();
   }, [userId]);
 
-  const handleAcceptRequest = async (fromUserId) => {
+  const handleAcceptRequest = async (followerId) => {
     try {
-      await addFriend(userId, fromUserId);
-      await removeFriendRequest(fromUserId, userId);
+      await addFollowing(userId, followerId);
+      await removeFollower(userId, followerId);
+      setRequestsData((prevRequests) => prevRequests.filter((request) => request.id !== followerId));
     } catch (error) {
-      console.error('Error handling friend request:', error);
-    }
-  };
-
-  const handleRejectRequest = async (fromUserId) => {
-    try {
-      await removeFriendRequest(fromUserId, userId);
-    } catch (error) {
-      console.error('Error rejecting friend request:', error);
+      console.error('Error handling follow request:', error);
     }
   };
 
@@ -56,8 +51,7 @@ const RequestsPage = ({ userId }) => {
           <Link to={`/profile/${requestData.id}`}>
             <Friend friendData={requestData} />
           </Link>
-          <button type="button" onClick={() => handleAcceptRequest(requestData.id)}>Accept</button>
-          <button type="button" onClick={() => handleRejectRequest(requestData.id)}>Reject</button>
+          <button type="button" onClick={() => handleAcceptRequest(requestData.id)}>Follow Back</button>
         </div>
       ));
     } else {
