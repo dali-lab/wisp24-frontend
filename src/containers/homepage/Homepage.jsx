@@ -96,16 +96,17 @@ const Homepage = ({ userID }) => {
     const [inputMajor, setMajor] = useState('');
 
     const handleClickMajor = (event) => {
+      const newMajor = event.target.value;
       setMajor(event.target.value);
       addUser(userID, {
-        name: 'Ellie', year: 2027, major: toString(inputMajor), minor: 'comp sci', netid: 1, bio: 'hello', planid: 1
+        name: 'Ellie', year: 2027, major: newMajor, minor: 'comp sci', netid: 1, bio: 'hello', planid: 1
       });
       updateUserMajor(userID, inputMajor);
     };
 
     return (
       <div>
-        <select id="dropdown" value={major} onChange={handleClickMajor}>
+        <select id="dropdown" value={inputMajor} onChange={handleClickMajor}>
           <option value="">Choose your major</option>
           <option value="option1">Option 1</option>
           <option value="option2">Option 2</option>
