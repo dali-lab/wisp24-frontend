@@ -15,9 +15,11 @@ const FriendsPage = ({ userId }) => {
     const fetchFriends = async () => {
       try {
         const data = await getUserData(userId);
-        if (data && data.friends) {
-          const friendIds = Object.keys(data.friends);
-          const friendsDetails = await Promise.all(friendIds.map((friendId) => getUserData(friendId)));
+        if (data && data.following && data.followers) {
+          const followingIds = Object.keys(data.following);
+          const followerIds = Object.keys(data.followers);
+          const mutualFriendIds = followingIds.filter((id) => followerIds.includes(id));
+          const friendsDetails = await Promise.all(mutualFriendIds.map((friendId) => getUserData(friendId)));
           setFriendsData(friendsDetails.filter(Boolean));
         }
       } catch (error) {
@@ -48,7 +50,6 @@ const FriendsPage = ({ userId }) => {
   return (
     <div className="friends-page">
       <FriendsNav />
-
       <div className="container">
         <input
           type="text"
@@ -60,25 +61,6 @@ const FriendsPage = ({ userId }) => {
         <div className="friends-container">
           {renderFriendsList()}
         </div>
-      </div>
-      <div className="friends-container">
-        {/* {filteredFriends.length > 0 ? (
-          filteredFriends.map((friendData) => (
-            <Link key={friendData.id} to={`/profile/${friendData.name}`}>
-              <Friend friendData={friendData} />
-            </Link>
-          ))
-        ) : (
-          <p>No friends match your search.</p>
-        )} */}
-        {/* <Link
-          to={{
-            pathname: `/profile/${sampleFriendData.id}`,
-            state: { friendData: sampleFriendData }
-          }}
-        >
-          <Friend friendData={sampleFriendData} />
-        </Link> */}
       </div>
     </div>
   );

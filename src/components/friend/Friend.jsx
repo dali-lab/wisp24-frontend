@@ -4,13 +4,13 @@ import './Friend.css';
 
 const Friend = ({ friendData }) => {
   const {
-    name, major, minor, others, biography, followStatus, planData
+    name, major, minor, others, bio, followStatus, planid
   } = friendData;
 
   // eslint-disable-next-line no-unused-vars
   const renderPlan = () => {
-    if (planData && Object.keys(planData).length > 0) {
-      return <Plan planData={planData} />;
+    if (planid) {
+      return <Plan planid={planid} />;
     }
     return null;
   };
@@ -29,9 +29,10 @@ const Friend = ({ friendData }) => {
   };
 
   const renderOtherTags = () => {
-    return others.map((other) => (
-      <span key={other.name} className="tag other">{other}</span>
-    ));
+    return others ? others.map((other, index) => (
+      // eslint-disable-next-line react/no-array-index-key
+      <span key={index} className="tag other">{other}</span>
+    )) : null;
   };
 
   return (
@@ -42,15 +43,13 @@ const Friend = ({ friendData }) => {
           <span className="tag major">{major}</span>
           <span className="tag minor">{minor}</span>
           {renderOtherTags()}
-          {/* { others.map(other => console.log(other))} */}
-          {others ? console.log(others) : null}
         </div>
-        <p className="friend-bio">{biography}</p>
+        <p className="friend-bio">{bio}</p>
         <div className="friend-status">
           <span className="follow-status">{renderFollowStatus()}</span>
         </div>
       </div>
-      {/* <Plan planData={planData} /> */}
+      {renderPlan()}
     </div>
   );
 };

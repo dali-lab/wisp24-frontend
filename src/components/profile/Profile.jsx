@@ -9,6 +9,10 @@ const Profile = ({ userId, open, handleClose }) => {
   useEffect(() => {
     if (userId) {
       getUserData(userId)
+<<<<<<< HEAD
+        .then(setProfile)
+        .catch(console.error);
+=======
         .then((data) => {
           setProfile(data);
           setIsLoading(false);
@@ -17,6 +21,7 @@ const Profile = ({ userId, open, handleClose }) => {
           console.error('Error fetching user data:', error);
           setIsLoading(false);
         });
+>>>>>>> 4736dafc0f8b4718cbce3b164b18e8262fe7194c
     }
   }, [userId]);
 
