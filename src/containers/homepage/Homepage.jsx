@@ -132,7 +132,7 @@ const Homepage = ({ userID }) => {
     };
 
     return (
-      <div>
+      <div className="major-edit-toggle">
         <select id="dropdown" value={inputMajor} onChange={handleClickMajor}>
           <option value="">Choose your major</option>
           <option value="option1">Option 1</option>
@@ -147,10 +147,10 @@ const Homepage = ({ userID }) => {
     <div className="homepage-main-container">
       {popup && <Delete togglePopup={togglePopup} deleteDraft={deleteDraft} />}
       <div className="homepage-left-container">
-        <DropdownMenu />
         <MainDraftTab />
         <div className="plan-container2">
-          <ProgressTracker />
+          <DropdownMenu />
+          {/* <ProgressTracker /> */}
           <Plan2 mainDrafts={mainDrafts} mainDraftIndex={mainDraftIndex} />
         </div>
       </div>
