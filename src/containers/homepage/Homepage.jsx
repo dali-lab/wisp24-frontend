@@ -4,7 +4,7 @@ import PotentialClass from './PotentialClass.jsx';
 import AddTerms from './AddTerms.jsx';
 import Delete from '../../components/delete/Delete.jsx';
 import './Homepage.css';
-import ProgressTracker from './ProgressTracker.jsx';
+// import ProgressTracker from './ProgressTracker.jsx';
 import {
   getAllDrafts, addNewDraft, delDraft, updateDraft,
   // updateUserData,
