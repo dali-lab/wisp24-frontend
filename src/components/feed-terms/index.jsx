@@ -22,28 +22,28 @@ const TermDisplay = (props) => {
         <tbody>
           <tr className="term-rows">
             <td><div className="term-holder year-column">1st</div></td>
-            <td>
+            <td className="post-plan-container">
               {plan[0].courses?.map((course) => (
                 <div key={course.id}>
                   {course.name}
                 </div>
               ))}
             </td>
-            <td>
+            <td className="post-plan-container">
               {plan[1].courses?.map((course) => (
                 <div key={course.id}>
                   {course.name}
                 </div>
               ))}
             </td>
-            <td>
+            <td className="post-plan-container">
               {plan[2].courses?.map((course) => (
                 <div key={course.id}>
                   {course.name}
                 </div>
               ))}
             </td>
-            <td>
+            <td className="post-plan-container">
               {plan[3].courses?.map((course) => (
                 <div key={course.id}>
                   {course.name}
@@ -54,28 +54,28 @@ const TermDisplay = (props) => {
           </tr>
           <tr className="term-rows">
             <td><div className="term-holder year-column">2nd</div></td>
-            <td>
+            <td className="post-plan-container">
               {plan[4].courses?.map((course) => (
                 <div key={course.id}>
                   {course.name}
                 </div>
               ))}
             </td>
-            <td>
+            <td className="post-plan-container">
               {plan[5].courses?.map((course) => (
                 <div key={course.id}>
                   {course.name}
                 </div>
               ))}
             </td>
-            <td>
+            <td className="post-plan-container">
               {plan[6].courses?.map((course) => (
                 <div key={course.id}>
                   {course.name}
                 </div>
               ))}
             </td>
-            <td>
+            <td className="post-plan-container">
               {plan[7].courses?.map((course) => (
                 <div key={course.id}>
                   {course.name}
@@ -85,28 +85,28 @@ const TermDisplay = (props) => {
           </tr>
           <tr className="term-rows">
             <td><div className="term-holder year-column">3rd</div></td>
-            <td>
+            <td className="post-plan-container">
               {plan[8].courses?.map((course) => (
                 <div key={course.id}>
                   {course.name}
                 </div>
               ))}
             </td>
-            <td>
+            <td className="post-plan-container">
               {plan[9].courses?.map((course) => (
                 <div key={course.id}>
                   {course.name}
                 </div>
               ))}
             </td>
-            <td>
+            <td className="post-plan-container">
               {plan[10].courses?.map((course) => (
                 <div key={course.id}>
                   {course.name}
                 </div>
               ))}
             </td>
-            <td>
+            <td className="post-plan-container">
               {plan[11].courses?.map((course) => (
                 <div key={course.id}>
                   {course.name}
@@ -116,28 +116,28 @@ const TermDisplay = (props) => {
           </tr>
           <tr className="term-rows">
             <td><div className="term-holder year-column">4th</div></td>
-            <td>
+            <td className="post-plan-container">
               {plan[12].courses?.map((course) => (
                 <div key={course.id}>
                   {course.name}
                 </div>
               ))}
             </td>
-            <td>
+            <td className="post-plan-container">
               {plan[13].courses?.map((course) => (
                 <div key={course.id}>
                   {course.name}
                 </div>
               ))}
             </td>
-            <td>
+            <td className="post-plan-container">
               {plan[14].courses?.map((course) => (
                 <div key={course.id}>
                   {course.name}
                 </div>
               ))}
             </td>
-            <td>
+            <td className="post-plan-container">
               {plan[14].courses?.map((course) => (
                 <div key={course.id}>
                   {course.name}
