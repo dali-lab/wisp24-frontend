@@ -4,6 +4,9 @@
 
 .term-rows {
     background-color: inherit;
+    margin: none;
+    padding: none;
+    max-height: 140px;
 }
 
 .table-container {

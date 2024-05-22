@@ -1,15 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import './Profile.css';
-import { getUserData, updateUserData } from '../../services/datastore'; // Adjust the path as necessary
+import { getUserData, updateUserData } from '../../services/datastore';
 
 const Profile = ({ userId, open, handleClose }) => {
   const [profile, setProfile] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (userId) {
       getUserData(userId)
+<<<<<<< HEAD
         .then(setProfile)
         .catch(console.error);
+=======
+        .then((data) => {
+          setProfile(data);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.error('Error fetching user data:', error);
+          setIsLoading(false);
+        });
+>>>>>>> 4736dafc0f8b4718cbce3b164b18e8262fe7194c
     }
   }, [userId]);
 
@@ -21,35 +33,24 @@ const Profile = ({ userId, open, handleClose }) => {
     }));
   };
 
-  const handleSaveProfile = () => {
-    updateUserData(userId, profile)
-      .then(() => {
-        console.log('Profile updated successfully!');
-        handleClose();
-      })
-      .catch((error) => {
-        console.error('Error updating profile:', error);
-        console.log('Failed to update profile.');
-      });
-  };
+  const handleSaveProfile = async () => {
+    if (!userId) {
+      console.error('No userId provided for saving profile');
+      return;
+    }
 
-  const handleAddTag = () => {
-    const newTag = profile.newTag?.trim();
-    if (newTag && !profile.others?.includes(newTag)) {
-      setProfile((prevProfile) => ({
-        ...prevProfile,
-        others: [...(prevProfile.others || []), newTag],
-        newTag: ''
-      }));
+    try {
+      await updateUserData(userId, profile);
+      console.log('Profile updated successfully!');
+      handleClose();
+    } catch (error) {
+      console.error('Error updating profile:', error);
     }
   };
 
-  const handleDeleteTag = (tagIndex) => {
-    setProfile((prevProfile) => ({
-      ...prevProfile,
-      others: prevProfile.others.filter((_, index) => index !== tagIndex)
-    }));
-  };
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="profile-container" style={{ display: open ? 'block' : 'none' }}>
@@ -74,19 +75,6 @@ const Profile = ({ userId, open, handleClose }) => {
         name="minor"
         placeholder="Minor"
       />
-      {profile.others?.map((tag, index) => (
-        <span key={tag} className="tag other">
-          {tag} <button type="button" onClick={() => handleDeleteTag(index)}>Delete</button>
-        </span>
-      ))}
-      <input
-        type="text"
-        value={profile.newTag || ''}
-        onChange={handleInputChange}
-        name="newTag"
-        placeholder="Enter new tag"
-      />
-      <button type="button" onClick={handleAddTag}>Add New Tag</button>
       <textarea
         value={profile.biography || ''}
         onChange={handleInputChange}
