@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import Friend from '../../components/friend/Friend';
 import Plan from '../../components/plan/Plan';
@@ -11,6 +11,10 @@ const ViewProfile = () => {
 
   const friendData = location.state?.friendData || { /* default friend data */ };
   const [upvotes, setUpvotes] = useState(friendData.upvotes || 0);
+
+  useEffect(() => {
+    console.log('hello is this working');
+  }, []);
 
   const handleBack = () => {
     history.goBack();
