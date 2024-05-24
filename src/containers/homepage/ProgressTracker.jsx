@@ -1,10 +1,21 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { SliderPicker, BlockPicker, ChromePicker } from 'react-color';
 import './Homepage.css';
 
 const ProgressTracker = () => {
   const [track, setTrack] = useState([]);
   const [editingState, setEditingState] = useState(false);
   const inputValue = useRef();
+  const [track0, setTrack0] = useState('');
+  const [track1, setTrack1] = useState('');
+  const [track2, setTrack2] = useState('');
+  const [editColorIdx, setEditColorIdx] = useState(null);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--track0', track0);
+    document.documentElement.style.setProperty('--track1', track1);
+    document.documentElement.style.setProperty('--track2', track2);
+  }, [track0, track1, track2]);
 
   const handleEditClick = () => {
     setEditingState(!editingState);
@@ -21,6 +32,10 @@ const ProgressTracker = () => {
       setEditingState(!editingState);
       inputValue.current.value = '';
     }
+  };
+
+  const handleEditColorIdx = (idx) => {
+    setEditColorIdx(idx);
   };
 
   const TrackInput = () => {
@@ -49,8 +64,40 @@ const ProgressTracker = () => {
     return tracks;
   };
 
+  const ColorPicker = () => {
+    return (
+      <div className="color-picker-container2">
+        {editColorIdx !== 0 ? (
+          <div className="color-all2 track0" type="button" onClick={() => handleEditColorIdx(0)}><div className="track-sample0">color1</div>
+          </div>
+        ) : (
+          <div className="color-all2  track0"><ChromePicker className="track-color-picker" color={track0} onChange={(color) => setTrack0(color.hex)} />
+            <button className="track-button" onClick={() => handleEditColorIdx(null)}>x</button>
+          </div>
+        )}
+        {editColorIdx !== 1 ? (
+          <div className="color-all2 track1" type="button" onClick={() => handleEditColorIdx(1)}><div className="track-sample1">color2</div>
+          </div>
+        ) : (
+          <div className="color-all2 track1"><ChromePicker className="track-color-picker" color={track1} onChange={(color) => setTrack1(color.hex)} />
+            <button className="track-button" onClick={() => handleEditColorIdx(null)}>x</button>
+          </div>
+        )}
+        {editColorIdx !== 2 ? (
+          <div className="color-all2 track2" type="button" onClick={() => handleEditColorIdx(2)}><div className="track-sample2">color3</div>
+          </div>
+        ) : (
+          <div className="color-all2 track2"><ChromePicker className="track-color-picker" color={track2} onChange={(color) => setTrack2(color.hex)} />
+            <button className="track-button" onClick={() => handleEditColorIdx(null)}>x</button>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className="progressTracker-container">
+      <ColorPicker />
       <TrackInput />
       <Tracker />
     </div>

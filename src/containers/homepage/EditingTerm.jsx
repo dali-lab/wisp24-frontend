@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default-member */
 /* eslint-disable quotes */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
@@ -7,6 +8,7 @@ import {
   updateTermName,
   deleteCourseInTerm
 } from '../../services/datastore';
+import CourseComponent from '../../components/courseComponent';
 
 const EditingDraft = (props) => {
   const { selectedDraft, drafts } = props;
@@ -52,7 +54,7 @@ const EditingDraft = (props) => {
         });
       }
     });
-  }, []);
+  }, [selectedDraft]);
 
   console.log('term data outside useeffect:', termData);
 
@@ -118,9 +120,10 @@ const EditingDraft = (props) => {
       <div>{termData.courses && termData.courses.map((classItem, index) => {
         return (
           <div key={classItem}>
-            <div>{classItem.name}</div>
+            {/* <div>{classItem.name}</div> */}
+            <CourseComponent name={classItem.name} termID={selectedDraft} courseID={classItem.id} />
             {console.log('class item id', classItem)}
-            <button type="button" onClick={() => deleteClass(classItem.id)}>Delete Class</button>
+            {/* <button type="button" onClick={() => deleteClass(classItem.id)}>Delete Class</button> */}
           </div>
         );
       })}

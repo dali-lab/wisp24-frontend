@@ -23,7 +23,6 @@ const TermComponent = (props) => {
   const inPlan = true;
 
   const textRef = useRef();
-  console.log(props);
 
   useEffect(() => {
     setCourses(props.courses);

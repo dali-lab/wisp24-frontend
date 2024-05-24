@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* eslint-disable import/no-named-as-default-member */
 import React, { useEffect, useState } from 'react';
 import { useDrag, DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -9,6 +10,7 @@ import {
   updateCourse, addTerm,
   addNewCourse
 } from '../../services/datastore.js';
+import CourseComponent from '../../components/courseComponent/index.jsx';
 
 const AddTerms = () => {
   const [selectedDraft, setSelectedDraft] = useState('');

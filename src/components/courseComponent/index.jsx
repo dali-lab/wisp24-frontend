@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
@@ -7,12 +8,8 @@ import { deleteCourse } from '../../services/datastore.js';
 import './index.css';
 // course component
 const CourseComponent = (props) => {
-  // const [name, setName] = useState(props.name);
-  // const [distrib, setDistrib] = useState('');
-  // const [id, setID] = useState(props.courseID);
-  // const [prereq, setPrereq] = useState('');
-  // const [nro, setNRO] = useState(props.courseNRO);
-  // const [color, setColor] = useState('');
+  const [currentColorIndex, setCurrentColorIndex] = useState(0);
+  const colors = ['var(--track0)', 'var(--track1)', 'var(--track2)'];
 
   const [{ isDragging }, drag] = useDrag({
     type: 'COURSE', // Define the drag type as 'COURSE'
@@ -21,6 +18,10 @@ const CourseComponent = (props) => {
       isDragging: !!monitor.isDragging(),
     }),
   });
+
+  const handleClick = () => {
+    setCurrentColorIndex((prevIndex) => (prevIndex + 1) % colors.length);
+  };
 
   const delCourse = () => {
     if (props.location) {
@@ -31,10 +32,17 @@ const CourseComponent = (props) => {
       props.delete(props.id);
     }
   };
-
   return (
-    <div className="course-content-div" ref={drag} style={{ opacity: isDragging ? 0.5 : 1 }}>
-      <div className="course-description-container"><p className="course-description">{props.course?.crn}: {props.course?.name} ({props.course?.distrib})</p></div>
+    <div
+      className="course-content-div"
+      ref={drag}
+      style={{
+        opacity: isDragging ? 0.5 : 1,
+        backgroundColor: colors[currentColorIndex],
+      }}
+      onClick={handleClick}
+    >
+      <div className="course-description-container"><p className="course-description">{props.course?.crn} ({props.course?.distrib})</p></div>
       <div className="course-individual-delete"><button type="button" onClick={delCourse}>x</button></div>
     </div>
   );
