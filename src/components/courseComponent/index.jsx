@@ -36,13 +36,21 @@ const CourseComponent = (props) => {
     <div
       className="course-content-div"
       ref={drag}
+      type="button"
+      role="button"
+      tabIndex="0"
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          handleClick();
+        }
+      }}
       style={{
         opacity: isDragging ? 0.5 : 1,
         backgroundColor: colors[currentColorIndex],
       }}
       onClick={handleClick}
     >
-      <div className="course-description-container"><p className="course-description">{props.course?.crn} ({props.course?.distrib})</p></div>
+      <div className="course-description-container"><p className="course-description">{props.course?.crn}: {props.course?.name} ({props.course?.distrib})</p></div>
       <div className="course-individual-delete"><button type="button" onClick={delCourse}>x</button></div>
     </div>
   );

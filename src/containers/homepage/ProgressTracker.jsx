@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useState, useRef, useEffect } from 'react';
 import { SliderPicker, BlockPicker, ChromePicker } from 'react-color';
 import './Homepage.css';
@@ -68,27 +70,89 @@ const ProgressTracker = () => {
     return (
       <div className="color-picker-container2">
         {editColorIdx !== 0 ? (
-          <div className="color-all2 track0" type="button" onClick={() => handleEditColorIdx(0)}><div className="track-sample0">color1</div>
+          <div
+            role="button"
+            tabIndex="0"
+            onClick={() => handleEditColorIdx(0)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                handleEditColorIdx(0);
+              }
+            }}
+            className="color-all2 track0"
+          >
+            <div className="track-sample0">color1</div>
           </div>
         ) : (
           <div className="color-all2  track0"><ChromePicker className="track-color-picker" color={track0} onChange={(color) => setTrack0(color.hex)} />
-            <button className="track-button" onClick={() => handleEditColorIdx(null)}>x</button>
+            <button
+              type="button"
+              tabIndex="0"
+              className="track-button"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  handleEditColorIdx(0);
+                }
+              }}
+              onClick={() => handleEditColorIdx(null)}
+            >x
+            </button>
           </div>
         )}
         {editColorIdx !== 1 ? (
-          <div className="color-all2 track1" type="button" onClick={() => handleEditColorIdx(1)}><div className="track-sample1">color2</div>
+          <div role="button"
+            tabIndex="0"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                handleEditColorIdx(0);
+              }
+            }}
+            className="color-all2 track1"
+            type="button"
+            onClick={() => handleEditColorIdx(1)}
+          ><div className="track-sample1">color2</div>
           </div>
         ) : (
           <div className="color-all2 track1"><ChromePicker className="track-color-picker" color={track1} onChange={(color) => setTrack1(color.hex)} />
-            <button className="track-button" onClick={() => handleEditColorIdx(null)}>x</button>
+            <button type="button"
+              tabIndex="0"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  handleEditColorIdx(0);
+                }
+              }}
+              className="track-button"
+              onClick={() => handleEditColorIdx(null)}
+            >x
+            </button>
           </div>
         )}
         {editColorIdx !== 2 ? (
-          <div className="color-all2 track2" type="button" onClick={() => handleEditColorIdx(2)}><div className="track-sample2">color3</div>
+          <div role="button"
+            tabIndex="0"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                handleEditColorIdx(2);
+              }
+            }}
+            className="color-all2 track2"
+            type="button"
+            onClick={() => handleEditColorIdx(2)}
+          ><div className="track-sample2">color3</div>
           </div>
         ) : (
           <div className="color-all2 track2"><ChromePicker className="track-color-picker" color={track2} onChange={(color) => setTrack2(color.hex)} />
-            <button className="track-button" onClick={() => handleEditColorIdx(null)}>x</button>
+            <button type="button"
+              tabIndex="0"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  handleEditColorIdx(0);
+                }
+              }}
+              className="track-button"
+              onClick={() => handleEditColorIdx(null)}
+            >x
+            </button>
           </div>
         )}
       </div>
