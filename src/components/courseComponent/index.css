@@ -1,7 +1,7 @@
 .term {
     border: 2px solid rgb(0,0,20);
     margin: 15px;
-    background-color: rgb(141, 191, 147);
+    background-color: var(--color0);
     font-family: gill sans;
     font-weight: 600;
     justify-content: center;
@@ -17,7 +17,7 @@
 .termbuilder {
     border: 2px solid rgb(6, 40, 22);
     margin: 15px;
-    background-color: rgb(230, 243, 233);
+    background-color: var(--color1);
     font-family: gill sans;
     font-weight: 600;
     justify-content: center;
@@ -35,22 +35,20 @@
 
 .course-content-div {
     margin-top: 3px;
-    border: 2px solid rgb(0,0,20);
+    border: 2px solid rgb(0, 0, 20);
     display: flex;
     flex-direction: row;
     margin-left: 10px;
     margin-right: 10px;
-    background-color: rgb(223, 148, 148);
+    background-color: var(--track0);
     font-family: gill sans;
     font-weight: 600;
     justify-content: space-around;
     border-radius: 8px;
     padding-left: 5px;
     padding-right: 5px;
-    max-height: 20px;
-    overflow: scroll;
+    height: 1.2rem;
 }
-
 .course-individual-delete {
     display: flex;
     align-items: center;

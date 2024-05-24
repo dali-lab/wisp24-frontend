@@ -349,3 +349,12 @@ export function updateCourse(newName, newNRO, newColor, newCRN) {
     name: newName,
   });
 }
+
+/* FEED PAGE TERM + SHARE FIREBASE FUNCTIONS */
+export function getAllFeedUsers(callback = () => {}) {
+  const draftRef = ref(db, 'Feed_Users/');
+  onValue(draftRef, (snapshot) => {
+    const posts = snapshot.val();
+    callback(posts);
+  });
+}

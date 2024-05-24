@@ -1,0 +1,12 @@
+.post-plan-container{
+    border: 2px solid rgb(0,0,20);
+    background-color: white;
+    font-family: gill sans;
+    font-weight: 600;
+    justify-content: center;
+    text-align: center;
+    border-radius: 10;
+    /* width: 90%; */
+    height: 110px;
+    max-height: 110px;
+}
