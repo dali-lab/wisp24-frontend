@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useState, useRef, useEffect } from 'react';
-import { ChromePicker } from 'react-color';
+import { SliderPicker, BlockPicker, ChromePicker } from 'react-color';
 import './Homepage.css';
 
 const ProgressTracker = () => {

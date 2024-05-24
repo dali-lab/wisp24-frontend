@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
@@ -31,7 +32,6 @@ const CourseComponent = (props) => {
       props.delete(props.id);
     }
   };
-
   return (
     <div
       className="course-content-div"

@@ -1,51 +1,1037 @@
 {
-    "Terms":{
-         "term1":{
-             "termName": "term1",
-             "course":{
-                 "course1":{
-                     "name": "Introduction to Computer Science",
-                     "distrib": "Science",
-                     "nro": "101",
-                     "prereq": "None",
-                     "color": "Blue",
-                     "crn": "12345",
-                     "id": "CS101"
-                 },
-                 "course2":{
-                     "name": "English Composition",
-                     "distrib": "Writing",
-                     "nro": "102",
-                     "prereq": "None",
-                     "color": "Red",
-                     "crn": "67890",
-                     "id": "ENGL102"
+    "Feed_Users": [
+      {
+        "id": 1,
+        "name": "joyce",
+        "likes": 0,
+        "follow": false,
+        "caption": "click follow and add me as friend!",
+        "profile": "/assets/profile.png",
+        "tags": ["computer science", "2027", "wispee"],
+        "Draft": {
+           "list": [
+             {
+               "comment": "qefqfeq",
+               "courses": [
+                 {
+                   "crn": "COSC10",
+                   "distrib": "TLA",
+                   "id": "-NyDqM3vhFqtsT_uMkfV",
+                   "name": "Problem Solving via Object-Oriented Programming"
                  }
-             }
-         },
-         "term2":{
-             "termName": "term2",
-             "course":{
-                 "coursee1":{
-                     "name": "Calculus I",
-                     "distrib": "Math",
-                     "nro": "201",
-                     "prereq": "Pre-Calculus",
-                     "color": "Green",
-                     "crn": "54321",
-                     "id": "MATH201"
-                 },
-                 "coursee2":{
-                     "name": "History of Art",
-                     "distrib": "Humanities",
-                     "nro": "202",
-                     "prereq": "None",
-                     "color": "Yellow",
-                     "crn": "13579",
-                     "id": "ARTH202"
+               ],
+               "id": "-NyDqM3vhFqtsT_uMkfU",
+               "onTerm": false,
+               "termName": "term0"
+             },
+             {
+               "comment": "off term",
+               "id": "-NyDqM3vhFqtsT_uMkf_",
+               "onTerm": true,
+               "termName": "term3"
+             },
+             {
+               "comment": "dca",
+               "courses": [
+                 {
+                   "crn": "COSC10",
+                   "distrib": "TLA",
+                   "id": "-NyDqM3vhFqtsT_uMkfX",
+                   "name": "Problem Solving via Object-Oriented Programming"
                  }
+               ],
+               "id": "-NyDqM3vhFqtsT_uMkfW",
+               "onTerm": false,
+               "termName": "term1"
+             },
+             {
+               "comment": "fawefwaefwse",
+               "courses": [
+                 {
+                   "crn": "COSC10",
+                   "distrib": "TLA",
+                   "id": "-NyDqM3vhFqtsT_uMkfZ",
+                   "name": "Problem Solving via Object-Oriented Programming"
+                 }
+               ],
+               "id": "-NyDqM3vhFqtsT_uMkfY",
+               "onTerm": false,
+               "termName": "term2"
+             },
+             {
+               "comment": "off term",
+               "courses": [
+                 {
+                   "crn": "COSC10",
+                   "distrib": "TLA",
+                   "id": "-NyDqM3vhFqtsT_uMkfc",
+                   "name": "Problem Solving via Object-Oriented Programming"
+                 }
+               ],
+               "id": "-NyDqM3vhFqtsT_uMkfb",
+               "onTerm": true,
+               "termName": "term4"
+             },
+             {
+               "comment": "off term",
+               "courses": [
+                 {
+                   "crn": "COSC10",
+                   "distrib": "TLA",
+                   "id": "-NyDqM3vhFqtsT_uMkfg",
+                   "name": "Problem Solving via Object-Oriented Programming"
+                 },
+                 {
+                   "crn": "COSC##",
+                   "distrib": "TLA",
+                   "name": "cvb"
+                 }
+               ],
+               "id": "-NyDqM3vhFqtsT_uMkff",
+               "onTerm": true,
+               "termName": "term6"
+             },
+             {
+               "comment": "off term",
+               "courses": [
+                 {
+                   "crn": "COSC10",
+                   "distrib": "TLA",
+                   "id": "-NyDqM3vhFqtsT_uMkfe",
+                   "name": "Problem Solving via Object-Oriented Programming"
+                 },
+                 {
+                   "crn": "COSC##",
+                   "distrib": "TLA",
+                   "name": "12"
+                 }
+               ],
+               "id": "-NyDqM3vhFqtsT_uMkfd",
+               "onTerm": false,
+               "termName": "term5"
+             },
+             {
+               "comment": "off term",
+               "courses": [
+                 {
+                   "crn": "COSC10",
+                   "distrib": "TLA",
+                   "id": "-NyDqM3vhFqtsT_uMkfi",
+                   "name": "Problem Solving via Object-Oriented Programming"
+                 },
+                 {
+                   "crn": "COSC##",
+                   "distrib": "TLA",
+                   "name": "qwed"
+                 },
+                 {
+                   "crn": "COSC##",
+                   "distrib": "TLA",
+                   "name": "cascs"
+                 }
+               ],
+               "id": "-NyDqM3vhFqtsT_uMkfh",
+               "onTerm": true,
+               "termName": "term7"
+             },
+             {
+               "comment": "off term",
+               "courses": [
+                 {
+                   "crn": "COSC10",
+                   "distrib": "TLA",
+                   "id": "-NyDqM3vhFqtsT_uMkfk",
+                   "name": "Problem Solving via Object-Oriented Programming"
+                 }
+               ],
+               "id": "-NyDqM3vhFqtsT_uMkfj",
+               "onTerm": true,
+               "termName": "term8"
+             },
+             {
+               "comment": "off term",
+               "courses": [
+                 {
+                   "crn": "COSC10",
+                   "distrib": "TLA",
+                   "id": "-NyDqM3vhFqtsT_uMkfm",
+                   "name": "Problem Solving via Object-Oriented Programming"
+                 }
+               ],
+               "id": "-NyDqM3vhFqtsT_uMkfl",
+               "onTerm": true,
+               "termName": "term9"
+             },
+             {
+               "comment": "off term",
+               "courses": [
+                 {
+                   "crn": "COSC10",
+                   "distrib": "TLA",
+                   "id": "-NyDqM3vhFqtsT_uMkfo",
+                   "name": "Problem Solving via Object-Oriented Programming"
+                 }
+               ],
+               "id": "-NyDqM3vhFqtsT_uMkfn",
+               "onTerm": true,
+               "termName": "term10"
+             },
+             {
+               "comment": "off term",
+               "courses": [
+                 {
+                   "crn": "COSC10",
+                   "distrib": "TLA",
+                   "id": "-NyDqM3vhFqtsT_uMkfq",
+                   "name": "Problem Solving via Object-Oriented Programming"
+                 },
+                 {
+                   "crn": "COSC##",
+                   "distrib": "TLA",
+                   "name": "qwed"
+                 }
+               ],
+               "id": "-NyDqM3vhFqtsT_uMkfp",
+               "onTerm": true,
+               "termName": "term11"
+             },
+             {
+               "comment": "off term",
+               "courses": [
+                 {
+                   "crn": "COSC10",
+                   "distrib": "TLA",
+                   "id": "-NyDqM3vhFqtsT_uMkfs",
+                   "name": "Problem Solving via Object-Oriented Programming"
+                 }
+               ],
+               "id": "-NyDqM3vhFqtsT_uMkfr",
+               "onTerm": true,
+               "termName": "term12"
+             },
+             {
+               "comment": "off term",
+               "courses": [
+                 {
+                   "crn": "COSC10",
+                   "distrib": "TLA",
+                   "id": "-NyDqM3vhFqtsT_uMkfu",
+                   "name": "Problem Solving via Object-Oriented Programming"
+                 }
+               ],
+               "id": "-NyDqM3vhFqtsT_uMkft",
+               "onTerm": true,
+               "termName": "term13"
+             },
+             {
+               "comment": "off term",
+               "courses": [
+                 {
+                   "crn": "COSC10",
+                   "distrib": "TLA",
+                   "id": "-NyDqM3vhFqtsT_uMkfw",
+                   "name": "Problem Solving via Object-Oriented Programming"
+                 }
+               ],
+               "id": "-NyDqM3vhFqtsT_uMkfv",
+               "onTerm": true,
+               "termName": "term14"
+             },
+             {
+               "comment": "off term",
+               "courses": [
+                 {
+                   "crn": "COSC10",
+                   "distrib": "TLA",
+                   "id": "-NyDqM3vhFqtsT_uMkfy",
+                   "name": "Problem Solving via Object-Oriented Programming"
+                 }
+               ],
+               "id": "-NyDqM3vhFqtsT_uMkfx",
+               "onTerm": true,
+               "termName": "term15"
              }
+           ],
+           "name": "maindraft1"
          }
-    }
- }
- 
+      },
+      {
+        "id": 2,
+        "name": "john smith",
+        "likes": 0,
+        "follow": false,
+        "caption": "i have a very basic name",
+        "profile": "/assets/profile.png",
+        "tags": ["math", "2024", "government"],
+        "Draft":{
+            "list": [
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HpT_AUF_PBK1HJ",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HpT_AUF_PBK1HI",
+                "onTerm": true,
+                "termName": "term0"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HpT_AUF_PBK1HL",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HpT_AUF_PBK1HK",
+                "onTerm": true,
+                "termName": "term1"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HpT_AUF_PBK1HN",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HpT_AUF_PBK1HM",
+                "onTerm": true,
+                "termName": "term2"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HpT_AUF_PBK1HP",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HpT_AUF_PBK1HO",
+                "onTerm": true,
+                "termName": "term3"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HpT_AUF_PBK1HR",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HpT_AUF_PBK1HQ",
+                "onTerm": true,
+                "termName": "term4"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HpT_AUF_PBK1HT",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HpT_AUF_PBK1HS",
+                "onTerm": true,
+                "termName": "term5"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HpT_AUF_PBK1HV",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HpT_AUF_PBK1HU",
+                "onTerm": true,
+                "termName": "term6"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HqMGKL6hEhMhNt",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HqMGKL6hEhMhNs",
+                "onTerm": true,
+                "termName": "term7"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HqMGKL6hEhMhNv",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HqMGKL6hEhMhNu",
+                "onTerm": true,
+                "termName": "term8"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HqMGKL6hEhMhNx",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HqMGKL6hEhMhNw",
+                "onTerm": true,
+                "termName": "term9"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HqMGKL6hEhMhNz",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HqMGKL6hEhMhNy",
+                "onTerm": true,
+                "termName": "term10"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HqMGKL6hEhMhO0",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HqMGKL6hEhMhO-",
+                "onTerm": true,
+                "termName": "term11"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HqMGKL6hEhMhO2",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HqMGKL6hEhMhO1",
+                "onTerm": true,
+                "termName": "term12"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HqMGKL6hEhMhO4",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HqMGKL6hEhMhO3",
+                "onTerm": true,
+                "termName": "term13"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HqMGKL6hEhMhO6",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HqMGKL6hEhMhO5",
+                "onTerm": true,
+                "termName": "term14"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HqMGKL6hEhMhO8",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HqMGKL6hEhMhO7",
+                "onTerm": true,
+                "termName": "term15"
+              }
+            ],
+            "name": "maindraft2"
+          }
+        }
+    ], 
+    
+        "Draft": {
+          "-NyDqM3vhFqtsT_uMkfz": {
+            "list": [
+              {
+                "comment": "qefqfeq",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDqM3vhFqtsT_uMkfV",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDqM3vhFqtsT_uMkfU",
+                "onTerm": false,
+                "termName": "term0"
+              },
+              {
+                "comment": "off term",
+                "id": "-NyDqM3vhFqtsT_uMkf_",
+                "onTerm": true,
+                "termName": "term3"
+              },
+              {
+                "comment": "dca",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDqM3vhFqtsT_uMkfX",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDqM3vhFqtsT_uMkfW",
+                "onTerm": false,
+                "termName": "term1"
+              },
+              {
+                "comment": "fawefwaefwse",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDqM3vhFqtsT_uMkfZ",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDqM3vhFqtsT_uMkfY",
+                "onTerm": false,
+                "termName": "term2"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDqM3vhFqtsT_uMkfc",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDqM3vhFqtsT_uMkfb",
+                "onTerm": true,
+                "termName": "term4"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDqM3vhFqtsT_uMkfg",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  },
+                  {
+                    "crn": "COSC##",
+                    "distrib": "TLA",
+                    "name": "cvb"
+                  }
+                ],
+                "id": "-NyDqM3vhFqtsT_uMkff",
+                "onTerm": true,
+                "termName": "term6"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDqM3vhFqtsT_uMkfe",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  },
+                  {
+                    "crn": "COSC##",
+                    "distrib": "TLA",
+                    "name": "12"
+                  }
+                ],
+                "id": "-NyDqM3vhFqtsT_uMkfd",
+                "onTerm": false,
+                "termName": "term5"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDqM3vhFqtsT_uMkfi",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  },
+                  {
+                    "crn": "COSC##",
+                    "distrib": "TLA",
+                    "name": "qwed"
+                  },
+                  {
+                    "crn": "COSC##",
+                    "distrib": "TLA",
+                    "name": "cascs"
+                  }
+                ],
+                "id": "-NyDqM3vhFqtsT_uMkfh",
+                "onTerm": true,
+                "termName": "term7"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDqM3vhFqtsT_uMkfk",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDqM3vhFqtsT_uMkfj",
+                "onTerm": true,
+                "termName": "term8"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDqM3vhFqtsT_uMkfm",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDqM3vhFqtsT_uMkfl",
+                "onTerm": true,
+                "termName": "term9"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDqM3vhFqtsT_uMkfo",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDqM3vhFqtsT_uMkfn",
+                "onTerm": true,
+                "termName": "term10"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDqM3vhFqtsT_uMkfq",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  },
+                  {
+                    "crn": "COSC##",
+                    "distrib": "TLA",
+                    "name": "qwed"
+                  }
+                ],
+                "id": "-NyDqM3vhFqtsT_uMkfp",
+                "onTerm": true,
+                "termName": "term11"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDqM3vhFqtsT_uMkfs",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDqM3vhFqtsT_uMkfr",
+                "onTerm": true,
+                "termName": "term12"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDqM3vhFqtsT_uMkfu",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDqM3vhFqtsT_uMkft",
+                "onTerm": true,
+                "termName": "term13"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDqM3vhFqtsT_uMkfw",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDqM3vhFqtsT_uMkfv",
+                "onTerm": true,
+                "termName": "term14"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDqM3vhFqtsT_uMkfy",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDqM3vhFqtsT_uMkfx",
+                "onTerm": true,
+                "termName": "term15"
+              }
+            ],
+            "name": "maindraft1"
+          },
+          "-NyDv5HqMGKL6hEhMhO9": {
+            "list": [
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HpT_AUF_PBK1HJ",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HpT_AUF_PBK1HI",
+                "onTerm": true,
+                "termName": "term0"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HpT_AUF_PBK1HL",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HpT_AUF_PBK1HK",
+                "onTerm": true,
+                "termName": "term1"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HpT_AUF_PBK1HN",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HpT_AUF_PBK1HM",
+                "onTerm": true,
+                "termName": "term2"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HpT_AUF_PBK1HP",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HpT_AUF_PBK1HO",
+                "onTerm": true,
+                "termName": "term3"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HpT_AUF_PBK1HR",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HpT_AUF_PBK1HQ",
+                "onTerm": true,
+                "termName": "term4"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HpT_AUF_PBK1HT",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HpT_AUF_PBK1HS",
+                "onTerm": true,
+                "termName": "term5"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HpT_AUF_PBK1HV",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HpT_AUF_PBK1HU",
+                "onTerm": true,
+                "termName": "term6"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HqMGKL6hEhMhNt",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HqMGKL6hEhMhNs",
+                "onTerm": true,
+                "termName": "term7"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HqMGKL6hEhMhNv",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HqMGKL6hEhMhNu",
+                "onTerm": true,
+                "termName": "term8"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HqMGKL6hEhMhNx",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HqMGKL6hEhMhNw",
+                "onTerm": true,
+                "termName": "term9"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HqMGKL6hEhMhNz",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HqMGKL6hEhMhNy",
+                "onTerm": true,
+                "termName": "term10"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HqMGKL6hEhMhO0",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HqMGKL6hEhMhO-",
+                "onTerm": true,
+                "termName": "term11"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HqMGKL6hEhMhO2",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HqMGKL6hEhMhO1",
+                "onTerm": true,
+                "termName": "term12"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HqMGKL6hEhMhO4",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HqMGKL6hEhMhO3",
+                "onTerm": true,
+                "termName": "term13"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HqMGKL6hEhMhO6",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HqMGKL6hEhMhO5",
+                "onTerm": true,
+                "termName": "term14"
+              },
+              {
+                "comment": "off term",
+                "courses": [
+                  {
+                    "crn": "COSC10",
+                    "distrib": "TLA",
+                    "id": "-NyDv5HqMGKL6hEhMhO8",
+                    "name": "Problem Solving via Object-Oriented Programming"
+                  }
+                ],
+                "id": "-NyDv5HqMGKL6hEhMhO7",
+                "onTerm": true,
+                "termName": "term15"
+              }
+            ],
+            "name": "maindraft2"
+          }
+        },
+        "Terms": {
+          "-NyHHa4BmLzPxCPdeB34": {
+            "courses": {
+              "-NyHHb64zqJrmReBvWQT": {
+                "id": "-NyHHb64zqJrmReBvWQT",
+                "name": "fwefw"
+              },
+              "-NyHHbWmxOpNdwhdCy_d": {
+                "id": "-NyHHbWmxOpNdwhdCy_d",
+                "name": "fwef"
+              }
+            },
+            "id": "-NyHHa4BmLzPxCPdeB34",
+            "termName": "casca"
+          }
+        },
+        "course": {
+          "-Nxtk6GeuaLN0TH4B4A6": {
+            "color": "orange",
+            "crn": "92510",
+            "distrib": "NW",
+            "name": "qwed",
+            "nro": false,
+            "prereq": "CS1"
+          },
+          "-NxtpM_ruz9PQXHFtJkR": {
+            "color": "orange",
+            "crn": "92510",
+            "distrib": "NW",
+            "name": "sdfsdfsdfsdfs",
+            "nro": false,
+            "prereq": "CS1"
+          },
+          "-NxxYv7hNUFPawIMz7GU": {
+            "color": "orange",
+            "crn": "92510",
+            "distrib": "NW",
+            "name": "test",
+            "nro": true,
+            "prereq": "CS1"
+          },
+          "-NyGcaMof9XpnMkyphxP": {
+            "color": "orange",
+            "crn": "92510",
+            "distrib": "NW",
+            "name": "test",
+            "nro": false,
+            "prereq": "CS1"
+          }
+        },
+        "users": {
+          "sGqcT5i3mMa2r0KDEiBXl5l0RNo2": {
+            "bio": "",
+            "id": "sGqcT5i3mMa2r0KDEiBXl5l0RNo2",
+            "major": "",
+            "minor": "",
+            "name": "Tasnim Chowdhury",
+            "planid": "",
+            "year": ""
+          }
+        }
+      
+}
