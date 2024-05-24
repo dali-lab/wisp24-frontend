@@ -1,14 +1,27 @@
 .friend-container {
-  border: 2px solid #000;
+  border: 1px solid #000;
   border-radius: 10px;
   background-color: #fff;
-  padding: 20px;
-  width: 250px;
-  text-align: center;
+  padding: 10px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .friend-header {
-  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.friend-header h1 {
+  font-size: 16px;
+  background-color: #93C398;
+  border-radius: 10px;
+  padding: 5px 10px;
+  color: #fff;
+  margin: 5px 0;
 }
 
 .friend-tags {
@@ -20,18 +33,37 @@
 }
 
 .tag {
-  background-color: #93C398;
+  background-color: #cfe2ff;
   border: 1px solid #000;
-  border-radius: 5px;
+  border-radius: 15px;
   padding: 5px 10px;
+  font-size: 12px;
+  color: #333;
+}
+
+.tag.major {
+  background-color: #cfe2ff;
+}
+
+.tag.minor {
+  background-color: #cde4ff;
+}
+
+.tag.other {
+  background-color: #d0f0c0;
 }
 
 .friend-bio {
-  font-size: 14px;
+  font-size: 12px;
   color: #555;
-  margin-bottom: 10px;
+  text-align: center;
 }
 
 .friend-status {
   margin-top: 10px;
+}
+
+.follow-status {
+  font-size: 12px;
+  color: #333;
 }
