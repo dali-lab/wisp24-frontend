@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { createRoot } from 'react-dom/client';
 
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import ActionTypes from './utils/store';
 import reducers from './store/reducers';
