@@ -8,7 +8,6 @@ import {
   updateTermName,
   deleteCourseInTerm
 } from '../../services/datastore';
-import CourseComponent from '../../components/courseComponent';
 
 const EditingDraft = (props) => {
   const { selectedDraft, drafts } = props;
@@ -103,34 +102,45 @@ const EditingDraft = (props) => {
   let content;
   if (nameEditingState) { // if true
     content = (
-      <div>
+      <div className="content-term-name">
         <input type="text" onChange={handleTermChange} name="draftName" value={inputData.draftName} />
-        {nameEditingState ? <button type="button" onClick={changeNameToggleSubmit}>Save Name</button> : <button type="button" onClick={changeNameToggle}>Change Name</button>}
+        {nameEditingState ? <button type="button" onClick={changeNameToggleSubmit}>save</button> : <button type="button" onClick={changeNameToggle}>Change Name</button>}
       </div>
     );
   } else if (termData.termName === "") {
-    content = <p onClick={changeNameToggle}>Add Title</p>;
+    content = (
+      <div className="content-term-name">
+        <p>Add Title</p>
+        <button type="button" onClick={changeNameToggle}>edit</button>
+      </div>
+    );
   } else {
-    content = <p onClick={changeNameToggle}>{termData.termName}</p>;
+    content = (
+      <div className="content-term-name">
+        <p>{termData.termName}</p>
+        <button type="button" onClick={changeNameToggle}>edit</button>
+      </div>
+    );
   }
   console.log('content:', termData);
   return (
     <div className="editing-term">
-      <div>{content}</div>
-      <div>{termData.courses && termData.courses.map((classItem, index) => {
+      <div className="editing-term-content">{content}</div>
+      <div className="editing-term-class-container">{termData.courses && termData.courses.map((classItem, index) => {
         return (
-          <div key={classItem}>
-            {/* <div>{classItem.name}</div> */}
-            <CourseComponent name={classItem.name} termID={selectedDraft} courseID={classItem.id} />
+          <div className="editing-term-class-display" key={classItem}>
+            <div>{classItem.name}</div>
             {console.log('class item id', classItem)}
-            {/* <button type="button" onClick={() => deleteClass(classItem.id)}>Delete Class</button> */}
+            <button type="button" onClick={() => deleteClass(classItem.id)}>x</button>
           </div>
         );
       })}
       </div>
 
-      <input type="text" onChange={handleTermChange} name="classTitle" value={inputData.classTitle} />
-      <button type="button" onClick={saveClass}>Add Class</button>
+      <div className="editing-term-add-class-input">
+        <input type="text" onChange={handleTermChange} name="classTitle" value={inputData.classTitle} />
+        <button type="button" onClick={saveClass}>Add</button>
+      </div>
       <button type="button" onClick={termSubmit}>Save Change</button>
     </div>
   );

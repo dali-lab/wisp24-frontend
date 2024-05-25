@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react';
-import Plan2 from '../../components/plan2/plan2.jsx';
+import Plan2 from '../../components/plan2/Plan2.jsx';
 import PotentialClass from './PotentialClass.jsx';
 import AddTerms from './AddTerms.jsx';
 import Delete from '../../components/delete/Delete.jsx';
 import './Homepage.css';
-import ProgressTracker from './ProgressTracker.jsx';
+// import ProgressTracker from './ProgressTracker.jsx';
 import {
-  getAllDrafts, addNewDraft, delDraft, updateDraft
+  getAllDrafts, addNewDraft, delDraft, updateDraft, updateUserData
 } from '../../services/datastore.js';
 
-const Homepage = () => {
+const Homepage = ({ userID }) => {
   const [mainDrafts, setMainDrafts] = useState(null);
   const inputRef = useRef();
   const [editingIndex, setEditingIndex] = useState('');
@@ -21,7 +21,6 @@ const Homepage = () => {
     getAllDrafts((draftsList) => {
       if (!draftsList) {
         setMainDrafts([]);
-        console.log('hey1');
       } else {
         const draftsArray = Object.keys(draftsList).map((key) => ( // return the array of the cart items
           {
@@ -116,13 +115,39 @@ const Homepage = () => {
     );
   };
 
+  const DropdownMenu = () => {
+    console.log(userID);
+    const [inputMajor, setMajor] = useState('');
+
+    const handleClickMajor = (event) => {
+      const newMajor = event.target.value;
+      setMajor(event.target.value);
+      updateUserData(userID, {
+        name: 'Ellie', year: 2027, major: newMajor, minor: 'comp sci', netid: 1, bio: 'hello', planid: 1
+      });
+      updateUserData(userID, inputMajor);
+    };
+
+    return (
+      <div className="major-edit-toggle">
+        <select id="dropdown" value={inputMajor} onChange={handleClickMajor}>
+          <option value="">Choose your major</option>
+          <option value="option1">Option 1</option>
+          <option value="option2">Option 2</option>
+          <option value="option3">Option 3</option>
+        </select>
+      </div>
+    );
+  };
+
   return (
     <div className="homepage-main-container">
       {popup && <Delete togglePopup={togglePopup} deleteDraft={deleteDraft} />}
       <div className="homepage-left-container">
         <MainDraftTab />
         <div className="plan-container2">
-          <ProgressTracker />
+          <DropdownMenu />
+          {/* <ProgressTracker /> */}
           <Plan2 mainDrafts={mainDrafts} mainDraftIndex={mainDraftIndex} />
         </div>
       </div>

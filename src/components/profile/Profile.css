@@ -56,19 +56,98 @@
  
 .profile-container {
   border-right: 2px solid black;
-  position: absolute;
+  position: fixed;
+  text-outline: 0 0 #000;
+  background-color: var(--color0);
+  width: 25rem;  
+  height: 100rem;
+  box-sizing: border-box;  
+  z-index: 100;
+  display: flex; 
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;  
+}
+#user-profile {
+  width: 200px;
+  height: 200px;
+  margin: 20px auto;
+  border-radius: 50%;
+  background-color: white;
+}
+.top-user-wrapper{
+  margin: 20px auto;
+  display: flex; 
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  color: #000;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.input-containers{
+  padding: 20px 20px;
   display: flex;
   flex-direction: column;
-  left: 0;
-  background-color: var(--color0);
-  margin: 0 0;  
-  padding: 0px;
-  width: 30%;  
-  height: 100%;
-  max-width: 600px;
-  box-sizing: border-box;  
+  justify-content: center;
 }
- 
+.individual-input{
+  display: flex;
+  flex-direction: row;
+  margin: 0.5rem 0.5rem;
+}
+#tags-input-box{
+  border-radius: 30px;
+  border: 1.5px solid #494949; 
+  background: #D9D9D9;
+  width: 15rem;
+  height: 2rem;
+  flex-shrink: 0;   
+  margin-left: 1rem;
+}
+
+.bio-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0.5rem 0.5rem;
+}
+#biography-input-box{
+  height: 15rem;
+}
+.username-display{
+  display: flex;
+  flex-direction: row;
+  color: #000;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.username-display button{
+  background: none;
+  background-color: transparent;
+}
+.top-user-wrapper button{
+  background: none;
+  background-color: transparent;
+}
+#profile-edit-btn{
+  border-radius: 10px;
+  border: 1px solid #000;
+  background: #93C398;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 30px;
+  height: 24px;
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+}
 .toggle-profile-btn {
   cursor: pointer;
   border: none;
