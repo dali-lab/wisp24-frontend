@@ -12,10 +12,21 @@ const Profile = ({ userId, open, handleClose }) => {
   const [color1, setColor1] = useState('');
   const [color2, setColor2] = useState('');
   const [editColorIdx, setEditColorIdx] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (userId) {
-      getUserData(userId).then(setProfile).catch(console.error);
+      getUserData(userId)
+        .then(setProfile)
+        .catch(console.error)
+        .then((data) => {
+          setProfile(data);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.error('Error fetching user data:', error);
+          setIsLoading(false);
+        });
     }
   }, [userId]);
 

@@ -1,43 +1,56 @@
-import React, { useEffect, useState } from 'react';
-import ActionTypes from '../../../utils/store';
+import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { GoogleLogin } from '@react-oauth/google';
+import { useHistory } from 'react-router-dom';
+import { getAuth, GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
+import { updateUserData } from '../../../services/datastore';
 
-const SignInPanel = ({
-  isAuthenticated, isLoading, errorMessage,
-  history, signUpUser, setError
-}) => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const SignUpPanel = () => {
+  const history = useHistory();
+  const auth = getAuth();
 
-  useEffect(() => {
-    if (isAuthenticated) { history.push('/admin'); }
-  }, []);
+  const handleSuccess = async (response) => {
+    const credential = GoogleAuthProvider.credential(response.credential);
+    console.log(response);
+    try {
+      const result = await signInWithCredential(auth, credential);
+      console.log(result);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+      if (result.user.uid) {
+        const newUser = {
+          id: result.user.uid,
+          name: result.user.displayName,
+          year: '',
+          major: '',
+          minor: '',
+          bio: '',
+          planid: '',
+        };
 
-    // Send only if all fields filled in
-    if (!firstName) setError([ActionTypes.AUTH_USER], 'Please enter your first name!');
-    else if (!lastName) setError([ActionTypes.AUTH_USER], 'Please enter your last name!');
-    else if (!email) setError([ActionTypes.AUTH_USER], 'Please enter an email address!');
-    else if (!password) setError([ActionTypes.AUTH_USER], 'Please enter a password!');
-    else signUpUser(email, password, firstName, lastName, { successCallback: () => history.push('/admin') });
+        await updateUserData(result.user.uid, newUser);
+        console.log('New user added:', result.displayName);
+      }
+
+      console.log('Login Success:', result.displayName);
+      history.push('/home');
+    } catch (error) {
+      console.error('Firebase auth error:', error);
+    }
+  };
+
+  const handleError = (error) => {
+    console.error('Login Error:', error);
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-        <input type="text" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-        <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <input type="submit" value="Sign Up" />
-      </form>
-
-      <p>{isLoading ? 'Authenticating...' : errorMessage}</p>
+      <GoogleLogin
+        onSuccess={handleSuccess}
+        onError={handleError}
+        useOneTap
+      />
     </div>
   );
 };
 
-export default SignInPanel;
+export default SignUpPanel;

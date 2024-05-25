@@ -5,12 +5,16 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { createRoot } from 'react-dom/client';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import ActionTypes from './utils/store';
 import reducers from './store/reducers';
 import { authTokenName } from './utils/constants';
 
 import App from './components/app';
 import './style.scss';
+
+const clientId = '41177699286-1njb6551tf4dku6id31rdka169pm6ptm.apps.googleusercontent.com';
 
 // this creates the store with the reducers, and does some other stuff to initialize devtools
 // boilerplate to copy, don't have to know
@@ -39,7 +43,11 @@ const rootElement = document.getElementById('main');
 const root = createRoot(rootElement);
 root.render(
   // eslint-disable-next-line react/jsx-filename-extension
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <GoogleOAuthProvider clientId={clientId}>
+    <Provider store={store}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Provider>
+  </GoogleOAuthProvider>
 );

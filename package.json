@@ -17,6 +17,9 @@
     "build": "NODE_ENV=production webpack",
     "clean": "rimraf dist"
   },
+  "browser": {
+    "react-oauth/google": false
+  },
   "devDependencies": {
     "@babel/core": "^7.13.15",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
@@ -25,6 +28,7 @@
     "autoprefixer": "^10.2.5",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.2.2",
+    "babel-plugin-module-resolver": "^5.0.2",
     "babel-polyfill": "^6.26.0",
     "css-loader": "^5.2.1",
     "eslint": "^7.24.0",
@@ -51,6 +55,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@react-oauth/google": "^0.12.1",
     "antd": "^5.16.1",
     "axios": "^0.28.0",
     "firebase": "^10.11.0",
@@ -60,7 +65,7 @@
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.3.1",
-    "react-pick-color": "^2.0.0",
+    "react-google-login": "^5.2.2",
     "react-redux": "^7.2.3",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
