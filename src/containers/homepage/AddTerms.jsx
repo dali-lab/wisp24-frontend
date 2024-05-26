@@ -74,7 +74,9 @@ const AddTerms = () => {
             </div>
           ))}
         </div>
-        <button type="button" id="delete-draft-btn" onClick={(event) => deleteDraft(event, term.id)}>Delete</button>
+        <div className="button-holder-add-term">
+          <button type="button" onClick={(event) => deleteDraft(event, term.id)}>Delete</button>
+        </div>
       </div>
     );
   };
