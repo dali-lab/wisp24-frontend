@@ -13,7 +13,8 @@ const Filter = (props) => {
   const [showReccomendations, setShowReccomendation] = useState(false);
   const [tags, setTag] = useState([]);
   // 'math', 'computer science', 'literature'
-
+  // list of users and information
+  // 4 different query
   // map through the large data set of courses
   // parse for {name, id}
 
