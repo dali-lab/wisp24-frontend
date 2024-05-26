@@ -87,15 +87,16 @@ const Profile = ({ userId, open, handleClose }) => {
                 onChange={handleInputChange}
                 name="username"
                 placeholder="username"
+                id="username-input-box"
               />
-              <button type="button" onClick={handleUsername}><img src="/assets/check.png" alt="save-edit" id="profile-edit-btn" /></button>
+              <button type="button" id="profile-edit-btn" onClick={handleUsername}><img src="/assets/check.png" alt="save-edit" /></button>
             </div>
           )
 
           : (
             <div className="username-display">
               <p>@Username</p>
-              <button type="button" onClick={() => setEditUsername(true)}><img src="/assets/edit.png" alt="make-edit" id="profile-edit-btn" /></button>
+              <button type="button" id="profile-edit-btn" onClick={() => setEditUsername(true)}><img src="/assets/edit.png" alt="make-edit" /></button>
             </div>
           )}
 
@@ -151,6 +152,9 @@ const Profile = ({ userId, open, handleClose }) => {
           id="biography-input-box"
         />
       </div>
+      <div id="save-profile-btn">
+        <button type="button" onClick={handleSaveProfile}>Save Profile</button>
+      </div>
       <div className="color-picker-container">
         {editColorIdx !== 0 ? (
           <div className="color-all" type="button" onClick={() => handleEditColorIdx(0)}><div className="color-sample0">color1</div>
@@ -165,9 +169,9 @@ const Profile = ({ userId, open, handleClose }) => {
           </div>
         ) : <ChromePicker color={color2} onChange={(color) => setColor2(color.hex)} />}
       </div>
-      <button type="button" onClick={handleSaveProfile}>Save Profile</button>
-      <div>
-        <button type="button">sign out</button>
+
+      <div className="signout-btn-container ">
+        <button type="button" id="sign-out-btn">sign out</button>
       </div>
     </div>
   );

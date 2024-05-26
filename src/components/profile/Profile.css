@@ -125,7 +125,7 @@
   color: #000;
   text-align: center;
   font-family: Montserrat;
-  font-size: 16px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -133,6 +133,20 @@
 .username-display button{
   background: none;
   background-color: transparent;
+}
+#username-input-box{
+  color: #000;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  width: 210px;
+  height: 29px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #EFF3F0;
 }
 .top-user-wrapper button{
   background: none;
@@ -143,10 +157,34 @@
   border: 1px solid #000;
   background: #93C398;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  width: 30px;
-  height: 24px;
   flex-shrink: 0;
   margin-left: 0.5rem;
+  width: 30px;
+  height: 24px;
+}
+#profile-edit-btn img{
+  width: 30px;
+  height: 24px;
+}
+
+#sign-out-btn{
+  border-radius: 30px;
+  border: 1.5px solid #000;
+  background: #D9D9D9;
+  width: 15rem;
+  height: 3rem;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center; 
+  margin:auto;
+  margin-top: 2rem;
+}
+#save-profile-btn{
+  display: flex;
+  justify-content: right;
+  margin: 1rem 2rem;
 }
 .toggle-profile-btn {
   cursor: pointer;

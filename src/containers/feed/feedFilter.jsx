@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import './feed.css';
+import coursedata from '../../services/coursedata.json';
 
 const Filter = (props) => {
   const [filterSwtich, setSwitch] = useState(false);
@@ -10,7 +11,11 @@ const Filter = (props) => {
   const [classes, setClasses] = useState([]);
   const [datas, setData] = useState([]);
   const [showReccomendations, setShowReccomendation] = useState(false);
-  const [tags, setTag] = useState(['math', 'computer science', 'literature']);
+  const [tags, setTag] = useState([]);
+  // 'math', 'computer science', 'literature'
+
+  // map through the large data set of courses
+  // parse for {name, id}
 
   const fetchMajor = () => {
     if (tags.includes(major)) {
@@ -19,7 +24,6 @@ const Filter = (props) => {
     setMajor('');
     // setShowReccomendation(false);
   };
-
   const majorReccomendation = () => {
     // setMajor(e.target.value);
     // setShowReccomendation(true);
