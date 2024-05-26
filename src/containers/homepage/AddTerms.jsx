@@ -34,6 +34,7 @@ const AddTerms = () => {
           const termData = getTerms[termKey];
           const coursesData = termData.courses ? Object.keys(termData.courses).map((coursesID) => ({ // map through objects held by course
             id: coursesID,
+            key: coursesID,
             ...termData.courses[coursesID]
           })) : [];
           return { // will term to the term course data
@@ -71,7 +72,7 @@ const AddTerms = () => {
           {term.courses && term.courses.map((course) => {
             return (
               <div key={course.id} className="term-draft-class-wrapper">
-                <div className="term-draft-class">{course.name}</div>
+                <div className="term-draft-class">{course.label}</div>
               </div>
             );
           })}
@@ -97,23 +98,48 @@ const AddTerms = () => {
     });
   };
 
+  // const changeTermName = (newName) => {
+  //   const updatedDrafts = terms.map((draft, index) => {
+  //     if (selectedDraft.termName === draft.name) {
+  //       return (
+  //         { ...draft, draftName: newName };
+  //       );
+  //     } else {
+  //       return draft;
+  //     }
+  //   });
+  //   setTerms(updatedDrafts);
+  //   updateTermName(selectedDraft.id, newName);
+  // };
+
   const changeTermName = (newName) => {
-    const updatedDrafts = terms.map((draft, index) => {
-      if (selectedDraft.termName === draft.name) {
-        return (
-          { ...draft, draftName: newName }
-        );
+    const updatedDrafts = terms.map((draft) => {
+      if (selectedDraft === draft.id) {
+        return { ...draft, termName: newName };
       } else {
         return draft;
       }
     });
     setTerms(updatedDrafts);
-    updateTermName(selectedDraft.id, newName);
+    updateTermName(selectedDraft, newName);
   };
 
   const termSubmit = (selected, termData) => { // index curr string, need pass in id
     console.log('termDatas:', termData);
     console.log('selected termsubmit:', selected);
+
+    const updatedDrafts = terms.map((draft) => {
+      if (selected === draft.id) {
+        return {
+          ...draft,
+          termName: termData.termName,
+          courses: termData.courses
+        };
+      }
+      return draft;
+    });
+    setTerms(updatedDrafts);
+    // updateTermName(selectedDraft, termData.termName);
     setSelectedDraft('');
   };
 

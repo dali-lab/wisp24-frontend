@@ -81,6 +81,7 @@ const EditingDraft = (props) => {
   };
 
   const termSubmit = () => {
+    console.log("in term submit");
     props.termSubmit(selectedDraft, termData);
     setSelectedDraft('');
   };
@@ -89,8 +90,9 @@ const EditingDraft = (props) => {
 
   const saveClass = () => {
     if (chosenCourse) {
-      addNewCourseInTerm(selectedDraft, chosenCourse);
+      // addNewCourseInTerm(selectedDraft, chosenCourse);
       console.log('here ', chosenCourse);
+      addNewCourseInTerm(termData.id, chosenCourse);
       // setInputData((prevState) => ({
       //   ...prevState,
       //   classTitle: '', // Reset the input field after saving the class
@@ -132,8 +134,10 @@ const EditingDraft = (props) => {
   useEffect(() => {
     // Convert course data to select options
     const courses = coursefile.map((course) => ({
-      value: course.department + course.num,
-      label: course.department + course.num
+      label: course.department_id + course.course_number,
+      // label: course.department_id + course.course_number,
+      value: course.distributives[0] == null ? " " : course.distributives[0].id,
+      key: course.culture_options[0] == null ? " " : course.culture_options[0].id,
     }));
     setCourseOptions(courses);
   }, []);
@@ -143,44 +147,19 @@ const EditingDraft = (props) => {
     setChosenCourse(selectedOption);
   };
 
-  // return (
-  //     <div className="editing-term-add-class-input">
-  //         {/* <h1>Searchable Dropdown Menu</h1> */}
-  //         <Select
-  //             options={courseOptions}
-  //             onChange={handleChange}
-  //             isSearchable
-  //             placeholder="Select a course ID"
-  //         />
-  //     </div>
-  // );
-  // };
-
-  // const [courseIds, setCourseIds] = useState([]);
-
-  //     useEffect(() => {
-  //       const ids = coursefile.map((course) => course.id);
-  //       setCourseIds(ids);
-  //     }, []);
-
-  // const handleChange = (selectedOption) => {
-  //   console.log(`Selected: ${selectedOption.value}`);
-  // };
-
   return (
     <div className="editing-term">
       <div className="editing-term-content">{content}</div>
       <div className="editing-term-class-container">{termData.courses && termData.courses.map((classItem, index) => {
         return (
           <div className="editing-term-class-display" key={classItem}>
-            <div>{classItem.name}</div>
+            <div>{classItem.id}</div>
             {console.log('class item id', classItem)}
             <button type="button" onClick={() => deleteClass(classItem.id)}>x</button>
           </div>
         );
       })}
       </div>
-
       <div className="editing-term-add-class-input">
         <Select
           options={courseOptions}

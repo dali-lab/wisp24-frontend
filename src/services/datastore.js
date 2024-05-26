@@ -324,16 +324,35 @@ export function addNewCourse(courseName, courseDistrib, courseNRO, coursePrereq,
   });
 }
 
+// export function addNewCourseInTerm(termID, course) {
+//   const coursesRef = push(ref(db, 'Terms/' + termID + '/courses'));
+//   set(coursesRef, {
+//     id: course.value,
+//     ditrib: course.label
+//   }).then(() => {
+//     console.log('Course added successfully');
+//   }).catch((error) => {
+//     console.error('Error adding course: ', error);
+//   });
+// }
+
 export function addNewCourseInTerm(termID, course) {
-  const coursesRef = push(ref(db, 'Terms/' + termID + '/courses'));
-  set(coursesRef, {
-    id: coursesRef.key,
-    name: course,
-  }).then(() => {
-    console.log('Course added successfully');
-  }).catch((error) => {
-    console.error('Error adding course: ', error);
-  });
+  const coursesRef = ref(db, 'Terms/' + termID + '/courses');
+  const newCourseRef = push(coursesRef); // Push a new child node under 'courses'
+  const newCourseData = {
+    id: course.label, // course code
+    distrib: course.value, // value is distrib
+    culture: course.key
+  };
+
+  set(newCourseRef, newCourseData)
+    .then(() => {
+      console.log('Course added successfully');
+      console.log('new course data ' + newCourseData);
+    })
+    .catch((error) => {
+      console.error('Error adding course: ', error);
+    });
 }
 
 export function deleteCourseInTerm(termID, courseID) {

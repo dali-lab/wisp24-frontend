@@ -29,10 +29,11 @@ const TermBuilderComponent = () => {
   let allTerms = '';
   if (listOfTermNames.length !== 0) {
     allTerms = Object.entries(listOfTermNames).map(([id, term]) => {
+      // console.log(`helllllllo ${term.courses}`);
       return (
         <TermComponent
           termName={term}
-          courses={[]}
+          courses={term.courses}
           termID={id}
           key={id}
           del={delTerm} // pass a callback function
@@ -41,7 +42,6 @@ const TermBuilderComponent = () => {
       );
     });
   }
-
   // useEffect(() => {
   //   setListOfTermNames(allTerms);
   // });
