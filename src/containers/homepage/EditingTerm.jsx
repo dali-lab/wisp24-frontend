@@ -2,12 +2,14 @@
 /* eslint-disable quotes */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
+import Select from 'react-select';
 import {
   getAllCourses, addNewCourse, deleteCourse, updateCourse, getTerm, getCourseByTerm,
   addTerm, addNewCourseInTerm,
   updateTermName,
   deleteCourseInTerm
 } from '../../services/datastore';
+import coursefile from '../../services/coursedata.json';
 
 const EditingDraft = (props) => {
   const { selectedDraft, drafts } = props;
@@ -33,7 +35,7 @@ const EditingDraft = (props) => {
   useEffect(() => {
     getTerm(selectedDraft, (term) => {
       if (term) {
-        console.log('coursedata:', term);
+        console.log('courseData:', term);
         let courseData;
         getCourseByTerm(selectedDraft, (getCourse) => {
           if (getCourse) {
@@ -83,15 +85,16 @@ const EditingDraft = (props) => {
     setSelectedDraft('');
   };
 
+  const [chosenCourse, setChosenCourse] = useState('');
+
   const saveClass = () => {
-    const newClassTitle = inputData.classTitle.trim(); // Trim any leading/trailing whitespace
-    if (newClassTitle) {
-      addNewCourseInTerm(selectedDraft, newClassTitle);
-      console.log('here ', newClassTitle);
-      setInputData((prevState) => ({
-        ...prevState,
-        classTitle: '', // Reset the input field after saving the class
-      }));
+    if (chosenCourse) {
+      addNewCourseInTerm(selectedDraft, chosenCourse);
+      console.log('here ', chosenCourse);
+      // setInputData((prevState) => ({
+      //   ...prevState,
+      //   classTitle: '', // Reset the input field after saving the class
+      // }));
     }
   };
   const deleteClass = (id) => {
@@ -123,6 +126,47 @@ const EditingDraft = (props) => {
     );
   }
   console.log('content:', termData);
+
+  const [courseOptions, setCourseOptions] = useState('');
+
+  useEffect(() => {
+    // Convert course data to select options
+    const courses = coursefile.map((course) => ({
+      value: course.department + course.num,
+      label: course.department + course.num
+    }));
+    setCourseOptions(courses);
+  }, []);
+
+  const handleChange = (selectedOption) => {
+    console.log(`Selected: ${selectedOption.value}`);
+    setChosenCourse(selectedOption);
+  };
+
+  // return (
+  //     <div className="editing-term-add-class-input">
+  //         {/* <h1>Searchable Dropdown Menu</h1> */}
+  //         <Select
+  //             options={courseOptions}
+  //             onChange={handleChange}
+  //             isSearchable
+  //             placeholder="Select a course ID"
+  //         />
+  //     </div>
+  // );
+  // };
+
+  // const [courseIds, setCourseIds] = useState([]);
+
+  //     useEffect(() => {
+  //       const ids = coursefile.map((course) => course.id);
+  //       setCourseIds(ids);
+  //     }, []);
+
+  // const handleChange = (selectedOption) => {
+  //   console.log(`Selected: ${selectedOption.value}`);
+  // };
+
   return (
     <div className="editing-term">
       <div className="editing-term-content">{content}</div>
@@ -138,7 +182,13 @@ const EditingDraft = (props) => {
       </div>
 
       <div className="editing-term-add-class-input">
-        <input type="text" onChange={handleTermChange} name="classTitle" value={inputData.classTitle} />
+        <Select
+          options={courseOptions}
+          onChange={handleChange}
+          isSearchable
+          placeholder="Enter course ID"
+        />
+        {/* <input type="text" onChange={handleTermChange} name="classTitle" value={inputData.classTitle} /> */}
         <button type="button" onClick={saveClass}>Add</button>
       </div>
       <button type="button" onClick={termSubmit}>Save Change</button>

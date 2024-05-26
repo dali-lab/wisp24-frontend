@@ -8,6 +8,7 @@ import './Homepage.css';
 import {
   getAllDrafts, addNewDraft, delDraft, updateDraft, updateUserData
 } from '../../services/datastore.js';
+// import coursedata from '../../services/coursedata.json';
 
 const Homepage = ({ userID }) => {
   const [mainDrafts, setMainDrafts] = useState(null);
