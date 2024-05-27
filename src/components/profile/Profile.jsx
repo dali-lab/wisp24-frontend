@@ -4,18 +4,14 @@ import { getUserData, updateUserData } from '../../services/datastore';
 
 const Profile = ({ userId, open, handleClose }) => {
   const [profile, setProfile] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     if (userId) {
       getUserData(userId)
         .then((data) => {
           setProfile(data);
-          setIsLoading(false);
         })
         .catch((error) => {
           console.error('Error fetching user data:', error);
-          setIsLoading(false);
         });
     }
   }, [userId]);
@@ -42,10 +38,6 @@ const Profile = ({ userId, open, handleClose }) => {
       console.error('Error updating profile:', error);
     }
   };
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div className="profile-container" style={{ display: open ? 'block' : 'none' }}>
