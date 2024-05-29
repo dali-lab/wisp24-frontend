@@ -33,17 +33,6 @@ const CourseComponent = (props) => {
     }
   };
 
-  { /* <CourseComponent
-          termKey={termKey}
-          course={course}
-          location={inPlan}
-          courseDistrib={course.distrib}
-          id={id}
-          key={id}
-          delCourse={delCourse}
-          del={false}
-        /> */ }
-
   return (
     <div
       className="course-content-div"
@@ -62,7 +51,7 @@ const CourseComponent = (props) => {
       }}
       onClick={handleClick}
     >
-      <div className="course-description-container"><p className="course-description">{props.course?.crn}: {props.course?.name} ({props.course?.distrib})</p></div>
+      <div className="course-description-container"><p className="course-description">{props.course?.crn}</p></div>
       <div className="course-individual-delete"><button type="button" onClick={delCourse}>x</button></div>
     </div>
   );

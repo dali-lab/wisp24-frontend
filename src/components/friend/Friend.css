@@ -1,4 +1,31 @@
 .friend-container {
+  text-decoration: none;
+  border: 2px solid #000;
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+}
+
+a, a:active, a:visited {
+  text-decoration: none;
+  color: rgb(0, 0, 0); /* Ensure links remain black */
+}
+
+.friend-header {
+  margin-bottom: 10px;
+  text-decoration: none;
+}
+
+.username {
+  background-color: #93C398;
+  gap: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 5px 10px;
   border: 1px solid #000;
   border-radius: 10px;
   background-color: #fff;
@@ -9,11 +36,6 @@
   align-items: center;
 }
 
-.friend-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 .friend-header h1 {
   font-size: 16px;
@@ -61,6 +83,7 @@
 
 .friend-status {
   margin-top: 10px;
+  text-decoration: none;
 }
 
 .follow-status {

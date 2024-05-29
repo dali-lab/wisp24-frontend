@@ -43,7 +43,7 @@
     background-color: var(--track0);
     font-family: gill sans;
     font-weight: 600;
-    justify-content: space-around;
+    justify-content: space-between;
     border-radius: 8px;
     padding-left: 5px;
     padding-right: 5px;

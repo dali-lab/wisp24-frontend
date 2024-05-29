@@ -162,8 +162,6 @@ const ProgressTracker = () => {
   return (
     <div className="progressTracker-container">
       <ColorPicker />
-      <TrackInput />
-      <Tracker />
     </div>
   );
 };

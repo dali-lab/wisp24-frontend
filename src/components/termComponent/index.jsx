@@ -56,7 +56,7 @@ const TermComponent = (props) => {
       console.log('Dropped item:', item);
       // props.addCourse(props.termID, item.course.name);
       console.log(`termID: ${props.termID}, termKey: ${item.initialTerm}, courseName: ${item.course.name}`);
-      props.dndDelete(props.termID, item.initialTerm, item.course.name);
+      props.dndDelete(props.termID, item.initialTerm, item.course.crn);
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
@@ -104,7 +104,7 @@ const TermComponent = (props) => {
       {onTerm
         ? (
           <div className="term" style={{ border: props.isOver ? '3px solid orange' : '' }}>
-            <button onClick={() => toggleOnOff(termID)} type="button">switch</button>
+            <button onClick={() => toggleOnOff(termID)} type="button">on/off</button>
             <div className="course-container" ref={drop}>{allCourses}</div>
             <div className="term-component-input">
               {editStatus ? (

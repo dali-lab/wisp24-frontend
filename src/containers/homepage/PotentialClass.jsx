@@ -23,7 +23,7 @@ const PotentialClass = () => {
 
   const createCourse = () => {
     // console.log('create course button click registered');
-    addNewCourse(courseName, 'NW', NRO, 'CS1', 'orange', '92510');
+    addNewCourse(courseName, 'NW', NRO, 'CS1', 'orange', courseName);
   };
 
   const changeNRO = () => {

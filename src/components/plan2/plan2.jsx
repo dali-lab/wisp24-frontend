@@ -35,9 +35,7 @@ const Plan23 = (props) => {
 
   const addCourse = (index, courseName) => {
     const newCourse = {
-      crn: 'COSC##',
-      distrib: 'TLA',
-      name: courseName,
+      crn: courseName,
     };
     const updatedCourseList = listOfTermNames.map((term, i) => {
       if (index === i) {
@@ -96,7 +94,7 @@ const Plan23 = (props) => {
 
   const dndDelete = (index, initialIdx, courseName) => {
     const newCourse = {
-      crn: 'COSC##',
+      crn: courseName,
       distrib: 'TLA',
       name: courseName,
     };
@@ -159,6 +157,7 @@ const Plan23 = (props) => {
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
       accept: 'TERM',
       drop: (item, monitor) => {
+        console.log(`item: ${item}`);
         if (item.inPlan) {
           const draggedIndex = item.id; // THIS WAS NULL BEFORE!! Now references item: {id} in useDrag hook
           const targetIndex = subprops.termID;
@@ -172,14 +171,14 @@ const Plan23 = (props) => {
           setListOfTermNames(updatedTermNames);
           updateDraftTerm(mainDraftIndex, updatedTermNames);
         } else {
-          const targetIndex = props.termID;
+          const targetIndex = subprops.termID;
           const updatedTermNames = [...listOfTermNames];
 
-          // type: 'TERM', termId: term.id, term, inPlan: false
+          // termId: term.id, courses: courseList, inPlan: false
           updatedTermNames[targetIndex] = {
-            courses: item.term.courses,
-            id: item.termId,
-            termName: item.term.termName
+            courses: item.courses,
+            id: item.id,
+            onTerm: true
           };
           setListOfTermNames(updatedTermNames);
           updateDraftTerm(mainDraftIndex, updatedTermNames);
