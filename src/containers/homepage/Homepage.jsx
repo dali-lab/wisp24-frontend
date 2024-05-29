@@ -104,9 +104,18 @@ const Homepage = ({ userID }) => {
               key={mainDraft.id}
             >
               <div className="tab-name">{editingIndex === mainDraft.id ? <input type="text" ref={inputRef} /> : mainDraft.name}</div>
-              {editingIndex === mainDraft.id ? <button type="button" onClick={() => titleChangeSubmit(mainDraft.id)}>Submit</button>
-                : <button type="button" onClick={() => startEdit(mainDraft.id)}>Edit</button>}
-              <button type="button" onClick={() => goToDelete(mainDraft.id)}>Delete</button>
+              {editingIndex === mainDraft.id
+                ? (
+                  <>
+                    <button type="button" onClick={() => titleChangeSubmit(mainDraft.id)}>Submit</button>
+                    <button type="button" onClick={() => startEdit(-1)}>cancel</button>
+                  </>
+                )
+                : (
+                  <><button type="button" onClick={() => startEdit(mainDraft.id)}>Edit</button>
+                    <button type="button" onClick={() => goToDelete(mainDraft.id)}>Delete</button>
+                  </>
+                )}
             </div>
           );
         })}
@@ -116,7 +125,6 @@ const Homepage = ({ userID }) => {
   };
 
   const DropdownMenu = () => {
-    console.log(userID);
     const [inputMajor, setMajor] = useState('');
 
     const handleClickMajor = (event) => {

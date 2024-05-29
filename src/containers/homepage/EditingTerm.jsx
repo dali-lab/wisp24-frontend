@@ -129,7 +129,7 @@ const EditingDraft = (props) => {
       <div className="editing-term-class-container">{termData.courses && termData.courses.map((classItem, index) => {
         return (
           <div className="editing-term-class-display" key={classItem}>
-            <div>{classItem.name}</div>
+            <div>{classItem.id}</div>
             {console.log('class item id', classItem)}
             <button type="button" onClick={() => deleteClass(classItem.id)}>x</button>
           </div>

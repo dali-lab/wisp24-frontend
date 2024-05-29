@@ -50,14 +50,14 @@ const AddTerms = () => {
     const [{ isDragging }, drag] = useDrag({
       type: 'TERM', // Define the drag type
       item: {
-        type: 'TERM', termId: term.id, term, inPlan: false
+        // type: 'TERM', termId: term.id, term, inPlan: false
+        termId: term.id, courses: term.courses, inPlan: false
       }, // Pass the term data in the item
       collect: (monitor) => ({
         isDragging: !!monitor.isDragging(),
       }),
     });
-
-    console.log('Rendering Draft:', term);
+    console.log(`term: ${term.courses[0].id}`);
 
     return (
       <div
@@ -69,7 +69,7 @@ const AddTerms = () => {
         <div className="term-draft-class-container" tabIndex={0} role="button" onClick={() => handleSelectedDraft(term.id)}>
           {term.courses && Object.entries(term.courses).map(([courseId, course]) => (
             <div key={courseId} className="term-draft-class-wrapper">
-              <div className="term-draft-class">{course.name.label}</div>
+              <div className="term-draft-class">{course.id}</div>
             </div>
           ))}
         </div>

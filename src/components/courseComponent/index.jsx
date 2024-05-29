@@ -32,6 +32,18 @@ const CourseComponent = (props) => {
       props.delete(props.id);
     }
   };
+
+  { /* <CourseComponent
+          termKey={termKey}
+          course={course}
+          location={inPlan}
+          courseDistrib={course.distrib}
+          id={id}
+          key={id}
+          delCourse={delCourse}
+          del={false}
+        /> */ }
+
   return (
     <div
       className="course-content-div"
