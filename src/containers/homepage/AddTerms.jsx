@@ -72,7 +72,7 @@ const AddTerms = () => {
           {term.courses && term.courses.map((course) => {
             return (
               <div key={course.id} className="term-draft-class-wrapper">
-                <div className="term-draft-class">{course.label}</div>
+                <div className="term-draft-class">{course.id}</div>
               </div>
             );
           })}
