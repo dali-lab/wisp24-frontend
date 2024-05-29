@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import Friend from '../../components/friend/Friend';
-import Plan from '../../components/plan2/Plan2';
+import Plan from '../../components/plan2/plan2.jsx';
 import './ViewProfile.css';
 
 const ViewProfile = () => {
@@ -33,6 +33,10 @@ const ViewProfile = () => {
   const friendData = location.state?.friendData || { /* default friend data */ };
   const planData = friendData.planData || placeholderPlanData;
   const [upvotes, setUpvotes] = useState(friendData.upvotes || 0);
+
+  useEffect(() => {
+    console.log('hello is this working');
+  }, []);
 
   const handleBack = () => {
     history.goBack();

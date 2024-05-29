@@ -217,7 +217,7 @@ export function updateUserData(userId, input) {
 }
 
 export function getUserData(userId) {
-  const userRef = ref(db, `users/${userId}`);
+  const userRef = ref(db, `users/${String(userId)}`);
   return new Promise((resolve, reject) => {
     onValue(userRef, (snapshot) => {
       const userData = snapshot.val();
@@ -234,7 +234,7 @@ export function getUserData(userId) {
 
 // delete user
 export const removeUserData = (userId) => {
-  const userRef = ref(db, `users/${userId}`);
+  const userRef = ref(db, `users/${String(userId)}`);
   return remove(userRef);
 };
 
@@ -347,5 +347,14 @@ export function deleteCourse(deleteId) {
 export function updateCourse(newName, newNRO, newColor, newCRN) {
   update(ref(db, 'course/'), {
     name: newName,
+  });
+}
+
+/* FEED PAGE TERM + SHARE FIREBASE FUNCTIONS */
+export function getAllFeedUsers(callback = () => {}) {
+  const draftRef = ref(db, 'Feed_Users/');
+  onValue(draftRef, (snapshot) => {
+    const posts = snapshot.val();
+    callback(posts);
   });
 }

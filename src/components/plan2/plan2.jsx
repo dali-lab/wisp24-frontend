@@ -214,7 +214,6 @@ const Plan23 = (props) => {
       </div>
     );
   };
-  console.log(listOfTermNames[1]?.comment);
   return (
     <div className="table-container">
       <DndProvider backend={HTML5Backend}>

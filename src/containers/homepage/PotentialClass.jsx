@@ -68,7 +68,7 @@ const PotentialClass = () => {
         </div>
       ))}
       </div> */}
-        <div className="potential-wrapper">
+        <div className="scrollable">
           {allCourses}
         </div>
 

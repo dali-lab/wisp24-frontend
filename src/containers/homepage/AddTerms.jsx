@@ -13,7 +13,6 @@ import {
 const AddTerms = () => {
   const [selectedDraft, setSelectedDraft] = useState('');
   const [terms, setTerms] = useState([]); // list of terms
-  const [newId, setNewId] = useState(); // Add new term with details from termData
 
   const deleteDraft = (event, termID) => {
     event.stopPropagation();
@@ -31,11 +30,11 @@ const AddTerms = () => {
       if (getTerms) {
         const termsList = Object.keys(getTerms).map((termKey) => {
           const termData = getTerms[termKey];
-          const coursesData = termData.courses ? Object.keys(termData.courses).map((coursesID) => ({ // map through objects held by course
-            id: coursesID,
-            ...termData.courses[coursesID]
+          const coursesData = termData.courses ? Object.keys(termData.courses).map((courseID) => ({
+            id: courseID,
+            ...termData.courses[courseID]
           })) : [];
-          return { // will term to the term course data
+          return {
             id: termKey,
             termName: termData.termName,
             courses: coursesData // list of courses
@@ -59,23 +58,25 @@ const AddTerms = () => {
       }),
     });
 
+    console.log('Rendering Draft:', term);
+
     return (
       <div
         ref={drag}
         style={{ opacity: isDragging ? 0.5 : 1 }}
         className="term-draft"
       >
-        <div>{term.termName}</div>
+        <div className="term-name-wrapper">{term.termName}</div>
         <div className="term-draft-class-container" tabIndex={0} role="button" onClick={() => handleSelectedDraft(term.id)}>
-          {term.courses && term.courses.map((course) => {
-            return (
-              <div key={course.id} className="term-draft-class-wrapper">
-                <div className="term-draft-class">{course.name}</div>
-              </div>
-            );
-          })}
+          {term.courses && Object.entries(term.courses).map(([courseId, course]) => (
+            <div key={courseId} className="term-draft-class-wrapper">
+              <div className="term-draft-class">{course.name.label}</div>
+            </div>
+          ))}
         </div>
-        <button type="button" onClick={(event) => deleteDraft(event, term.id)}>Delete</button>
+        <div className="button-holder-add-term">
+          <button type="button" onClick={(event) => deleteDraft(event, term.id)}>Delete</button>
+        </div>
       </div>
     );
   };
@@ -89,72 +90,58 @@ const AddTerms = () => {
       if (termId) {
         console.log('termid:', termId);
         setSelectedDraft(termId);
-        console.log('selected draft id'.selectedDraft);
+        console.log('selected draft id', selectedDraft);
       }
     });
   };
 
   const changeTermName = (newName) => {
-    const updatedDrafts = terms.map((draft, index) => {
-      if (selectedDraft.termName === draft.name) {
-        return (
-          { ...draft, draftName: newName }
-        );
-      } else {
-        return draft;
+    const updatedDrafts = terms.map((draft) => {
+      if (selectedDraft === draft.id) {
+        return {
+          ...draft,
+          termName: newName
+        };
       }
+      return draft;
     });
     setTerms(updatedDrafts);
-    updateTermName(selectedDraft.id, newName);
+    updateTermName(selectedDraft, newName);
   };
 
-  const termSubmit = (selected, termData) => { // index curr string, need pass in id
+  const termSubmit = (selected, termData) => {
     console.log('termDatas:', termData);
     console.log('selected termsubmit:', selected);
     setSelectedDraft('');
-    // if (termData.id !== " ") {
-    //   // const term = terms[index];
-    //   updateTermName(termData.id, termData.termName);
-    //   updateCourse(termData.id, termData.courses);
-    // } else {
-    //   addTerm(termData, (termId) => {
-    //     if (termId) {
-    //       const key = termId.id;
-    //       setNewId(key);
-    //       console.log(termId);
-    //     }
-    //   }).then(
-    //     console.log('new termid:', newId),
-    //     ((termData.courses).forEach((course) => {
-    //       addNewCourse(newId, course);
-    //       console.log('new termid:', newId);
-    //     }))
-    //   );
-    // }
   };
 
-  const AllDrafts = () => {
-    return (
-      <div>
-        {terms.map((individualTerm) => (
-          <Draft onClick={() => setSelectedDraft(individualTerm.id)} key={individualTerm.id} term={individualTerm} onDelete={(event) => deleteDraft(event, individualTerm.id)} />
-        ))}
-      </div>
-    );
-  };
+  const AllDrafts = () => (
+    <div>
+      {terms.map((individualTerm) => (
+        <Draft onClick={() => setSelectedDraft(individualTerm.id)} key={individualTerm.id} term={individualTerm} onDelete={(event) => deleteDraft(event, individualTerm.id)} />
+      ))}
+    </div>
+  );
 
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="add-terms">
         <div className="term-draft-content-container-name">Add Terms</div>
         <div className="term-draft-container">
-          {selectedDraft !== '' ? <EditingDraft handleSelectedDraft={handleSelectedDraft} drafts={terms} selectedDraft={selectedDraft} termSubmit={termSubmit} changeTermName={changeTermName} />
-            : (
-              <>
-                <div role="button" tabIndex={0} onClick={handleClick} className="term-draft-button"><p>Add Draft</p></div>
-                <AllDrafts />
-              </>
-            )}
+          {selectedDraft !== '' ? (
+            <EditingDraft
+              handleSelectedDraft={handleSelectedDraft}
+              drafts={terms}
+              selectedDraft={selectedDraft}
+              termSubmit={termSubmit}
+              changeTermName={changeTermName}
+            />
+          ) : (
+            <>
+              <div role="button" tabIndex={0} onClick={handleClick} className="term-draft-button"><p>Add Draft</p></div>
+              <AllDrafts />
+            </>
+          )}
         </div>
       </div>
     </DndProvider>
