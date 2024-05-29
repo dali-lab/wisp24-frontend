@@ -8,18 +8,23 @@ import { getUserData, updateUserData } from '../../services/datastore'; // Adjus
 
 const Profile = ({ userId, open, handleClose }) => {
   const [profile, setProfile] = useState({});
+  useEffect(() => {
+    if (userId) {
+      getUserData(userId)
+        .then((data) => {
+          setProfile(data);
+        })
+        .catch((error) => {
+          console.error('Error fetching user data:', error);
+        });
+    }
+  }, [userId]);
   const [color0, setColor0] = useState('');
   const [color1, setColor1] = useState('');
   const [color2, setColor2] = useState('');
   const [editColorIdx, setEditColorIdx] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [editUsername, setEditUsername] = useState(false);
-
-  useEffect(() => {
-    if (userId) {
-      getUserData(userId).then(setProfile).catch(console.error);
-    }
-  }, [userId]);
 
   useEffect(() => {
     document.documentElement.style.setProperty('--color0', color0);

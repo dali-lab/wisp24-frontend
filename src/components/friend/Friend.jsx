@@ -38,7 +38,7 @@ const Friend = ({ friendData }) => {
   return (
     <div className="friend-container">
       <div className="friend-header">
-        <h1>{name}</h1>
+        <h1 className="username">{name}</h1>
         <div className="friend-tags">
           <span className="tag major">{major}</span>
           <span className="tag minor">{minor}</span>
