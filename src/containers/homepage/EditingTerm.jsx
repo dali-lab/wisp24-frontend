@@ -2,6 +2,7 @@
 /* eslint-disable quotes */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Select from 'react-select';
 import {
   getAllCourses, addNewCourse, deleteCourse, updateCourse, getTerm, getCourseByTerm,

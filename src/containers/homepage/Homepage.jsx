@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import Plan2 from '../../components/plan2/Plan2.jsx';
+import Plan2 from '../../components/plan2/plan2.jsx';
 import PotentialClass from './PotentialClass.jsx';
 import AddTerms from './AddTerms.jsx';
 import Delete from '../../components/delete/Delete.jsx';
