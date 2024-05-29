@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import create from 'zustand';
 
 const useStore = create((set) => ({
