@@ -69,6 +69,7 @@
     "react-redux": "^7.2.3",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
+    "react-select": "^5.8.0",
     "reactjs-popup": "^2.0.6",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",

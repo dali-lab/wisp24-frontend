@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useState, useRef, useEffect } from 'react';
+// eslint-disable-next-line import/no-unresolved
 import { SliderPicker, BlockPicker, ChromePicker } from 'react-color';
 import './Homepage.css';
 

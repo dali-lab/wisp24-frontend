@@ -95,15 +95,27 @@ const AddTerms = () => {
     });
   };
 
+  // const changeTermName = (newName) => {
+  //   const updatedDrafts = terms.map((draft, index) => {
+  //     if (selectedDraft.termName === draft.name) {
+  //       return (
+  //         { ...draft, draftName: newName };
+  //       );
+  //     } else {
+  //       return draft;
+  //     }
+  //   });
+  //   setTerms(updatedDrafts);
+  //   updateTermName(selectedDraft.id, newName);
+  // };
+
   const changeTermName = (newName) => {
     const updatedDrafts = terms.map((draft) => {
       if (selectedDraft === draft.id) {
-        return {
-          ...draft,
-          termName: newName
-        };
+        return { ...draft, termName: newName };
+      } else {
+        return draft;
       }
-      return draft;
     });
     setTerms(updatedDrafts);
     updateTermName(selectedDraft, newName);
@@ -112,6 +124,19 @@ const AddTerms = () => {
   const termSubmit = (selected, termData) => {
     console.log('termDatas:', termData);
     console.log('selected termsubmit:', selected);
+
+    const updatedDrafts = terms.map((draft) => {
+      if (selected === draft.id) {
+        return {
+          ...draft,
+          termName: termData.termName,
+          courses: termData.courses
+        };
+      }
+      return draft;
+    });
+    setTerms(updatedDrafts);
+    // updateTermName(selectedDraft, termData.termName);
     setSelectedDraft('');
   };
 

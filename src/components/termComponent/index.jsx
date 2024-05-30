@@ -85,7 +85,7 @@ const TermComponent = (props) => {
       return (
         <CourseComponent
           termKey={termKey}
-          course={course}
+          course={course.id}
           location={inPlan}
           courseDistrib={course.distrib}
           id={id}

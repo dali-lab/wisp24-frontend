@@ -8,6 +8,7 @@ import './Homepage.css';
 import {
   getAllDrafts, addNewDraft, delDraft, updateDraft, updateUserData
 } from '../../services/datastore.js';
+// import coursedata from '../../services/coursedata.json';
 
 const Homepage = ({ userID }) => {
   const [mainDrafts, setMainDrafts] = useState(null);
@@ -119,13 +120,19 @@ const Homepage = ({ userID }) => {
     console.log(userID);
     const [inputMajor, setMajor] = useState('');
 
+    // const handleClickMajor = (event) => {
+    //   const newMajor = event.target.value;
+    //   setMajor(event.target.value);
+    //   updateUserData(userID, {
+    //     name: 'Ellie', year: 2027, major: newMajor, minor: 'comp sci', netid: 1, bio: 'hello', planid: 1
+    //   });
+    //   updateUserData(userID, inputMajor);
+    // };
+
     const handleClickMajor = (event) => {
       const newMajor = event.target.value;
       setMajor(event.target.value);
-      updateUserData(userID, {
-        name: 'Ellie', year: 2027, major: newMajor, minor: 'comp sci', netid: 1, bio: 'hello', planid: 1
-      });
-      updateUserData(userID, inputMajor);
+      updateUserData(userID, { major: newMajor });
     };
 
     return (
