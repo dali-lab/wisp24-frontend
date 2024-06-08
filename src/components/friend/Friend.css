@@ -1,3 +1,7 @@
+.friends-container-wrapper{
+   box-shadow: 5px 10px 20px rgba(8, 8, 8, 0.24); 
+
+}
 .friend-container {
   text-decoration: none;
   border: 2px solid #000;
@@ -6,8 +10,23 @@
   padding: 20px;
   width: 250px;
   text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
-
+.friends-left-side{
+  flex: 0;
+}
+.friends-right-side{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  border: 1px black solid;
+  align-items: center;
+  margin-left: 2rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
 a, a:active, a:visited {
   text-decoration: none;
   color: rgb(0, 0, 0); /* Ensure links remain black */
@@ -17,7 +36,12 @@ a, a:active, a:visited {
   margin-bottom: 10px;
   text-decoration: none;
 }
-
+#friend-profile-img{
+  border: 2px solid black;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 100%;
+}
 .username {
   background-color: #93C398;
   gap: 5px;
@@ -30,10 +54,12 @@ a, a:active, a:visited {
   border-radius: 10px;
   background-color: #fff;
   padding: 10px;
-  width: 200px;
+  width: 300px;
   display: flex;
   flex-direction: column;
+  text-align: center;
   align-items: center;
+  margin: auto;
 }
 
 

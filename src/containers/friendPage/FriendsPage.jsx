@@ -115,7 +115,7 @@ const FriendsPage = ({ userId }) => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="search-bar"
         />
-        <div className="friends-container">
+        <div className="friends-parent-container">
           {renderFriendsList()}
         </div>
       </div>

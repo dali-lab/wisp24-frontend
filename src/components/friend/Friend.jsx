@@ -36,20 +36,28 @@ const Friend = ({ friendData }) => {
   };
 
   return (
-    <div className="friend-container">
-      <div className="friend-header">
-        <h1 className="username">{name}</h1>
-        <div className="friend-tags">
-          <span className="tag major">{major}</span>
-          <span className="tag minor">{minor}</span>
-          {renderOtherTags()}
+    <div className="friends-container-wrapper">
+      <div className="friend-container">
+        <div className="friends-left-side">
+          <img src=" " alt="" id="friend-profile-img" />
+          <p>Following</p>
         </div>
-        <p className="friend-bio">{bio}</p>
-        <div className="friend-status">
-          <span className="follow-status">{renderFollowStatus()}</span>
+        <div className="friend-header">
+          <div className="friends-right-side">
+            <h1 className="username">{name}</h1>
+            <div className="friend-tags">
+              <span className="tag major">{major}</span>
+              <span className="tag minor">{minor}</span>
+              {renderOtherTags()}
+            </div>
+            <p className="friend-bio">{bio}</p>
+            <div className="friend-status">
+              <span className="follow-status">{renderFollowStatus()}</span>
+            </div>
+          </div>
         </div>
+        {renderPlan()}
       </div>
-      {renderPlan()}
     </div>
   );
 };

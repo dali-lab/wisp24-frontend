@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Friend from '../../components/friend/Friend.jsx';
 import './FollowingPage.css';
+import './FriendsNav.css';
 import FriendsNav from './FriendsNav';
 import { getUserData, removeFollower } from '../../services/datastore.js';
 
