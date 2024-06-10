@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { Dropdown, message } from 'antd';
 import Plan2 from '../../components/plan2/plan2.jsx';
 import PotentialClass from './PotentialClass.jsx';
 import AddTerms from './AddTerms.jsx';
@@ -6,7 +7,7 @@ import Delete from '../../components/delete/Delete.jsx';
 import './Homepage.css';
 // import ProgressTracker from './ProgressTracker.jsx';
 import {
-  getAllDrafts, addNewDraft, delDraft, updateDraft, updateUserData
+  getAllDrafts, addNewDraft, delDraft, updateDraft
 } from '../../services/datastore.js';
 
 const Homepage = ({ userID }) => {
@@ -48,7 +49,8 @@ const Homepage = ({ userID }) => {
     if (mainDrafts.length < 4) {
       addNewDraft(`maindraft${mainDrafts.length + 1}`);
     } else {
-      alert('maximum number of drafts');
+      message.error('maximum number of drafts');
+      // alert('maximum number of drafts');
     }
   };
 
@@ -116,30 +118,30 @@ const Homepage = ({ userID }) => {
     );
   };
 
-  const DropdownMenu = () => {
-    console.log(userID);
-    const [inputMajor, setMajor] = useState('');
+  // const DropdownMenu = () => {
+  //   console.log(userID);
+  //   const [inputMajor, setMajor] = useState('');
 
-    const handleClickMajor = (event) => {
-      const newMajor = event.target.value;
-      setMajor(event.target.value);
-      updateUserData(userID, {
-        name: 'Ellie', year: 2027, major: newMajor, minor: 'comp sci', netid: 1, bio: 'hello', planid: 1
-      });
-      updateUserData(userID, inputMajor);
-    };
+  //   const handleClickMajor = (event) => {
+  //     const newMajor = event.target.value;
+  //     setMajor(event.target.value);
+  //     updateUserData(userID, {
+  //       name: 'Ellie', year: 2027, major: newMajor, minor: 'comp sci', netid: 1, bio: 'hello', planid: 1
+  //     });
+  //     updateUserData(userID, inputMajor);
+  //   };
 
-    return (
-      <div className="major-edit-toggle">
-        <select id="dropdown" value={inputMajor} onChange={handleClickMajor}>
-          <option value="">Choose your major</option>
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-        </select>
-      </div>
-    );
-  };
+  //   return (
+  //     <div className="major-edit-toggle">
+  //       <select id="dropdown" value={inputMajor} onChange={handleClickMajor}>
+  //         <option value="">Choose your major</option>
+  //         <option value="option1">Option 1</option>
+  //         <option value="option2">Option 2</option>
+  //         <option value="option3">Option 3</option>
+  //       </select>
+  //     </div>
+  //   );
+  // };
 
   return (
     <div className="homepage-main-container">
@@ -147,8 +149,10 @@ const Homepage = ({ userID }) => {
       <div className="homepage-left-container">
         <MainDraftTab />
         <div className="plan-container2">
-          <DropdownMenu />
-          {/* <ProgressTracker /> */}
+          {/* <DropdownMenu />
+          <ProgressTracker /> */}
+          {/* <MajorEditToggle userID={userID} /> */}
+          <Dropdown prop={userID} />
           <Plan2 mainDrafts={mainDrafts} mainDraftIndex={mainDraftIndex} />
         </div>
       </div>

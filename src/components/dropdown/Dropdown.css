@@ -1,0 +1,9 @@
+.major-edit-toggle {
+    background-color: var(--gray);
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
