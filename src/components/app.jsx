@@ -21,6 +21,7 @@ import ViewProfile from '../containers/friendPage/ViewProfile';
 import Profile from './profile/Profile';
 // eslint-disable-next-line no-unused-vars
 import Sidebar from './profile/Sidebar';
+import './app.css';
 
 const Welcome = () => (
   <div>
